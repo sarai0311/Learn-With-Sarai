@@ -1,0 +1,30 @@
+{
+  "name": "storykeeper", 
+{
+[build]
+  command = "npm ci --legacy-peer-deps && npm run netlify-build"
+  publish = ".next"
+
+[build.environment]
+  NODE_ENV = "production"
+  NEXT_TELEMETRY_DISABLED = "1"
+  NODE_VERSION = "18.18.0"
+  NPM_FLAGS = "--legacy-peer-deps"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+    
+"command = "npm ci --legacy-peer-deps && npm run 
+netlify-build",
+    "publish": ".next"
+  },
+  "functions": {
+    "api/*": {
+      "included_files": ["migrations/**"]
+    }
+  },
+  "environment": {
+    "NODE_ENV": "production"
+  }
+}
+
