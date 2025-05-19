@@ -1,0 +1,360 @@
+
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import ServiceCard from "@/components/ServiceCard";
+import { Link } from 'react-router-dom';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+const Services = () => {
+  return (
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+      
+      <main className="flex-grow">
+        {/* Header */}
+        <section className="bg-sarai-primary text-white py-16">
+          <div className="sarai-container">
+            <div className="max-w-3xl mx-auto text-center">
+              <h1 className="text-3xl md:text-4xl font-bold mb-4">
+                Spanish Learning Services
+              </h1>
+              <p className="text-xl opacity-90">
+                Personalized programs designed to help you achieve your language goals
+              </p>
+            </div>
+          </div>
+        </section>
+        
+        {/* Services Tabs */}
+        <section className="sarai-section bg-white">
+          <div className="sarai-container">
+            <Tabs defaultValue="individual" className="w-full">
+              <div className="flex justify-center mb-8">
+                <TabsList className="bg-gray-100">
+                  <TabsTrigger value="individual" className="px-6 py-3">Individual Classes</TabsTrigger>
+                  <TabsTrigger value="packages" className="px-6 py-3">Class Packages</TabsTrigger>
+                  <TabsTrigger value="specialized" className="px-6 py-3">Specialized Classes</TabsTrigger>
+                </TabsList>
+              </div>
+              
+              {/* Individual Classes */}
+              <TabsContent value="individual">
+                <div className="text-center mb-8">
+                  <h2 className="text-2xl md:text-3xl font-bold text-sarai-text mb-4">
+                    One-on-One Spanish Classes
+                  </h2>
+                  <p className="text-gray-600 max-w-3xl mx-auto">
+                    Personalized individual lessons tailored to your specific needs and learning style
+                  </p>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  <ServiceCard
+                    title="Trial Class"
+                    description="Try a complimentary 30-minute class to assess your level and discuss your learning goals."
+                    icon="🎁"
+                    price="Free"
+                    features={[
+                      "Level assessment",
+                      "Learning goals discussion",
+                      "Personalized learning plan",
+                      "Q&A about methodology",
+                      "No obligation"
+                    ]}
+                  />
+                  <ServiceCard
+                    title="Standard Class"
+                    description="Regular one-on-one Spanish lessons focused on your specific learning goals."
+                    icon="📚"
+                    price="$25"
+                    features={[
+                      "60-minute sessions",
+                      "Customized curriculum",
+                      "Homework assignments",
+                      "Progress tracking",
+                      "Flexible scheduling"
+                    ]}
+                  />
+                  <ServiceCard
+                    title="Premium Class"
+                    description="Extended sessions for faster progress with additional materials and support."
+                    icon="⭐"
+                    price="$35"
+                    features={[
+                      "90-minute sessions",
+                      "Personalized learning materials",
+                      "Interactive exercises",
+                      "Email support between classes",
+                      "Monthly progress report"
+                    ]}
+                  />
+                </div>
+              </TabsContent>
+              
+              {/* Class Packages */}
+              <TabsContent value="packages">
+                <div className="text-center mb-8">
+                  <h2 className="text-2xl md:text-3xl font-bold text-sarai-text mb-4">
+                    Class Packages
+                  </h2>
+                  <p className="text-gray-600 max-w-3xl mx-auto">
+                    Save money with discounted class packages while committing to consistent learning
+                  </p>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  <ServiceCard
+                    title="Starter Package"
+                    description="Perfect for beginners or those testing the waters with consistent learning."
+                    icon="🚀"
+                    price="$115"
+                    features={[
+                      "5 standard classes",
+                      "$23 per class (8% off)",
+                      "Valid for 2 months",
+                      "Basic study materials included",
+                      "Flexible scheduling"
+                    ]}
+                  />
+                  <ServiceCard
+                    title="Committed Learner"
+                    description="Our most popular package for steady and consistent progress."
+                    icon="🔥"
+                    price="$210"
+                    features={[
+                      "10 standard classes",
+                      "$21 per class (16% off)",
+                      "Valid for 3 months",
+                      "Complete study materials",
+                      "Priority scheduling"
+                    ]}
+                  />
+                  <ServiceCard
+                    title="Immersion Package"
+                    description="Intensive learning experience for rapid progress and deep immersion."
+                    icon="🌟"
+                    price="$380"
+                    features={[
+                      "20 standard classes",
+                      "$19 per class (24% off)",
+                      "Valid for 6 months",
+                      "Premium learning materials",
+                      "WhatsApp support between sessions"
+                    ]}
+                  />
+                </div>
+              </TabsContent>
+              
+              {/* Specialized Classes */}
+              <TabsContent value="specialized">
+                <div className="text-center mb-8">
+                  <h2 className="text-2xl md:text-3xl font-bold text-sarai-text mb-4">
+                    Specialized Learning Programs
+                  </h2>
+                  <p className="text-gray-600 max-w-3xl mx-auto">
+                    Focused courses designed for specific goals and contexts
+                  </p>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  <ServiceCard
+                    title="Business Spanish"
+                    description="Learn Spanish specifically for professional environments and business contexts."
+                    icon="💼"
+                    price="$30"
+                    features={[
+                      "Industry-specific vocabulary",
+                      "Business correspondence",
+                      "Negotiation & presentation skills",
+                      "Cross-cultural communication",
+                      "Role-playing business scenarios"
+                    ]}
+                  />
+                  <ServiceCard
+                    title="DELE/SIELE Exam Prep"
+                    description="Structured preparation for official Spanish proficiency examinations."
+                    icon="🎓"
+                    price="$35"
+                    features={[
+                      "Exam strategies & techniques",
+                      "Practice with past papers",
+                      "Mock exams with feedback",
+                      "Focused grammar review",
+                      "Specialized exam materials"
+                    ]}
+                  />
+                  <ServiceCard
+                    title="Spanish for Travel"
+                    description="Quick, practical Spanish skills for travelers heading to Spanish-speaking countries."
+                    icon="✈️"
+                    price="Custom"
+                    features={[
+                      "Survival phrases & vocabulary",
+                      "Cultural etiquette guidance",
+                      "Travel-specific role play",
+                      "Practical pronunciation focus",
+                      "Regional dialect awareness"
+                    ]}
+                  />
+                </div>
+              </TabsContent>
+            </Tabs>
+          </div>
+        </section>
+        
+        {/* How Classes Work */}
+        <section className="sarai-section bg-gray-50">
+          <div className="sarai-container">
+            <div className="text-center mb-12">
+              <h2 className="text-2xl md:text-3xl font-bold text-sarai-text mb-4">
+                How My Classes Work
+              </h2>
+              <p className="text-gray-600 max-w-3xl mx-auto">
+                A seamless online learning experience designed for your convenience
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <div className="order-2 md:order-1">
+                <div className="space-y-8">
+                  <div className="flex gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 bg-sarai-primary text-white rounded-full flex items-center justify-center font-bold text-lg">1</div>
+                    <div>
+                      <h3 className="text-xl font-bold text-sarai-text mb-2">Book Your Class</h3>
+                      <p className="text-gray-600">
+                        Choose a time slot that works for you through our easy online booking system, aligned with your time zone.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 bg-sarai-primary text-white rounded-full flex items-center justify-center font-bold text-lg">2</div>
+                    <div>
+                      <h3 className="text-xl font-bold text-sarai-text mb-2">Receive Confirmation</h3>
+                      <p className="text-gray-600">
+                        Get an email confirmation with your class details and a link to join the virtual classroom.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 bg-sarai-primary text-white rounded-full flex items-center justify-center font-bold text-lg">3</div>
+                    <div>
+                      <h3 className="text-xl font-bold text-sarai-text mb-2">Attend Your Class</h3>
+                      <p className="text-gray-600">
+                        Join the Zoom or Google Meet session at your scheduled time for an interactive learning experience.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 bg-sarai-primary text-white rounded-full flex items-center justify-center font-bold text-lg">4</div>
+                    <div>
+                      <h3 className="text-xl font-bold text-sarai-text mb-2">Post-Class Materials</h3>
+                      <p className="text-gray-600">
+                        Receive follow-up materials, homework assignments, and notes to reinforce what you've learned.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="order-1 md:order-2 flex justify-center">
+                <div className="relative">
+                  <div className="absolute -top-6 -left-6 w-40 h-40 bg-sarai-secondary/10 rounded-full"></div>
+                  <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-sarai-primary/10 rounded-full"></div>
+                  <div className="relative z-10">
+                    <img 
+                      src="https://images.unsplash.com/photo-1609749660110-1bca47994248?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" 
+                      alt="Online Spanish Class" 
+                      className="rounded-lg shadow-lg w-full h-auto"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        {/* FAQ Section */}
+        <section className="sarai-section bg-white">
+          <div className="sarai-container">
+            <div className="text-center mb-12">
+              <h2 className="text-2xl md:text-3xl font-bold text-sarai-text mb-4">
+                Frequently Asked Questions
+              </h2>
+            </div>
+            
+            <div className="max-w-3xl mx-auto divide-y divide-gray-200">
+              <div className="py-6">
+                <h3 className="text-lg font-semibold text-sarai-text mb-2">
+                  What technology do I need for online classes?
+                </h3>
+                <p className="text-gray-600">
+                  You just need a computer or tablet with a stable internet connection, a webcam, and a microphone. We'll use Zoom or Google Meet for our sessions, which are free and easy to use.
+                </p>
+              </div>
+              
+              <div className="py-6">
+                <h3 className="text-lg font-semibold text-sarai-text mb-2">
+                  Do I need to purchase any textbooks?
+                </h3>
+                <p className="text-gray-600">
+                  No, all necessary learning materials will be provided as part of your class fee. I create custom materials based on your needs and learning style.
+                </p>
+              </div>
+              
+              <div className="py-6">
+                <h3 className="text-lg font-semibold text-sarai-text mb-2">
+                  What if I need to cancel or reschedule a class?
+                </h3>
+                <p className="text-gray-600">
+                  Classes can be rescheduled with at least 24 hours' notice at no charge. Cancellations with less than 24 hours' notice may be charged a fee or forfeit the class.
+                </p>
+              </div>
+              
+              <div className="py-6">
+                <h3 className="text-lg font-semibold text-sarai-text mb-2">
+                  How do I pay for classes?
+                </h3>
+                <p className="text-gray-600">
+                  Payments can be made securely online via credit card, PayPal, or bank transfer. For package deals, payment is due upfront to secure the discounted rate.
+                </p>
+              </div>
+              
+              <div className="py-6">
+                <h3 className="text-lg font-semibold text-sarai-text mb-2">
+                  How quickly will I learn Spanish?
+                </h3>
+                <p className="text-gray-600">
+                  Progress varies depending on your starting level, learning goals, and the time you can dedicate to practice between classes. Most students notice significant improvement within 2-3 months of consistent weekly lessons.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        {/* CTA Section */}
+        <section className="bg-sarai-accent text-white py-16">
+          <div className="sarai-container">
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                Ready to Start Learning Spanish?
+              </h2>
+              <p className="text-xl mb-8">
+                Book your free trial class today and take the first step towards fluency.
+              </p>
+              <Link to="/book" className="bg-white text-sarai-accent hover:bg-gray-100 font-semibold py-3 px-8 rounded-md transition-all duration-200">
+                Schedule Your Free Trial
+              </Link>
+            </div>
+          </div>
+        </section>
+      </main>
+      
+      <Footer />
+    </div>
+  );
+};
+
+export default Services;

@@ -1,0 +1,69 @@
+
+import { Link } from 'react-router-dom';
+
+const Hero = () => {
+  return (
+    <div className="bg-gradient-to-b from-sarai-background to-white">
+      <div className="sarai-container py-16 lg:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="order-2 lg:order-1">
+            <h1 className="text-4xl md:text-5xl font-bold leading-tight text-sarai-text mb-4">
+              Learn Spanish with <span className="text-sarai-primary">Professional Guidance</span>
+            </h1>
+            <p className="text-lg md:text-xl text-gray-700 mb-8">
+              Personalized online Spanish lessons tailored to your goals, schedule, and learning style. 
+              Connect with Sarai Acevedo, an experienced Spanish teacher passionate about helping students succeed.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Link to="/book" className="btn-primary">
+                Book a Free Trial Class
+              </Link>
+              <Link to="/services" className="btn-outline">
+                Explore Services
+              </Link>
+            </div>
+            <div className="mt-8 flex items-center">
+              <div className="flex -space-x-2">
+                <img 
+                  className="h-10 w-10 rounded-full border-2 border-white" 
+                  src="https://randomuser.me/api/portraits/women/32.jpg" 
+                  alt="Student" 
+                />
+                <img 
+                  className="h-10 w-10 rounded-full border-2 border-white" 
+                  src="https://randomuser.me/api/portraits/men/23.jpg" 
+                  alt="Student" 
+                />
+                <img 
+                  className="h-10 w-10 rounded-full border-2 border-white" 
+                  src="https://randomuser.me/api/portraits/women/67.jpg" 
+                  alt="Student" 
+                />
+              </div>
+              <div className="ml-4">
+                <span className="text-sarai-primary font-semibold">300+</span>
+                <span className="text-gray-600 ml-1">satisfied students worldwide</span>
+              </div>
+            </div>
+          </div>
+          <div className="order-1 lg:order-2 flex justify-center">
+            <div className="relative">
+              <div className="absolute -top-6 -left-6 w-40 h-40 bg-sarai-secondary/10 rounded-full"></div>
+              <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-sarai-primary/10 rounded-full"></div>
+              <div className="relative z-10 bg-white p-2 rounded-lg shadow-xl">
+                <img 
+                  src="https://images.unsplash.com/photo-1580894908361-967195033215?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
+                  alt="Spanish Teacher" 
+                  className="w-full h-auto rounded object-cover"
+                  style={{ maxWidth: '400px' }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Hero;

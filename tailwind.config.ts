@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,19 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Sarai's brand colors
+				sarai: {
+					primary: '#2C5282',    // Blue professional
+					secondary: '#ED8936',  // Orange warm
+					accent: '#38A169',     // Green success
+					background: '#F7FAFC', // White/Light gray
+					text: '#2D3748',       // Dark gray
 				}
+			},
+			fontFamily: {
+				'montserrat': ['Montserrat', 'sans-serif'],
+				'open-sans': ['"Open Sans"', 'sans-serif']
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
