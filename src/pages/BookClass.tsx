@@ -170,9 +170,9 @@ const BookClass = () => {
                             <SelectValue placeholder="Select class type" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="trial">Trial Class (25 min - $10)</SelectItem>
-                            <SelectItem value="standard">Standard Class (50 min - $25)</SelectItem>
-                            <SelectItem value="premium">Premium Class (75 min - $45)</SelectItem>
+                            <SelectItem value="trial">Trial Class (25 min - $9.99)</SelectItem>
+                            <SelectItem value="standard">Standard Class (50 min - $24.99)</SelectItem>
+                            <SelectItem value="premium">Premium Class (75 min - $44.99)</SelectItem>
                             <SelectItem value="business">Business Spanish (50 min - $30)</SelectItem>
                             <SelectItem value="exam">DELE/SIELE Exam Prep (50 min - $35)</SelectItem>
                             <SelectItem value="travel">Spanish for Travel (Custom)</SelectItem>
@@ -238,7 +238,7 @@ const BookClass = () => {
                       </div>
                       <div className="flex justify-between items-center pb-2 border-b border-gray-100">
                         <span className="text-gray-600">Price:</span>
-                        <span className="font-medium">$10.00</span>
+                        <span className="font-medium">$9.99</span>
                       </div>
                     </div>
                   </CardContent>

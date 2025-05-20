@@ -53,7 +53,7 @@ const Services = () => {
                     title="Trial Class"
                     description="Try a 25-minute class to assess your level and discuss your learning goals."
                     icon="🎁"
-                    price="$12.50"
+                    price="$9.99"
                     features={[
                       "Level assessment",
                       "Learning goals discussion",
@@ -66,7 +66,7 @@ const Services = () => {
                     title="Standard Class"
                     description="Regular one-on-one Spanish lessons focused on your specific learning goals."
                     icon="📚"
-                    price="$25"
+                    price="$24.99"
                     features={[
                       "50-minute sessions",
                       "Customized curriculum",
@@ -79,7 +79,7 @@ const Services = () => {
                     title="Premium Class"
                     description="Extended sessions for faster progress with additional materials and support."
                     icon="⭐"
-                    price="$45"
+                    price="$44.99"
                     features={[
                       "75-minute sessions",
                       "Personalized learning materials",
@@ -107,10 +107,10 @@ const Services = () => {
                     title="Starter Package"
                     description="Perfect for beginners or those testing the waters with consistent learning."
                     icon="🚀"
-                    price="$115"
+                    price="$114.95"
                     features={[
                       "5 standard classes",
-                      "$23 per class (8% off)",
+                      "$22.99 per class (8% off)",
                       "Valid for 2 months",
                       "Basic study materials included",
                       "Flexible scheduling"
@@ -120,10 +120,10 @@ const Services = () => {
                     title="Committed Learner"
                     description="Our most popular package for steady and consistent progress."
                     icon="🔥"
-                    price="$210"
+                    price="$209.90"
                     features={[
                       "10 standard classes",
-                      "$21 per class (16% off)",
+                      "$20.99 per class (16% off)",
                       "Valid for 3 months",
                       "Complete study materials",
                       "Priority scheduling"
@@ -133,10 +133,10 @@ const Services = () => {
                     title="Immersion Package"
                     description="Intensive learning experience for rapid progress and deep immersion."
                     icon="🌟"
-                    price="$380"
+                    price="$379.80"
                     features={[
                       "20 standard classes",
-                      "$19 per class (24% off)",
+                      "$18.99 per class (24% off)",
                       "Valid for 6 months",
                       "Premium learning materials",
                       "WhatsApp support between sessions"
