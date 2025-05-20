@@ -55,7 +55,7 @@
   }
 
   body {
-    @apply bg-sarai-background text-sarai-text font-open-sans;
+    @apply bg-gradient-to-b from-sarai-background to-white text-sarai-text font-open-sans;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -73,17 +73,48 @@
 }
 
 .btn-primary {
-  @apply bg-sarai-primary hover:bg-sarai-primary/90 text-white font-semibold py-3 px-6 rounded-md transition-all duration-200;
+  @apply bg-gradient-to-r from-sarai-primary to-sarai-primary/90 hover:from-sarai-primary/90 hover:to-sarai-primary text-white font-semibold py-3 px-6 rounded-md transition-all duration-200;
 }
 
 .btn-secondary {
-  @apply bg-sarai-secondary hover:bg-sarai-secondary/90 text-white font-semibold py-3 px-6 rounded-md transition-all duration-200;
+  @apply bg-gradient-to-r from-sarai-secondary to-sarai-secondary/90 hover:from-sarai-secondary/90 hover:to-sarai-secondary text-white font-semibold py-3 px-6 rounded-md transition-all duration-200;
 }
 
 .btn-accent {
-  @apply bg-sarai-accent hover:bg-sarai-accent/90 text-white font-semibold py-3 px-6 rounded-md transition-all duration-200;
+  @apply bg-gradient-to-r from-sarai-accent to-sarai-accent/90 hover:from-sarai-accent/90 hover:to-sarai-accent text-white font-semibold py-3 px-6 rounded-md transition-all duration-200;
 }
 
 .btn-outline {
-  @apply border-2 border-sarai-primary text-sarai-primary hover:bg-sarai-primary hover:text-white font-semibold py-3 px-6 rounded-md transition-all duration-200;
+  @apply border-2 border-sarai-primary text-sarai-primary hover:bg-sarai-primary hover:text-white font-semibold py-3 px-6 rounded-md transition-all duration-200 shadow-sm hover:shadow-md;
+}
+
+.animated-gradient {
+  background: linear-gradient(-45deg, #2BBBAD, #1EAEDB, #0EA5E9, #33C3F0);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.text-shadow {
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }

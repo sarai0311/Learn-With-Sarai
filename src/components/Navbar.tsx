@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { Palette } from 'lucide-react'; 
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,11 +12,14 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white shadow-sm">
+    <nav className="bg-gradient-to-r from-white to-blue-50 shadow-sm">
       <div className="sarai-container">
         <div className="flex justify-between h-20 items-center">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
+            <div className="p-2 bg-gradient-to-r from-sarai-primary to-sarai-secondary rounded-full">
+              <Palette className="h-6 w-6 text-white" />
+            </div>
             <span className="text-sarai-primary font-montserrat text-2xl font-bold">
               LEARN<span className="text-sarai-secondary">WithSarai</span>
             </span>
@@ -25,25 +29,25 @@ const Navbar = () => {
           <div className="hidden md:flex space-x-8">
             <Link 
               to="/" 
-              className={`font-medium ${isActive('/') ? 'text-sarai-primary' : 'text-gray-600 hover:text-sarai-primary'}`}
+              className={`font-medium transition-all duration-300 ${isActive('/') ? 'text-sarai-primary scale-110' : 'text-gray-600 hover:text-sarai-primary hover:scale-110'}`}
             >
               Home
             </Link>
             <Link 
               to="/about" 
-              className={`font-medium ${isActive('/about') ? 'text-sarai-primary' : 'text-gray-600 hover:text-sarai-primary'}`}
+              className={`font-medium transition-all duration-300 ${isActive('/about') ? 'text-sarai-primary scale-110' : 'text-gray-600 hover:text-sarai-primary hover:scale-110'}`}
             >
               About Me
             </Link>
             <Link 
               to="/services" 
-              className={`font-medium ${isActive('/services') ? 'text-sarai-primary' : 'text-gray-600 hover:text-sarai-primary'}`}
+              className={`font-medium transition-all duration-300 ${isActive('/services') ? 'text-sarai-primary scale-110' : 'text-gray-600 hover:text-sarai-primary hover:scale-110'}`}
             >
               Services
             </Link>
             <Link 
               to="/book" 
-              className="btn-primary"
+              className="btn-primary shadow-lg hover:shadow-sarai-primary/20 transition-all duration-300 transform hover:-translate-y-1"
             >
               Book a Class
             </Link>
@@ -73,7 +77,7 @@ const Navbar = () => {
       {/* Mobile Navigation */}
       {isOpen && (
         <div className="md:hidden">
-          <div className="px-2 pt-2 pb-4 space-y-1 bg-white">
+          <div className="px-2 pt-2 pb-4 space-y-1 bg-gradient-to-b from-white to-blue-50">
             <Link
               to="/"
               className={`block px-3 py-2 rounded-md text-base font-medium ${isActive('/') ? 'text-sarai-primary bg-gray-50' : 'text-gray-600 hover:bg-gray-50 hover:text-sarai-primary'}`}
@@ -97,7 +101,7 @@ const Navbar = () => {
             </Link>
             <Link
               to="/book"
-              className="block px-3 py-2 rounded-md text-base font-medium btn-primary w-full text-center"
+              className="block px-3 py-2 rounded-md text-base font-medium btn-primary w-full text-center shadow-lg"
               onClick={() => setIsOpen(false)}
             >
               Book a Class
