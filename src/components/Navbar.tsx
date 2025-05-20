@@ -17,7 +17,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <span className="text-sarai-primary font-montserrat text-2xl font-bold">
-              Spanish<span className="text-sarai-secondary">WithSarai</span>
+              LEARN<span className="text-sarai-secondary">WithSarai</span>
             </span>
           </Link>
 
