@@ -11,7 +11,7 @@ const Hero = () => {
               Learn Spanish with <span className="text-sarai-primary">Professional Guidance</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-700 mb-8">
-              Hey there! I'm Sarai, a certified Spanish teacher from Colombia 🇨🇴 and I'm here to help you learn Spanish in a way that's fun, effective and personalized just for you.
+              Hi there! I'm Sarai, a certified Spanish teacher from Colombia and I'm here to help you learn Spanish in a way that's fun, effective and personalized just for you.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link to="/book" className="btn-primary">
@@ -51,8 +51,8 @@ const Hero = () => {
               <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-sarai-primary/10 rounded-full"></div>
               <div className="relative z-10 bg-white p-2 rounded-lg shadow-xl">
                 <img 
-                  src="https://images.unsplash.com/photo-1580894908361-967195033215?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
-                  alt="Spanish Teacher" 
+                  src="/lovable-uploads/6c969fbd-a97c-4494-b87e-6111474ffc83.png" 
+                  alt="Spanish Teacher Sarai" 
                   className="w-full h-auto rounded object-cover"
                   style={{ maxWidth: '400px' }}
                 />

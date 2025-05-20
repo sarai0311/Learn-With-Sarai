@@ -82,7 +82,7 @@ const BookClass = () => {
                     Pick a Time That Works For You
                   </h2>
                   <p className="text-gray-600">
-                    Choose a time slot that fits your schedule. All times are shown in your local time zone.
+                    Choose a time slot that fits your schedule. I'm available Monday to Friday from 2 PM to 10 PM (Las Palmas de Gran Canaria time zone).
                   </p>
                 </div>
                 
@@ -108,7 +108,7 @@ const BookClass = () => {
                     Tell Me About Yourself
                   </h2>
                   <p className="text-gray-600">
-                    Just a few details so I can prepare for our class!
+                    Share a few details so I can prepare for our class!
                   </p>
                 </div>
                 
@@ -170,7 +170,7 @@ const BookClass = () => {
                             <SelectValue placeholder="Select class type" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="trial">Trial Class (25 min - $12.50)</SelectItem>
+                            <SelectItem value="trial">Trial Class (25 min - $10)</SelectItem>
                             <SelectItem value="standard">Standard Class (50 min - $25)</SelectItem>
                             <SelectItem value="premium">Premium Class (75 min - $45)</SelectItem>
                             <SelectItem value="business">Business Spanish (50 min - $30)</SelectItem>
@@ -230,15 +230,15 @@ const BookClass = () => {
                       </div>
                       <div className="flex justify-between items-center pb-2 border-b border-gray-100">
                         <span className="text-gray-600">Date & Time:</span>
-                        <span className="font-medium">Wednesday, May 21, 2025 at 10:00 AM</span>
+                        <span className="font-medium">Wednesday, May 21, 2025 at 5:00 PM</span>
                       </div>
                       <div className="flex justify-between items-center pb-2 border-b border-gray-100">
                         <span className="text-gray-600">Time Zone:</span>
-                        <span className="font-medium">Eastern Time (EST)</span>
+                        <span className="font-medium">Las Palmas de Gran Canaria</span>
                       </div>
                       <div className="flex justify-between items-center pb-2 border-b border-gray-100">
                         <span className="text-gray-600">Price:</span>
-                        <span className="font-medium">$12.50</span>
+                        <span className="font-medium">$10.00</span>
                       </div>
                     </div>
                   </CardContent>
