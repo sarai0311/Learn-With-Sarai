@@ -19,11 +19,10 @@ const Index = () => {
           <div className="sarai-container">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-sarai-text">
-                Why Learn Spanish with Sarai?
+                Why Learn Spanish with Me?
               </h2>
               <p className="mt-4 text-gray-600 max-w-3xl mx-auto">
-                Discover the unique benefits of personalized online Spanish lessons tailored 
-                to your learning style, goals, and schedule.
+                Discover how my personalized online Spanish lessons can help you reach your goals
               </p>
             </div>
             
@@ -37,7 +36,7 @@ const Index = () => {
                 </div>
                 <h3 className="text-xl font-bold mb-2 text-sarai-text">Personalized Learning</h3>
                 <p className="text-gray-600">
-                  Classes tailored to your specific goals, learning style, and pace. No generic curriculum - only what you need.
+                  Classes designed just for you - focused on your goals, learning style, and pace. No generic curriculum, just what you actually need.
                 </p>
               </div>
               
@@ -50,7 +49,7 @@ const Index = () => {
                 </div>
                 <h3 className="text-xl font-bold mb-2 text-sarai-text">Flexible Scheduling</h3>
                 <p className="text-gray-600">
-                  Book classes when it's convenient for you with our easy-to-use scheduling system that adapts to your time zone.
+                  Book classes when it works for you with our easy booking system that adapts to your time zone, wherever you are.
                 </p>
               </div>
               
@@ -63,7 +62,7 @@ const Index = () => {
                 </div>
                 <h3 className="text-xl font-bold mb-2 text-sarai-text">Certified Professional</h3>
                 <p className="text-gray-600">
-                  Learn with a certified Spanish teacher with experience teaching students from around the world.
+                  Learn with a certified Spanish teacher with experience teaching students from around the world with proven results.
                 </p>
               </div>
             </div>
@@ -89,9 +88,9 @@ const Index = () => {
                   <div className="w-10 h-10 bg-sarai-primary rounded-full flex items-center justify-center text-white font-bold mb-4">
                     1
                   </div>
-                  <h3 className="text-xl font-bold mb-2 text-sarai-text">Book a Free Trial</h3>
+                  <h3 className="text-xl font-bold mb-2 text-sarai-text">Book a Trial Class</h3>
                   <p className="text-gray-600">
-                    Schedule a 30-minute free consultation to discuss your goals and assess your current level.
+                    Schedule a 25-minute trial class to discuss your goals and assess your current level. Just $12.50 to get started.
                   </p>
                 </div>
                 <div className="hidden md:block absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2">
@@ -107,9 +106,9 @@ const Index = () => {
                   <div className="w-10 h-10 bg-sarai-primary rounded-full flex items-center justify-center text-white font-bold mb-4">
                     2
                   </div>
-                  <h3 className="text-xl font-bold mb-2 text-sarai-text">Create a Learning Plan</h3>
+                  <h3 className="text-xl font-bold mb-2 text-sarai-text">Get a Learning Plan</h3>
                   <p className="text-gray-600">
-                    Receive a customized learning plan based on your needs, preferences, and availability.
+                    Receive a customized learning plan based on what you want to achieve, your preferences, and your schedule.
                   </p>
                 </div>
                 <div className="hidden md:block absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2">
@@ -127,7 +126,7 @@ const Index = () => {
                   </div>
                   <h3 className="text-xl font-bold mb-2 text-sarai-text">Start Learning</h3>
                   <p className="text-gray-600">
-                    Begin your classes via Zoom or Google Meet with personalized materials and ongoing support.
+                    Begin your classes in our virtual classroom with personalized materials and ongoing support between sessions.
                   </p>
                 </div>
               </div>
@@ -135,8 +134,8 @@ const Index = () => {
             
             <div className="mt-12 text-center">
               <Link to="/book">
-                <Button className="btn-secondary">
-                  Schedule Your Free Trial
+                <Button className="bg-sarai-secondary hover:bg-sarai-secondary/90 text-white">
+                  Schedule Your Trial Class
                 </Button>
               </Link>
             </div>
@@ -151,31 +150,31 @@ const Index = () => {
                 What My Students Say
               </h2>
               <p className="mt-4 text-gray-600 max-w-3xl mx-auto">
-                Hear from language learners who have achieved their Spanish goals
+                Hear from students who are already improving their Spanish
               </p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <TestimonialCard
-                name="Michael Thompson"
+                name="Jahquahiel"
                 country="United States"
-                text="Sarai is an amazing teacher! She tailored the lessons to my business needs, and after 3 months I was able to conduct meetings with our partners in Mexico. Her patience and expertise made all the difference."
+                text="Sarai has to be one of the best teachers on this platform, she has kept the same positive energy since day one and I feel like I've already learned so much in one month. 10/10 would recommend!"
                 image="https://randomuser.me/api/portraits/men/32.jpg"
                 rating={5}
               />
               <TestimonialCard
-                name="Sophie Chen"
-                country="Canada"
-                text="I tried learning Spanish with apps before, but I wasn't making real progress. With Sarai, I finally feel confident speaking. She creates a comfortable environment where it's okay to make mistakes and learn from them."
-                image="https://randomuser.me/api/portraits/women/44.jpg"
+                name="Neil"
+                country="United Kingdom"
+                text="I just finished my lesson with Sarai and right from the start I saw she came well prepared for the class and was extremely professional, and a super warm and nice person who is ready to help you with whatever you need to improve your Spanish."
+                image="https://randomuser.me/api/portraits/men/44.jpg"
                 rating={5}
               />
               <TestimonialCard
-                name="Thomas Weber"
-                country="Germany"
-                text="As someone preparing to move to Spain, I needed practical conversation skills fast. Sarai focused on real-life scenarios I'd encounter, and now I feel much more prepared for my relocation."
+                name="Caleb"
+                country="United States"
+                text="Sarai is kind and incredibly patient. She's a great listener and seems very adaptable. Her specialty is flexibility and conversation. Unlike most teachers on Preply (from my experience), Sarai will adjust to meet your needs."
                 image="https://randomuser.me/api/portraits/men/22.jpg"
-                rating={4}
+                rating={5}
               />
             </div>
           </div>
@@ -186,14 +185,14 @@ const Index = () => {
           <div className="sarai-container">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Ready to Start Your Spanish Learning Journey?
+                Ready to Start Your Spanish Journey?
               </h2>
               <p className="text-xl mb-8">
-                Book your free 30-minute trial class today and take the first step towards Spanish fluency.
+                Book your 25-minute trial class for just $12.50 and take the first step towards Spanish fluency.
               </p>
               <Link to="/book">
                 <Button className="bg-white text-sarai-primary hover:bg-gray-100 font-semibold py-3 px-8 text-lg">
-                  Book Your Free Trial
+                  Book Your Trial Class
                 </Button>
               </Link>
             </div>

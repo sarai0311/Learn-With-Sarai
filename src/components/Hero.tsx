@@ -11,12 +11,11 @@ const Hero = () => {
               Learn Spanish with <span className="text-sarai-primary">Professional Guidance</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-700 mb-8">
-              Personalized online Spanish lessons tailored to your goals, schedule, and learning style. 
-              Connect with Sarai Acevedo, an experienced Spanish teacher passionate about helping students succeed.
+              Hey there! I'm Sarai, a certified Spanish teacher from Colombia 🇨🇴 and I'm here to help you learn Spanish in a way that's fun, effective and personalized just for you.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link to="/book" className="btn-primary">
-                Book a Free Trial Class
+                Book a Trial Class
               </Link>
               <Link to="/services" className="btn-outline">
                 Explore Services

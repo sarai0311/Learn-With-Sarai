@@ -21,7 +21,7 @@ const BookClass = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // In a real application, this would submit the form data
-    alert("Your class has been booked! You will receive a confirmation email shortly.");
+    alert("Great! Your payment is being processed. Once completed, your class will be confirmed and you'll receive an email with all details.");
     setStep(3);
     window.scrollTo(0, 0);
   };
@@ -69,7 +69,7 @@ const BookClass = () => {
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white mb-2 ${step >= 3 ? 'bg-sarai-primary' : 'bg-gray-300'}`}>
                     3
                   </div>
-                  <span className="text-sm font-medium">Confirmation</span>
+                  <span className="text-sm font-medium">Payment & Confirmation</span>
                 </div>
               </div>
             </div>
@@ -79,10 +79,10 @@ const BookClass = () => {
               <div className="max-w-4xl mx-auto">
                 <div className="mb-10">
                   <h2 className="text-2xl font-bold text-sarai-text mb-4">
-                    Select Your Preferred Time
+                    Pick a Time That Works For You
                   </h2>
                   <p className="text-gray-600">
-                    Choose a time slot that works best for you. All times are displayed in your local time zone.
+                    Choose a time slot that fits your schedule. All times are shown in your local time zone.
                   </p>
                 </div>
                 
@@ -105,10 +105,10 @@ const BookClass = () => {
               <div className="max-w-2xl mx-auto">
                 <div className="mb-10">
                   <h2 className="text-2xl font-bold text-sarai-text mb-4">
-                    Your Information
+                    Tell Me About Yourself
                   </h2>
                   <p className="text-gray-600">
-                    Please provide your details to complete your booking.
+                    Just a few details so I can prepare for our class!
                   </p>
                 </div>
                 
@@ -133,12 +133,12 @@ const BookClass = () => {
                       
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
-                          <Label htmlFor="phone">Phone Number (optional)</Label>
+                          <Label htmlFor="phone">WhatsApp Number (optional)</Label>
                           <Input id="phone" />
                         </div>
                         
                         <div className="space-y-2">
-                          <Label htmlFor="level">Spanish Level</Label>
+                          <Label htmlFor="level">Your Spanish Level</Label>
                           <Select defaultValue="beginner">
                             <SelectTrigger>
                               <SelectValue placeholder="Select your level" />
@@ -155,10 +155,10 @@ const BookClass = () => {
                       </div>
                       
                       <div className="space-y-2">
-                        <Label htmlFor="goals">Your Learning Goals</Label>
+                        <Label htmlFor="goals">What Do You Want to Achieve?</Label>
                         <Textarea 
                           id="goals" 
-                          placeholder="Tell me about what you hope to achieve with Spanish lessons..."
+                          placeholder="Tell me about your goals with Spanish - travel, work, family connections, etc."
                           className="min-h-[100px]"
                         />
                       </div>
@@ -170,12 +170,12 @@ const BookClass = () => {
                             <SelectValue placeholder="Select class type" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="trial">Free Trial Class (30 min)</SelectItem>
-                            <SelectItem value="standard">Standard Class (60 min)</SelectItem>
-                            <SelectItem value="premium">Premium Class (90 min)</SelectItem>
-                            <SelectItem value="business">Business Spanish</SelectItem>
-                            <SelectItem value="exam">DELE/SIELE Exam Prep</SelectItem>
-                            <SelectItem value="travel">Spanish for Travel</SelectItem>
+                            <SelectItem value="trial">Trial Class (25 min - $12.50)</SelectItem>
+                            <SelectItem value="standard">Standard Class (50 min - $25)</SelectItem>
+                            <SelectItem value="premium">Premium Class (75 min - $45)</SelectItem>
+                            <SelectItem value="business">Business Spanish (50 min - $30)</SelectItem>
+                            <SelectItem value="exam">DELE/SIELE Exam Prep (50 min - $35)</SelectItem>
+                            <SelectItem value="travel">Spanish for Travel (Custom)</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
@@ -192,7 +192,7 @@ const BookClass = () => {
                           type="submit" 
                           className="bg-sarai-primary hover:bg-sarai-primary/90"
                         >
-                          Complete Booking
+                          Continue to Payment
                         </Button>
                       </div>
                     </form>
@@ -211,22 +211,22 @@ const BookClass = () => {
                     </svg>
                   </div>
                   <h2 className="text-3xl font-bold text-sarai-text mb-4">
-                    Booking Confirmed!
+                    Almost There!
                   </h2>
                   <p className="text-gray-600 max-w-md mx-auto">
-                    Your Spanish class has been scheduled successfully. Check your email for confirmation details and Zoom link.
+                    We're processing your payment. Once completed, your Spanish class will be confirmed and you'll get an email with all the details.
                   </p>
                 </div>
                 
                 <Card>
                   <CardHeader>
-                    <CardTitle>Booking Details</CardTitle>
+                    <CardTitle>Your Booking Details</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4 text-left">
                       <div className="flex justify-between items-center pb-2 border-b border-gray-100">
                         <span className="text-gray-600">Class Type:</span>
-                        <span className="font-medium">Free Trial Class (30 min)</span>
+                        <span className="font-medium">Trial Class (25 min)</span>
                       </div>
                       <div className="flex justify-between items-center pb-2 border-b border-gray-100">
                         <span className="text-gray-600">Date & Time:</span>
@@ -237,10 +237,8 @@ const BookClass = () => {
                         <span className="font-medium">Eastern Time (EST)</span>
                       </div>
                       <div className="flex justify-between items-center pb-2 border-b border-gray-100">
-                        <span className="text-gray-600">Meeting Link:</span>
-                        <span className="font-medium text-sarai-primary">
-                          <a href="#" className="underline">Zoom Meeting Link</a>
-                        </span>
+                        <span className="text-gray-600">Price:</span>
+                        <span className="font-medium">$12.50</span>
                       </div>
                     </div>
                   </CardContent>
@@ -248,7 +246,7 @@ const BookClass = () => {
                 
                 <div className="mt-8 space-y-4">
                   <p className="text-gray-600">
-                    Need to make changes or have questions?
+                    Questions about your booking?
                   </p>
                   <div className="flex flex-wrap justify-center gap-4">
                     <Button variant="outline">

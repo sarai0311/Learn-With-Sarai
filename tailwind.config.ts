@@ -63,13 +63,13 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Sarai's brand colors
+				// New color scheme for Learn with Sarai
 				sarai: {
-					primary: '#2C5282',    // Blue professional
-					secondary: '#ED8936',  // Orange warm
-					accent: '#38A169',     // Green success
-					background: '#F7FAFC', // White/Light gray
-					text: '#2D3748',       // Dark gray
+					primary: '#2BBBAD',    // Turquoise - main color
+					secondary: '#FF6B6B',  // Coral - warm, friendly color
+					accent: '#F4A261',     // Mustard - accent color
+					background: '#F9F9F9', // Light gray - background
+					text: '#1F2937',       // Dark blue-gray - text
 				}
 			},
 			fontFamily: {

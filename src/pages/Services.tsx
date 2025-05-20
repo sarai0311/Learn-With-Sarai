@@ -19,7 +19,7 @@ const Services = () => {
                 Spanish Learning Services
               </h1>
               <p className="text-xl opacity-90">
-                Personalized programs designed to help you achieve your language goals
+                Classes designed just for you to help you reach your language goals
               </p>
             </div>
           </div>
@@ -51,15 +51,15 @@ const Services = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   <ServiceCard
                     title="Trial Class"
-                    description="Try a complimentary 30-minute class to assess your level and discuss your learning goals."
+                    description="Try a 25-minute class to assess your level and discuss your learning goals."
                     icon="🎁"
-                    price="Free"
+                    price="$12.50"
                     features={[
                       "Level assessment",
                       "Learning goals discussion",
                       "Personalized learning plan",
                       "Q&A about methodology",
-                      "No obligation"
+                      "Payment required to book"
                     ]}
                   />
                   <ServiceCard
@@ -68,7 +68,7 @@ const Services = () => {
                     icon="📚"
                     price="$25"
                     features={[
-                      "60-minute sessions",
+                      "50-minute sessions",
                       "Customized curriculum",
                       "Homework assignments",
                       "Progress tracking",
@@ -79,9 +79,9 @@ const Services = () => {
                     title="Premium Class"
                     description="Extended sessions for faster progress with additional materials and support."
                     icon="⭐"
-                    price="$35"
+                    price="$45"
                     features={[
-                      "90-minute sessions",
+                      "75-minute sessions",
                       "Personalized learning materials",
                       "Interactive exercises",
                       "Email support between classes",
@@ -230,6 +230,16 @@ const Services = () => {
                   <div className="flex gap-4">
                     <div className="flex-shrink-0 w-12 h-12 bg-sarai-primary text-white rounded-full flex items-center justify-center font-bold text-lg">2</div>
                     <div>
+                      <h3 className="text-xl font-bold text-sarai-text mb-2">Complete Your Payment</h3>
+                      <p className="text-gray-600">
+                        Secure your spot by completing the payment. Your booking is only confirmed after payment is received.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 bg-sarai-primary text-white rounded-full flex items-center justify-center font-bold text-lg">3</div>
+                    <div>
                       <h3 className="text-xl font-bold text-sarai-text mb-2">Receive Confirmation</h3>
                       <p className="text-gray-600">
                         Get an email confirmation with your class details and a link to join the virtual classroom.
@@ -238,21 +248,11 @@ const Services = () => {
                   </div>
                   
                   <div className="flex gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 bg-sarai-primary text-white rounded-full flex items-center justify-center font-bold text-lg">3</div>
-                    <div>
-                      <h3 className="text-xl font-bold text-sarai-text mb-2">Attend Your Class</h3>
-                      <p className="text-gray-600">
-                        Join the Zoom or Google Meet session at your scheduled time for an interactive learning experience.
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex gap-4">
                     <div className="flex-shrink-0 w-12 h-12 bg-sarai-primary text-white rounded-full flex items-center justify-center font-bold text-lg">4</div>
                     <div>
-                      <h3 className="text-xl font-bold text-sarai-text mb-2">Post-Class Materials</h3>
+                      <h3 className="text-xl font-bold text-sarai-text mb-2">Enjoy Your Class</h3>
                       <p className="text-gray-600">
-                        Receive follow-up materials, homework assignments, and notes to reinforce what you've learned.
+                        Join the virtual classroom at your scheduled time and start learning! You'll receive materials and homework after class.
                       </p>
                     </div>
                   </div>
@@ -291,7 +291,7 @@ const Services = () => {
                   What technology do I need for online classes?
                 </h3>
                 <p className="text-gray-600">
-                  You just need a computer or tablet with a stable internet connection, a webcam, and a microphone. We'll use Zoom or Google Meet for our sessions, which are free and easy to use.
+                  You just need a computer or tablet with a stable internet connection, a webcam, and a microphone. We'll use a simple virtual classroom platform that's easy to access.
                 </p>
               </div>
               
@@ -300,7 +300,7 @@ const Services = () => {
                   Do I need to purchase any textbooks?
                 </h3>
                 <p className="text-gray-600">
-                  No, all necessary learning materials will be provided as part of your class fee. I create custom materials based on your needs and learning style.
+                  Nope! All learning materials are included in your class fee. I create custom materials based on what you need and your learning style.
                 </p>
               </div>
               
@@ -318,7 +318,7 @@ const Services = () => {
                   How do I pay for classes?
                 </h3>
                 <p className="text-gray-600">
-                  Payments can be made securely online via credit card, PayPal, or bank transfer. For package deals, payment is due upfront to secure the discounted rate.
+                  Payments can be made securely online via credit card, PayPal, or bank transfer. All classes must be paid for in advance to confirm your booking.
                 </p>
               </div>
               
@@ -327,7 +327,7 @@ const Services = () => {
                   How quickly will I learn Spanish?
                 </h3>
                 <p className="text-gray-600">
-                  Progress varies depending on your starting level, learning goals, and the time you can dedicate to practice between classes. Most students notice significant improvement within 2-3 months of consistent weekly lessons.
+                  Everyone learns at their own pace, depending on your starting level, goals, and how much you practice between classes. Most students notice real improvement within 2-3 months of consistent weekly lessons.
                 </p>
               </div>
             </div>
@@ -342,10 +342,10 @@ const Services = () => {
                 Ready to Start Learning Spanish?
               </h2>
               <p className="text-xl mb-8">
-                Book your free trial class today and take the first step towards fluency.
+                Book your trial class today and take the first step towards fluency.
               </p>
               <Link to="/book" className="bg-white text-sarai-accent hover:bg-gray-100 font-semibold py-3 px-8 rounded-md transition-all duration-200">
-                Schedule Your Free Trial
+                Schedule Your Trial Class
               </Link>
             </div>
           </div>
