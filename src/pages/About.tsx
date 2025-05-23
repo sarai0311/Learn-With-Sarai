@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Link } from 'react-router-dom';
@@ -72,14 +71,6 @@ const About = () => {
                     className="text-sarai-primary hover:text-sarai-secondary transition-colors"
                   >
                     <Linkedin size={24} />
-                  </a>
-                  <a 
-                    href="https://preply.com/es/profesor/6212872" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-sarai-primary hover:text-sarai-secondary transition-colors"
-                  >
-                    <span className="font-bold text-xl">P</span>
                   </a>
                   <a 
                     href="https://www.youtube.com/@saraiacevedov" 
@@ -351,7 +342,7 @@ const About = () => {
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link to="/book" className="bg-white text-sarai-secondary hover:bg-gray-100 font-semibold py-3 px-8 rounded-md transition-all duration-200">
-                  Reserva una Prueba Gratis
+                  Reserva una Prueba por $9.99
                 </Link>
                 <Link to="/services" className="bg-transparent border-2 border-white text-white hover:bg-white/10 font-semibold py-3 px-8 rounded-md transition-all duration-200">
                   Ver Mis Servicios

@@ -342,7 +342,7 @@ const Services = () => {
                 Ready to Start Learning Spanish?
               </h2>
               <p className="text-xl mb-8">
-                Book your trial class today and take the first step towards fluency.
+                Book your trial class today for just $9.99 and take the first step towards fluency.
               </p>
               <Link to="/book" className="bg-white text-sarai-accent hover:bg-gray-100 font-semibold py-3 px-8 rounded-md transition-all duration-200">
                 Schedule Your Trial Class
