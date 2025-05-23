@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -90,7 +89,7 @@ const Index = () => {
                   </div>
                   <h3 className="text-xl font-bold mb-2 text-sarai-text">Book a Trial Class</h3>
                   <p className="text-gray-600">
-                    Schedule a 25-minute trial class to assess your current level and discuss your goals. Just $10 to get started.
+                    Schedule a 25-minute trial class to assess your current level and discuss your goals. Just $9.99 to get started.
                   </p>
                 </div>
                 <div className="hidden md:block absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2">
@@ -188,7 +187,7 @@ const Index = () => {
                 Ready to Start Your Spanish Journey?
               </h2>
               <p className="text-xl mb-8">
-                Book your 25-minute trial class for just $10 and take the first step towards Spanish fluency.
+                Book your 25-minute trial class for just $9.99 and take the first step towards Spanish fluency.
               </p>
               <Link to="/book">
                 <Button className="bg-white text-sarai-primary hover:bg-gray-100 font-semibold py-3 px-8 text-lg">

@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { Gallery, Image as ImageIcon } from 'lucide-react';
+import { Image as ImageIcon, BookOpen } from 'lucide-react';
 
 const Hero = () => {
   return (
@@ -77,7 +77,7 @@ const Hero = () => {
                   style={{ maxWidth: '400px' }}
                 />
                 <div className="absolute -bottom-4 -right-4 bg-white p-2 rounded-lg shadow-lg">
-                  <Gallery className="h-8 w-8 text-sarai-primary" />
+                  <BookOpen className="h-8 w-8 text-sarai-primary" />
                 </div>
               </div>
             </div>
