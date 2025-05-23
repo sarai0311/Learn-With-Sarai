@@ -1,14 +1,19 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { format, parse } from 'date-fns';
+import { es } from 'date-fns/locale';
 
-// Mock time slots
+// Las Palmas de Gran Canaria timezone
+const DEFAULT_TIMEZONE = 'Atlantic/Canary';
+
+// Mock time slots based on 2 PM to 10 PM in Las Palmas time
 const WEEKDAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 const TIME_SLOTS = [
-  '09:00 AM', '10:00 AM', '11:00 AM', 
-  '12:00 PM', '01:00 PM', '02:00 PM', 
-  '03:00 PM', '04:00 PM', '05:00 PM'
+  '02:00 PM', '03:00 PM', '04:00 PM', 
+  '05:00 PM', '06:00 PM', '07:00 PM', 
+  '08:00 PM', '09:00 PM', '10:00 PM'
 ];
 
 // Generate random availability
@@ -25,17 +30,17 @@ const generateMockAvailability = () => {
 const AvailabilityCalendar = () => {
   const [availability] = useState(generateMockAvailability());
   const [selectedSlot, setSelectedSlot] = useState<{day: string, time: string} | null>(null);
-  const [timeZone, setTimeZone] = useState('UTC');
+  const [timeZone, setTimeZone] = useState(DEFAULT_TIMEZONE);
   
   // Get user's timezone
-  useState(() => {
+  useEffect(() => {
     try {
       const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
       setTimeZone(userTimeZone);
     } catch (error) {
       console.error("Could not detect timezone:", error);
     }
-  });
+  }, []);
 
   const handleSlotClick = (day: string, time: string) => {
     setSelectedSlot({ day, time });
@@ -54,6 +59,7 @@ const AvailabilityCalendar = () => {
             value={timeZone}
             onChange={(e) => setTimeZone(e.target.value)}
           >
+            <option value={DEFAULT_TIMEZONE}>Las Palmas de Gran Canaria (WEST)</option>
             <option value="UTC">UTC (Coordinated Universal Time)</option>
             <option value="America/New_York">Eastern Time (ET)</option>
             <option value="America/Chicago">Central Time (CT)</option>
