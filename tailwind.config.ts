@@ -66,10 +66,16 @@ export default {
 				// Updated color scheme for Learn with Sarai
 				sarai: {
 					primary: '#2BBBAD',    // Turquoise - main color
-					secondary: '#1EAEDB',  // Changed from salmon/coral to a bright blue color
+					secondary: '#1EAEDB',  // Bright blue - secondary color
 					accent: '#F4A261',     // Mustard - accent color
 					background: '#F9F9F9', // Light gray - background
 					text: '#1F2937',       // Dark blue-gray - text
+					// New colors inspired by the reference sites
+					yellow: '#FFD700',     // Bright yellow for accents (like Enjoy Español)
+					orange: '#FF7E5F',     // Orange for warm highlights
+					purple: '#8A4FFF',     // Purple for diverse elements
+					green: '#4CAF50',      // Green for success elements
+					lightblue: '#E0F7FA',  // Light blue background (like Spanish with Vicente)
 				}
 			},
 			fontFamily: {

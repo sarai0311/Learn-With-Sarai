@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { Image as ImageIcon, BookOpen } from 'lucide-react';
+import { Image as ImageIcon, BookOpen, Star, Check } from 'lucide-react';
 
 const Hero = () => {
   return (
@@ -20,6 +20,28 @@ const Hero = () => {
             <p className="text-lg md:text-xl text-gray-700 mb-8">
               Hi there! I'm Sarai, a certified Spanish teacher from Colombia and I'm here to help you learn Spanish in a way that's fun, effective and personalized just for you.
             </p>
+            
+            <div className="space-y-4 mb-8">
+              <div className="flex items-center">
+                <div className="flex justify-center items-center h-6 w-6 rounded-full bg-sarai-green/20 mr-3">
+                  <Check className="h-4 w-4 text-sarai-green" />
+                </div>
+                <span className="text-gray-700">Personalized classes for all levels</span>
+              </div>
+              <div className="flex items-center">
+                <div className="flex justify-center items-center h-6 w-6 rounded-full bg-sarai-green/20 mr-3">
+                  <Check className="h-4 w-4 text-sarai-green" />
+                </div>
+                <span className="text-gray-700">Flexible schedule to fit your needs</span>
+              </div>
+              <div className="flex items-center">
+                <div className="flex justify-center items-center h-6 w-6 rounded-full bg-sarai-green/20 mr-3">
+                  <Check className="h-4 w-4 text-sarai-green" />
+                </div>
+                <span className="text-gray-700">Interactive and enjoyable learning materials</span>
+              </div>
+            </div>
+            
             <div className="flex flex-wrap gap-4">
               <Link to="/book" className="btn-primary shadow-lg hover:shadow-sarai-primary/30 transition-all duration-300 transform hover:-translate-y-1">
                 Book a Trial Class
@@ -52,9 +74,7 @@ const Hero = () => {
                   <p className="text-sm text-gray-600">Join <span className="text-sarai-primary font-semibold">300+</span> satisfied students</p>
                   <div className="flex text-yellow-400 mt-1">
                     {[...Array(5)].map((_, i) => (
-                      <svg key={i} className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
+                      <Star key={i} className="w-4 h-4 fill-current" />
                     ))}
                   </div>
                 </div>
@@ -69,20 +89,41 @@ const Hero = () => {
               <div className="absolute -top-6 -left-6 w-40 h-40 bg-sarai-secondary/20 rounded-full animate-pulse"></div>
               <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-sarai-primary/20 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
               <div className="absolute top-1/2 right-1/2 w-20 h-20 bg-sarai-accent/20 rounded-full animate-pulse" style={{animationDelay: '2s'}}></div>
-              <div className="relative z-10 bg-white p-3 rounded-lg shadow-xl rotate-3">
-                <img 
-                  src="/lovable-uploads/6c969fbd-a97c-4494-b87e-6111474ffc83.png" 
-                  alt="Spanish Teacher Sarai" 
-                  className="w-full h-auto rounded-lg object-cover"
-                  style={{ maxWidth: '400px' }}
-                />
-                <div className="absolute -bottom-4 -right-4 bg-white p-2 rounded-lg shadow-lg">
-                  <BookOpen className="h-8 w-8 text-sarai-primary" />
+              
+              <div className="relative z-10">
+                <div className="absolute -top-8 -right-8 bg-white p-3 rounded-lg shadow-lg transform rotate-6 wiggle">
+                  <div className="bg-sarai-yellow/20 p-2 rounded-lg">
+                    <BookOpen className="h-10 w-10 text-sarai-yellow" />
+                  </div>
+                </div>
+                
+                <div className="bg-white p-3 rounded-lg shadow-xl rotate-3">
+                  <img 
+                    src="/lovable-uploads/6c969fbd-a97c-4494-b87e-6111474ffc83.png" 
+                    alt="Spanish Teacher Sarai" 
+                    className="w-full h-auto rounded-lg object-cover"
+                    style={{ maxWidth: '400px' }}
+                  />
+                  
+                  <div className="absolute -bottom-4 -left-4 bg-white p-2 rounded-lg shadow-lg">
+                    <div className="flex bg-sarai-green/20 p-2 rounded-lg">
+                      <span className="font-bold text-sarai-green">$9.99</span>
+                      <span className="text-xs ml-1 text-sarai-green">Trial Class</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      
+      {/* Added decorative wave */}
+      <div className="w-full overflow-hidden">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-12 text-white">
+          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.11,130.83,141.14,214.86,124.16Z" 
+            className="fill-white"></path>
+        </svg>
       </div>
     </div>
   );
