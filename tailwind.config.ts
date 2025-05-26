@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -63,19 +62,19 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Nueva paleta de azules celestes con fondo beige
+				// Paleta de azules celestes actualizada con fondo beige
 				sarai: {
-					primary: '#C7E0E7',    // Azul celeste claro - color principal
-					secondary: '#64B8CE',  // Azul celeste - color secundario y botones
-					accent: '#4A9FB8',     // Azul celeste más oscuro - color de acento
-					background: '#FAF9F5', // Beige - fondo
-					text: '#2D3748',       // Gris azulado oscuro - texto
+					primary: '#78caf1',      // Azul celeste vibrante - color principal
+					secondary: '#64B8CE',    // Azul celeste - color secundario y botones
+					accent: '#4A9FB8',       // Azul celeste más oscuro - color de acento
+					background: '#ebeae8',   // Beige suave - fondo
+					text: '#2D3748',         // Gris azulado oscuro - texto
 					// Tonos adicionales de azul celeste
-					lightblue: '#E6F3F7',  // Azul muy claro para fondos
-					skyblue: '#89CDD8',    // Celeste intermedio para elementos destacados
-					navy: '#2C5F7A',       // Azul oscuro para contraste
-					ice: '#F0F8FA',        // Azul hielo para secciones
-					steel: '#4A5568',      // Gris azulado para texto secundario
+					lightblue: '#E6F3F7',    // Azul muy claro para fondos
+					skyblue: '#89CDD8',      // Celeste intermedio para elementos destacados
+					navy: '#2C5F7A',         // Azul oscuro para contraste
+					ice: '#F0F8FA',          // Azul hielo para secciones
+					steel: '#4A5568',        // Gris azulado para texto secundario
 				}
 			},
 			fontFamily: {
