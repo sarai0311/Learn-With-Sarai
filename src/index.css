@@ -55,7 +55,7 @@
   }
 
   body {
-    @apply bg-gradient-to-b from-sarai-background to-white text-sarai-text font-open-sans;
+    @apply bg-sarai-background text-sarai-text font-open-sans;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -73,23 +73,23 @@
 }
 
 .btn-primary {
-  @apply bg-gradient-to-r from-sarai-primary to-sarai-primary/90 hover:from-sarai-primary/90 hover:to-sarai-primary text-white font-semibold py-3 px-6 rounded-md transition-all duration-200;
+  @apply bg-sarai-secondary hover:bg-sarai-accent text-white font-semibold py-3 px-6 rounded-md transition-all duration-200 shadow-lg hover:shadow-xl;
 }
 
 .btn-secondary {
-  @apply bg-gradient-to-r from-sarai-secondary to-sarai-secondary/90 hover:from-sarai-secondary/90 hover:to-sarai-secondary text-white font-semibold py-3 px-6 rounded-md transition-all duration-200;
+  @apply bg-sarai-primary hover:bg-sarai-secondary text-sarai-navy font-semibold py-3 px-6 rounded-md transition-all duration-200 shadow-md hover:shadow-lg;
 }
 
 .btn-accent {
-  @apply bg-gradient-to-r from-sarai-accent to-sarai-accent/90 hover:from-sarai-accent/90 hover:to-sarai-accent text-white font-semibold py-3 px-6 rounded-md transition-all duration-200;
+  @apply bg-sarai-accent hover:bg-sarai-navy text-white font-semibold py-3 px-6 rounded-md transition-all duration-200 shadow-lg hover:shadow-xl;
 }
 
 .btn-outline {
-  @apply border-2 border-sarai-primary text-sarai-primary hover:bg-sarai-primary hover:text-white font-semibold py-3 px-6 rounded-md transition-all duration-200 shadow-sm hover:shadow-md;
+  @apply border-2 border-sarai-secondary text-sarai-secondary hover:bg-sarai-secondary hover:text-white font-semibold py-3 px-6 rounded-md transition-all duration-200 shadow-sm hover:shadow-md;
 }
 
 .animated-gradient {
-  background: linear-gradient(-45deg, #3B82F6, #60A5FA, #7DD3FC, #1D4ED8);
+  background: linear-gradient(-45deg, #C7E0E7, #64B8CE, #89CDD8, #4A9FB8);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
 }
@@ -119,7 +119,7 @@
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* Animaciones actualizadas con colores azules */
+/* Animaciones actualizadas con colores azules celestes */
 .floating {
   animation: floating 3s ease-in-out infinite;
 }
@@ -161,12 +161,12 @@
   bottom: 0;
   height: 8px;
   width: 100%;
-  background: url("data:image/svg+xml,%3Csvg width='100' height='8' viewBox='0 0 100 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 4C12.5 0 12.5 8 25 4C37.5 0 37.5 8 50 4C62.5 0 62.5 8 75 4C87.5 0 87.5 8 100 4V8H0V4Z' fill='%233B82F6'/%3E%3C/svg%3E") repeat-x;
+  background: url("data:image/svg+xml,%3Csvg width='100' height='8' viewBox='0 0 100 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 4C12.5 0 12.5 8 25 4C37.5 0 37.5 8 50 4C62.5 0 62.5 8 75 4C87.5 0 87.5 8 100 4V8H0V4Z' fill='%2364B8CE'/%3E%3C/svg%3E") repeat-x;
   background-size: 100px 8px;
 }
 
 .skill-badge {
-  @apply bg-gradient-to-r from-sarai-primary to-sarai-secondary text-white py-1 px-3 rounded-full text-sm font-medium inline-flex items-center;
+  @apply bg-sarai-secondary text-white py-1 px-3 rounded-full text-sm font-medium inline-flex items-center;
   transition: all 0.3s ease;
 }
 
@@ -208,7 +208,7 @@
   top: 0;
   height: 100%;
   width: 8px;
-  @apply bg-gradient-to-b from-sarai-primary to-sarai-secondary rounded-full;
+  @apply bg-gradient-to-b from-sarai-secondary to-sarai-accent rounded-full;
 }
 
 .bubble-bg {
@@ -219,7 +219,7 @@
 .bubble {
   position: absolute;
   border-radius: 50%;
-  background: rgba(59, 130, 246, 0.15);
+  background: rgba(199, 224, 231, 0.3);
   animation: rise 10s infinite ease-in;
 }
 
