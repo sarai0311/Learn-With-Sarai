@@ -63,19 +63,19 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Updated color scheme for Learn with Sarai
+				// Nueva paleta de azules para Learn with Sarai
 				sarai: {
-					primary: '#2BBBAD',    // Turquoise - main color
-					secondary: '#1EAEDB',  // Bright blue - secondary color
-					accent: '#F4A261',     // Mustard - accent color
-					background: '#F9F9F9', // Light gray - background
-					text: '#1F2937',       // Dark blue-gray - text
-					// New colors inspired by the reference sites
-					yellow: '#FFD700',     // Bright yellow for accents (like Enjoy Español)
-					orange: '#FF7E5F',     // Orange for warm highlights
-					purple: '#8A4FFF',     // Purple for diverse elements
-					green: '#4CAF50',      // Green for success elements
-					lightblue: '#E0F7FA',  // Light blue background (like Spanish with Vicente)
+					primary: '#3B82F6',    // Azul brillante - color principal
+					secondary: '#60A5FA',  // Azul claro - color secundario
+					accent: '#1D4ED8',     // Azul oscuro - color de acento
+					background: '#F1F5F9', // Gris azulado claro - fondo
+					text: '#1E293B',       // Azul gris oscuro - texto
+					// Tonos adicionales de azul
+					lightblue: '#DBEAFE', // Azul muy claro para fondos
+					skyblue: '#7DD3FC',   // Celeste para elementos destacados
+					navy: '#1E40AF',      // Azul marino para contraste
+					ice: '#F0F9FF',       // Azul hielo para secciones
+					steel: '#475569',     // Azul acero para texto secundario
 				}
 			},
 			fontFamily: {
