@@ -1,3 +1,4 @@
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ServiceCard from "@/components/ServiceCard";
@@ -74,7 +75,7 @@ const Services = () => {
                           title="Standard Class"
                           description="Regular one-on-one Spanish lessons focused on your specific learning goals."
                           icon="📚"
-                          price="$24.99"
+                          price="$25.00"
                           features={[
                             "50-minute sessions",
                             "Customized curriculum",
@@ -91,7 +92,7 @@ const Services = () => {
                           title="Premium Class"
                           description="Extended sessions for faster progress with additional materials and support."
                           icon="⭐"
-                          price="$44.99"
+                          price="$37.50"
                           features={[
                             "75-minute sessions",
                             "Personalized learning materials",
@@ -123,10 +124,10 @@ const Services = () => {
                           title="Starter Package"
                           description="Perfect for beginners or those testing the waters with consistent learning."
                           icon="🚀"
-                          price="$114.95"
+                          price="$118.75"
                           features={[
                             "5 standard classes",
-                            "$22.99 per class (8% off)",
+                            "$23.75 per class (5% off)",
                             "Valid for 2 months",
                             "Basic study materials included",
                             "Flexible scheduling"
@@ -140,10 +141,10 @@ const Services = () => {
                           title="Committed Learner"
                           description="Our most popular package for steady and consistent progress."
                           icon="🔥"
-                          price="$209.90"
+                          price="$225.00"
                           features={[
                             "10 standard classes",
-                            "$20.99 per class (16% off)",
+                            "$22.50 per class (10% off)",
                             "Valid for 3 months",
                             "Complete study materials",
                             "Priority scheduling"
@@ -157,10 +158,10 @@ const Services = () => {
                           title="Immersion Package"
                           description="Intensive learning experience for rapid progress and deep immersion."
                           icon="🌟"
-                          price="$379.80"
+                          price="$400.00"
                           features={[
                             "20 standard classes",
-                            "$18.99 per class (24% off)",
+                            "$20.00 per class (20% off)",
                             "Valid for 6 months",
                             "Premium learning materials",
                             "WhatsApp support between sessions"
@@ -182,8 +183,8 @@ const Services = () => {
                     </p>
                   </ScrollAnimation>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-1 gap-8 max-w-md mx-auto">
-                    <ScrollAnimation direction="up" delay={0.4}>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <ScrollAnimation direction="left" delay={0.2}>
                       <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
                         <ServiceCard
                           title="Spanish for Travel"
@@ -196,6 +197,23 @@ const Services = () => {
                             "Travel-specific role play",
                             "Practical pronunciation focus",
                             "Regional dialect awareness"
+                          ]}
+                        />
+                      </motion.div>
+                    </ScrollAnimation>
+                    <ScrollAnimation direction="right" delay={0.4}>
+                      <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
+                        <ServiceCard
+                          title="Colombian Spanish"
+                          description="Learn the unique accent, expressions, and cultural nuances of Colombian Spanish."
+                          icon="🇨🇴"
+                          price="$27.50"
+                          features={[
+                            "Colombian accent & pronunciation",
+                            "Regional expressions & slang",
+                            "Cultural context & customs",
+                            "Paisa, Costeño & Bogotano dialects",
+                            "Native Colombian instructor"
                           ]}
                         />
                       </motion.div>
