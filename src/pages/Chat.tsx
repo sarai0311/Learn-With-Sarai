@@ -1,10 +1,9 @@
-
 import { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ChatSidebar from '@/components/chat/ChatSidebar';
 import ChatWindow from '@/components/chat/ChatWindow';
-import { ScrollAnimation } from '@/components/ScrollAnimation';
+import ScrollAnimation from '@/components/ScrollAnimation';
 
 interface Student {
   id: string;
