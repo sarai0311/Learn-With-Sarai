@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ServiceCard from "@/components/ServiceCard";
@@ -183,42 +182,8 @@ const Services = () => {
                     </p>
                   </ScrollAnimation>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <ScrollAnimation direction="left" delay={0.2}>
-                      <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
-                        <ServiceCard
-                          title="Business Spanish"
-                          description="Learn Spanish specifically for professional environments and business contexts."
-                          icon="💼"
-                          price="$30"
-                          features={[
-                            "Industry-specific vocabulary",
-                            "Business correspondence",
-                            "Negotiation & presentation skills",
-                            "Cross-cultural communication",
-                            "Role-playing business scenarios"
-                          ]}
-                        />
-                      </motion.div>
-                    </ScrollAnimation>
+                  <div className="grid grid-cols-1 md:grid-cols-1 gap-8 max-w-md mx-auto">
                     <ScrollAnimation direction="up" delay={0.4}>
-                      <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
-                        <ServiceCard
-                          title="DELE/SIELE Exam Prep"
-                          description="Structured preparation for official Spanish proficiency examinations."
-                          icon="🎓"
-                          price="$35"
-                          features={[
-                            "Exam strategies & techniques",
-                            "Practice with past papers",
-                            "Mock exams with feedback",
-                            "Focused grammar review",
-                            "Specialized exam materials"
-                          ]}
-                        />
-                      </motion.div>
-                    </ScrollAnimation>
-                    <ScrollAnimation direction="right" delay={0.6}>
                       <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
                         <ServiceCard
                           title="Spanish for Travel"
