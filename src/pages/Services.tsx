@@ -92,7 +92,7 @@ const Services = () => {
                           title="Premium Class"
                           description="Extended sessions for faster progress with additional materials and support."
                           icon="⭐"
-                          price="$37.50"
+                          price="$35.00"
                           features={[
                             "75-minute sessions",
                             "Personalized learning materials",
