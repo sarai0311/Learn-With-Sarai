@@ -46,6 +46,12 @@ const Navbar = () => {
               Services
             </Link>
             <Link 
+              to="/chat" 
+              className={`font-medium transition-all duration-300 ${isActive('/chat') ? 'text-sarai-primary scale-110' : 'text-gray-600 hover:text-sarai-primary hover:scale-110'}`}
+            >
+              Chat
+            </Link>
+            <Link 
               to="/book" 
               className="btn-primary shadow-lg hover:shadow-sarai-primary/20 transition-all duration-300 transform hover:-translate-y-1"
             >
@@ -98,6 +104,13 @@ const Navbar = () => {
               onClick={() => setIsOpen(false)}
             >
               Services
+            </Link>
+            <Link
+              to="/chat"
+              className={`block px-3 py-2 rounded-md text-base font-medium ${isActive('/chat') ? 'text-sarai-primary bg-gray-50' : 'text-gray-600 hover:bg-gray-50 hover:text-sarai-primary'}`}
+              onClick={() => setIsOpen(false)}
+            >
+              Chat
             </Link>
             <Link
               to="/book"
