@@ -235,13 +235,8 @@ const About = () => {
                   <ul className="space-y-4">
                     <li className="pl-8 relative">
                       <div className="absolute left-0 top-1.5 w-4 h-4 bg-sarai-primary rounded-full"></div>
-                      <h4 className="font-semibold text-sarai-text">Certificado de enseñanza de idiomas de Preply</h4>
-                      <p className="text-gray-600">Preply, 2025</p>
-                    </li>
-                    <li className="pl-8 relative">
-                      <div className="absolute left-0 top-1.5 w-4 h-4 bg-sarai-primary rounded-full"></div>
-                      <h4 className="font-semibold text-sarai-text">Título Técnico en Contabilidad para Operaciones Comerciales y Financieras</h4>
-                      <p className="text-gray-600">SENA, Colombia</p>
+                      <h4 className="font-semibold text-sarai-text">Estudios en Español como Lengua Extranjera (ELE)</h4>
+                      <p className="text-gray-600">Especialización en metodologías de enseñanza del español</p>
                     </li>
                     <li className="pl-8 relative">
                       <div className="absolute left-0 top-1.5 w-4 h-4 bg-sarai-primary rounded-full"></div>
