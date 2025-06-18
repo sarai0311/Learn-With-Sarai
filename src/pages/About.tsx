@@ -1,3 +1,4 @@
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollAnimation from '@/components/ScrollAnimation';
@@ -235,12 +236,17 @@ const About = () => {
                   <ul className="space-y-4">
                     <li className="pl-8 relative">
                       <div className="absolute left-0 top-1.5 w-4 h-4 bg-sarai-primary rounded-full"></div>
+                      <h4 className="font-semibold text-sarai-text">Certificado de Enseñanza de Español como Lengua Extranjera</h4>
+                      <p className="text-gray-600">Metodologías especializadas para la enseñanza del español</p>
+                    </li>
+                    <li className="pl-8 relative">
+                      <div className="absolute left-0 top-1.5 w-4 h-4 bg-sarai-primary rounded-full"></div>
                       <h4 className="font-semibold text-sarai-text">Estudios en Español como Lengua Extranjera (ELE)</h4>
                       <p className="text-gray-600">Especialización en metodologías de enseñanza del español</p>
                     </li>
                     <li className="pl-8 relative">
                       <div className="absolute left-0 top-1.5 w-4 h-4 bg-sarai-primary rounded-full"></div>
-                      <h4 className="font-semibold text-sarai-text">Curso de Inglés (A1 a B2)</h4>
+                      <h4 className="font-semibold text-sarai-text">Curso de Inglés (A1 a C1)</h4>
                       <p className="text-gray-600">Escuela Oficial de Idiomas, Las Palmas de Gran Canaria (EOI LPGC), España, 2021-2023</p>
                     </li>
                     <li className="pl-8 relative">
