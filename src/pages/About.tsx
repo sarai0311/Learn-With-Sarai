@@ -287,8 +287,8 @@ const About = () => {
                     </li>
                     <li className="pl-8 relative">
                       <div className="absolute left-0 top-1.5 w-4 h-4 bg-sarai-secondary rounded-full"></div>
-                      <h4 className="font-semibold text-sarai-text">Práctica Docente en Preescolar</h4>
-                      <p className="text-gray-600">Práctica voluntaria trabajando con niños de preescolar, supervisando actividades y enseñando habilidades básicas de colorear.</p>
+                      <h4 className="font-semibold text-sarai-text">Educación Bilingüe en Preescolar</h4>
+                      <p className="text-gray-600">Práctica voluntaria enseñando a niños de preescolar en español e inglés, desarrollando actividades educativas bilingües que permitían a los pequeños aprender ambos idiomas de manera natural y divertida desde temprana edad.</p>
                     </li>
                   </ul>
                 </div>
