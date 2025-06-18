@@ -51,13 +51,13 @@ const About = () => {
                       ¡Hola! Soy Sarai Acevedo, una profesora de español apasionada por ayudar a estudiantes de todo el mundo a alcanzar sus objetivos lingüísticos.
                     </p>
                     <p>
-                      Como tutora certificada por Preply con experiencia enseñando a estudiantes internacionales en línea, me especializo en ofrecer lecciones personalizadas, comunicativas e inmersivas que desarrollan confianza y fluidez.
+                      Como tutora certificada con amplia experiencia enseñando a estudiantes internacionales en línea, me especializo en ofrecer lecciones personalizadas, comunicativas e inmersivas que desarrollan confianza y fluidez.
                     </p>
                     <p>
                       Soy nativa de Colombia y tengo un nivel avanzado de inglés (C1), lo que me permite apoyar eficazmente a estudiantes principiantes en su viaje de aprendizaje del español.
                     </p>
                     <p>
-                      Con un fuerte enfoque en el uso del lenguaje en situaciones reales y el compromiso con mis estudiantes, he sido reconocida como Super Tutora en Preply por la calidad de mi enseñanza.
+                      Con un fuerte enfoque en el uso del lenguaje en situaciones reales y el compromiso con mis estudiantes, he sido reconocida como Super Tutora por la calidad excepcional de mi enseñanza y mi dedicación hacia el éxito de cada alumno.
                     </p>
                   </div>
                   
@@ -331,7 +331,7 @@ const About = () => {
                   <div className="bg-white p-4 rounded-lg shadow-sm flex items-center hover:shadow-md transition-all duration-300">
                     <div className="w-10 h-10 bg-sarai-primary/10 rounded-full flex items-center justify-center mr-4">
                       <svg className="w-5 h-5 text-sarai-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
                     <span className="font-semibold text-sarai-text">Planificación de Lecciones y Diseño Curricular</span>
