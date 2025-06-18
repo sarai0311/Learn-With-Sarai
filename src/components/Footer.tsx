@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <footer className="bg-gray-100 pt-12 pb-8">
       <div className="sarai-container">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand section */}
           <div className="col-span-1 md:col-span-2">
             <Link to="/" className="flex items-center space-x-2">
@@ -29,31 +29,6 @@ const Footer = () => {
               <li><Link to="/about" className="text-gray-600 hover:text-sarai-primary">About Me</Link></li>
               <li><Link to="/services" className="text-gray-600 hover:text-sarai-primary">Services</Link></li>
               <li><Link to="/book" className="text-gray-600 hover:text-sarai-primary">Book a Class</Link></li>
-            </ul>
-          </div>
-          
-          {/* Contact Info */}
-          <div>
-            <h3 className="text-lg font-semibold text-sarai-text mb-4">Contact Info</h3>
-            <ul className="space-y-2">
-              <li className="flex items-center text-gray-600">
-                <svg className="h-5 w-5 mr-2 text-sarai-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                <span>info@learnwithsarai.com</span>
-              </li>
-              <li className="flex items-center text-gray-600">
-                <svg className="h-5 w-5 mr-2 text-sarai-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                </svg>
-                <span>Book a free consultation</span>
-              </li>
-              <li className="flex items-center text-gray-600">
-                <svg className="h-5 w-5 mr-2 text-sarai-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <Link to="#" className="hover:text-sarai-primary">FAQs</Link>
-              </li>
             </ul>
           </div>
         </div>
