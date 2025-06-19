@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -12,7 +11,7 @@ const EnhancedTestimonials = () => {
       flag: "us",
       rating: 5,
       image: "https://randomuser.me/api/portraits/men/32.jpg",
-      text: "Sarai has to be one of the best teachers on this platform, she has kept the same positive energy since day one and I feel like I've already learned so much in one month. 10/10 would recommend!",
+      text: "Sarai has to be one of the best teachers I've found online, she has kept the same positive energy since day one and I feel like I've already learned so much in one month. 10/10 would recommend!",
       months: "1 mes de clases"
     },
     {
@@ -30,7 +29,7 @@ const EnhancedTestimonials = () => {
       flag: "us", 
       rating: 5,
       image: "https://randomuser.me/api/portraits/men/22.jpg",
-      text: "Sarai is kind and incredibly patient. She's a great listener and seems very adaptable. Her specialty is flexibility and conversation. Unlike most teachers on Preply (from my experience), Sarai will adjust to meet your needs.",
+      text: "Sarai is kind and incredibly patient. She's a great listener and seems very adaptable. Her specialty is flexibility and conversation. Unlike most online teachers I've tried, Sarai will adjust to meet your needs.",
       months: "3 meses de clases"
     },
     {
@@ -48,7 +47,7 @@ const EnhancedTestimonials = () => {
       flag: "ca",
       rating: 5,
       image: "https://randomuser.me/api/portraits/women/32.jpg",
-      text: "Después de intentar varios métodos de aprendizaje, las clases con Sarai han sido lo único que realmente me ha ayudado a dominar el español. Su conocimiento cultural y sus explicaciones claras hacen que cada clase sea valiosa.",
+      text: "Después de intentar varios métodos de aprendizaje online, las clases con Sarai han sido lo único que realmente me ha ayudado a dominar el español. Su conocimiento cultural y sus explicaciones claras hacen que cada clase sea valiosa.",
       months: "6 meses de clases"
     },
     {
