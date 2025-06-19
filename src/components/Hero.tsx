@@ -1,5 +1,4 @@
 
-
 import { Link } from 'react-router-dom';
 import { Image as ImageIcon, BookOpen, Star, Check } from 'lucide-react';
 
@@ -55,21 +54,15 @@ const Hero = () => {
             <div className="mt-10 p-4 bg-white rounded-lg shadow-md border border-sarai-primary/20">
               <div className="flex items-center">
                 <div className="flex -space-x-2 mr-4">
-                  <img 
-                    className="h-10 w-10 rounded-full border-2 border-white" 
-                    src="https://randomuser.me/api/portraits/women/32.jpg" 
-                    alt="Student" 
-                  />
-                  <img 
-                    className="h-10 w-10 rounded-full border-2 border-white" 
-                    src="https://randomuser.me/api/portraits/men/23.jpg" 
-                    alt="Student" 
-                  />
-                  <img 
-                    className="h-10 w-10 rounded-full border-2 border-white" 
-                    src="https://randomuser.me/api/portraits/women/67.jpg" 
-                    alt="Student" 
-                  />
+                  <div className="h-10 w-10 rounded-full bg-gradient-to-r from-sarai-primary to-sarai-secondary border-2 border-white flex items-center justify-center">
+                    <BookOpen className="h-5 w-5 text-white" />
+                  </div>
+                  <div className="h-10 w-10 rounded-full bg-gradient-to-r from-sarai-secondary to-sarai-accent border-2 border-white flex items-center justify-center">
+                    <Star className="h-5 w-5 text-white" />
+                  </div>
+                  <div className="h-10 w-10 rounded-full bg-gradient-to-r from-sarai-accent to-sarai-primary border-2 border-white flex items-center justify-center">
+                    <Check className="h-5 w-5 text-white" />
+                  </div>
                 </div>
                 <div>
                   <p className="text-sm text-sarai-steel">Join my <span className="text-sarai-secondary font-semibold">global community</span> of Spanish learners</p>
@@ -98,13 +91,14 @@ const Hero = () => {
                   </div>
                 </div>
                 
-                <div className="bg-white p-3 rounded-lg shadow-xl rotate-3">
-                  <img 
-                    src="/lovable-uploads/6c969fbd-a97c-4494-b87e-6111474ffc83.png" 
-                    alt="Spanish Teacher Sarai" 
-                    className="w-full h-auto rounded-lg object-cover"
-                    style={{ maxWidth: '400px' }}
-                  />
+                <div className="bg-white p-8 rounded-lg shadow-xl rotate-3">
+                  <div className="w-80 h-80 bg-gradient-to-br from-sarai-primary via-sarai-secondary to-sarai-accent rounded-lg flex items-center justify-center">
+                    <div className="text-center text-white">
+                      <BookOpen className="h-20 w-20 mx-auto mb-4 opacity-80" />
+                      <h3 className="text-2xl font-bold mb-2">Spanish Learning</h3>
+                      <p className="text-lg opacity-90">Professional Education</p>
+                    </div>
+                  </div>
                   
                   <div className="absolute -bottom-4 -left-4 bg-white p-2 rounded-lg shadow-lg">
                     <div className="flex bg-sarai-secondary/20 p-2 rounded-lg">
@@ -131,4 +125,3 @@ const Hero = () => {
 };
 
 export default Hero;
-

@@ -1,9 +1,10 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollAnimation from '@/components/ScrollAnimation';
-import { Link } from 'react-router-dom';
-import { Linkedin, Youtube } from "lucide-react";
 import { motion } from 'framer-motion';
+import { BookOpen, Globe, Heart, Award, GraduationCap, Users, Star, CheckCircle, Target, Clock, MessageCircle } from 'lucide-react';
 
 const About = () => {
   return (
@@ -11,86 +12,49 @@ const About = () => {
       <Navbar />
       
       <main className="flex-grow">
-        {/* Header */}
-        <section className="bg-sarai-primary text-white py-16">
-          <div className="sarai-container">
-            <ScrollAnimation direction="up" className="max-w-3xl mx-auto text-center">
-              <h1 className="text-3xl md:text-4xl font-bold mb-4">
-                Sobre Sarai Acevedo
-              </h1>
-              <p className="text-xl opacity-90">
-                Profesora de Español Certificada & Entusiasta de los Idiomas
-              </p>
-            </ScrollAnimation>
-          </div>
-        </section>
-        
-        {/* Bio Section */}
-        <section className="sarai-section bg-white">
+        {/* Hero Section */}
+        <section className="bg-gradient-to-b from-sarai-ice via-sarai-lightblue to-white py-16 lg:py-24">
           <div className="sarai-container">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <ScrollAnimation direction="left" delay={0.2}>
-                <div className="relative">
-                  <div className="absolute -top-6 -left-6 w-40 h-40 bg-sarai-secondary/10 rounded-full"></div>
-                  <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-sarai-primary/10 rounded-full"></div>
-                  <div className="relative z-10">
-                    <img 
-                      src="/lovable-uploads/77b02690-e460-41b6-b931-e9f95ef1acf1.png" 
-                      alt="Sarai Acevedo" 
-                      className="rounded-lg shadow-lg w-full h-auto"
-                    />
+              <ScrollAnimation direction="left">
+                <div>
+                  <h1 className="text-4xl md:text-5xl font-bold text-sarai-text mb-6">
+                    Conoce a tu <span className="text-sarai-secondary">Profesora de Español</span>
+                  </h1>
+                  <p className="text-lg text-sarai-steel mb-6">
+                    ¡Hola! Soy Sarai, profesora certificada de español de Colombia. Mi pasión es ayudar a estudiantes de todo el mundo a alcanzar sus metas en el idioma español de manera personalizada, efectiva y divertida.
+                  </p>
+                  <div className="flex flex-wrap gap-4">
+                    <div className="flex items-center bg-white px-4 py-2 rounded-lg shadow-sm">
+                      <Globe className="h-5 w-5 text-sarai-primary mr-2" />
+                      <span className="text-sm font-medium">Estudiantes Internacionales</span>
+                    </div>
+                    <div className="flex items-center bg-white px-4 py-2 rounded-lg shadow-sm">
+                      <Award className="h-5 w-5 text-sarai-secondary mr-2" />
+                      <span className="text-sm font-medium">Educadora Destacada</span>
+                    </div>
                   </div>
                 </div>
               </ScrollAnimation>
               
-              <ScrollAnimation direction="right" delay={0.4}>
-                <div>
-                  <h2 className="text-2xl md:text-3xl font-bold mb-6 text-sarai-text">Mi Historia</h2>
-                  <div className="space-y-4 text-gray-700">
-                    <p>
-                      ¡Hola! Soy Sarai Acevedo, una profesora de español apasionada por ayudar a estudiantes de todo el mundo a alcanzar sus objetivos lingüísticos.
-                    </p>
-                    <p>
-                      Como tutora certificada con amplia experiencia enseñando a estudiantes internacionales en línea, me especializo en ofrecer lecciones personalizadas, comunicativas e inmersivas que desarrollan confianza y fluidez.
-                    </p>
-                    <p>
-                      Soy nativa de Colombia y tengo un nivel avanzado de inglés (C1), lo que me permite apoyar eficazmente a estudiantes principiantes en su viaje de aprendizaje del español.
-                    </p>
-                    <p>
-                      Con un fuerte enfoque en el uso del lenguaje en situaciones reales y el compromiso con mis estudiantes, he sido reconocida como Super Tutora por la calidad excepcional de mi enseñanza y mi dedicación hacia el éxito de cada alumno.
-                    </p>
-                  </div>
+              <ScrollAnimation direction="right">
+                <div className="relative flex justify-center">
+                  <div className="absolute -top-6 -left-6 w-40 h-40 bg-sarai-primary/20 rounded-full animate-pulse"></div>
+                  <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-sarai-secondary/20 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
                   
-                  <div className="mt-8">
-                    <Link to="/book">
-                      <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                        <button className="btn-primary">
-                          Reserva una Clase Conmigo
-                        </button>
-                      </motion.div>
-                    </Link>
-                  </div>
-                  
-                  {/* Social Media Links */}
-                  <div className="mt-6 flex space-x-4">
-                    <motion.a 
-                      whileHover={{ scale: 1.1, y: -2 }}
-                      href="https://www.linkedin.com/in/saraiacevedov/" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-sarai-primary hover:text-sarai-secondary transition-colors"
-                    >
-                      <Linkedin size={24} />
-                    </motion.a>
-                    <motion.a 
-                      whileHover={{ scale: 1.1, y: -2 }}
-                      href="https://www.youtube.com/@saraiacevedov" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-sarai-primary hover:text-sarai-secondary transition-colors"
-                    >
-                      <Youtube size={24} />
-                    </motion.a>
+                  <div className="relative z-10 bg-white p-8 rounded-2xl shadow-xl">
+                    <div className="w-80 h-80 bg-gradient-to-br from-sarai-primary via-sarai-secondary to-sarai-accent rounded-xl flex items-center justify-center">
+                      <div className="text-center text-white">
+                        <GraduationCap className="h-24 w-24 mx-auto mb-4 opacity-90" />
+                        <h3 className="text-3xl font-bold mb-2">Profesora Sarai</h3>
+                        <p className="text-xl opacity-90">Especialista en Español</p>
+                        <div className="flex justify-center mt-4">
+                          {[...Array(5)].map((_, i) => (
+                            <Star key={i} className="w-6 h-6 fill-current text-yellow-300" />
+                          ))}
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </ScrollAnimation>
@@ -98,181 +62,284 @@ const About = () => {
           </div>
         </section>
         
-        {/* Teaching Methodology */}
-        <section className="sarai-section bg-gray-50">
+        {/* Mi Historia Section */}
+        <section className="sarai-section bg-white">
           <div className="sarai-container">
             <ScrollAnimation direction="up" className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-sarai-text">
-                Mi Metodología de Enseñanza
+              <h2 className="text-3xl md:text-4xl font-bold text-sarai-text mb-4">
+                Mi Historia
               </h2>
-              <p className="mt-4 text-gray-600 max-w-3xl mx-auto">
-                Un enfoque centrado en el estudiante, enfocado en habilidades prácticas y comunicación significativa
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                Descubre cómo mi pasión por los idiomas se convirtió en mi misión de ayudar a otros
               </p>
             </ScrollAnimation>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {/* Method 1 */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <ScrollAnimation direction="left">
+                <div className="relative">
+                  <div className="bg-gradient-to-br from-sarai-primary/10 to-sarai-secondary/10 p-8 rounded-2xl">
+                    <div className="w-full h-64 bg-gradient-to-br from-sarai-primary via-sarai-secondary to-sarai-accent rounded-xl flex items-center justify-center mb-6">
+                      <div className="text-center text-white">
+                        <Heart className="h-16 w-16 mx-auto mb-4 opacity-90" />
+                        <p className="text-xl font-semibold">Pasión por Enseñar</p>
+                      </div>
+                    </div>
+                    <div className="absolute -top-4 -right-4 bg-white p-3 rounded-full shadow-lg">
+                      <BookOpen className="h-8 w-8 text-sarai-secondary" />
+                    </div>
+                  </div>
+                </div>
+              </ScrollAnimation>
+              
+              <ScrollAnimation direction="right">
+                <div className="space-y-6">
+                  <div className="flex items-start">
+                    <div className="flex-shrink-0 w-12 h-12 bg-sarai-primary/20 rounded-full flex items-center justify-center mr-4">
+                      <Globe className="h-6 w-6 text-sarai-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-sarai-text mb-2">Experiencia Internacional</h3>
+                      <p className="text-gray-600">
+                        He tenido la oportunidad de trabajar con estudiantes de diferentes culturas y nacionalidades, 
+                        lo que me ha permitido entender las necesidades específicas de cada alumno y adaptar mis métodos de enseñanza.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start">
+                    <div className="flex-shrink-0 w-12 h-12 bg-sarai-secondary/20 rounded-full flex items-center justify-center mr-4">
+                      <Heart className="h-6 w-6 text-sarai-secondary" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-sarai-text mb-2">Pasión por la Enseñanza</h3>
+                      <p className="text-gray-600">
+                        Mi amor por los idiomas y la educación me impulsa a crear experiencias de aprendizaje 
+                        significativas que van más allá de la gramática tradicional.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start">
+                    <div className="flex-shrink-0 w-12 h-12 bg-sarai-accent/20 rounded-full flex items-center justify-center mr-4">
+                      <Award className="h-6 w-6 text-sarai-accent" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-sarai-text mb-2">Compromiso con la Excelencia</h3>
+                      <p className="text-gray-600">
+                        Mi reconocimiento como educadora destacada refleja mi dedicación constante a 
+                        proporcionar la mejor calidad de enseñanza y apoyo a mis estudiantes.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </ScrollAnimation>
+            </div>
+          </div>
+        </section>
+
+        {/* Mi Enfoque Section */}
+        <section className="sarai-section bg-gray-50">
+          <div className="sarai-container">
+            <ScrollAnimation direction="up" className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-sarai-text mb-4">
+                Mi Enfoque de Enseñanza
+              </h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                Descubre cómo hago que aprender español sea efectivo, divertido y personalizado
+              </p>
+            </ScrollAnimation>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <ScrollAnimation direction="left" delay={0.2}>
                 <motion.div 
                   whileHover={{ y: -10 }}
                   transition={{ duration: 0.3 }}
-                  className="bg-white p-6 rounded-lg border border-gray-100 shadow-sm h-full hover:shadow-md transition-all duration-300"
+                  className="bg-white p-6 rounded-xl shadow-md h-full"
                 >
-                  <motion.div 
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    transition={{ duration: 0.2 }}
-                    className="w-14 h-14 bg-sarai-primary/10 rounded-full flex items-center justify-center mb-4"
-                  >
-                    <svg className="w-6 h-6 text-sarai-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
-                    </svg>
-                  </motion.div>
-                  <h3 className="text-xl font-bold mb-2 text-sarai-text">Enfoque Comunicativo</h3>
+                  <div className="w-16 h-16 bg-sarai-primary/20 rounded-full flex items-center justify-center mb-4">
+                    <Target className="h-8 w-8 text-sarai-primary" />
+                  </div>
+                  <h3 className="text-xl font-bold text-sarai-text mb-3">Personalizado</h3>
                   <p className="text-gray-600">
-                    Enfoque en habilidades de conversación práctica desde el primer día, con oportunidades estructuradas para practicar escenarios del mundo real.
+                    Cada clase está diseñada específicamente para ti, adaptándose a tu nivel, objetivos y estilo de aprendizaje único.
                   </p>
                 </motion.div>
               </ScrollAnimation>
               
-              {/* Method 2 */}
               <ScrollAnimation direction="up" delay={0.4}>
                 <motion.div 
                   whileHover={{ y: -10 }}
                   transition={{ duration: 0.3 }}
-                  className="bg-white p-6 rounded-lg border border-gray-100 shadow-sm h-full hover:shadow-md transition-all duration-300"
+                  className="bg-white p-6 rounded-xl shadow-md h-full"
                 >
-                  <motion.div 
-                    whileHover={{ scale: 1.1, rotate: -5 }}
-                    transition={{ duration: 0.2 }}
-                    className="w-14 h-14 bg-sarai-primary/10 rounded-full flex items-center justify-center mb-4"
-                  >
-                    <svg className="w-6 h-6 text-sarai-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
-                  </motion.div>
-                  <h3 className="text-xl font-bold mb-2 text-sarai-text">Curriculum Personalizado</h3>
+                  <div className="w-16 h-16 bg-sarai-secondary/20 rounded-full flex items-center justify-center mb-4">
+                    <MessageCircle className="h-8 w-8 text-sarai-secondary" />
+                  </div>
+                  <h3 className="text-xl font-bold text-sarai-text mb-3">Comunicativo</h3>
                   <p className="text-gray-600">
-                    Materiales adaptados a tus intereses, profesión y estilo de aprendizaje para lograr una máxima participación.
+                    Priorizo la comunicación real y práctica desde el primer día, para que uses el español en situaciones reales.
                   </p>
                 </motion.div>
               </ScrollAnimation>
               
-              {/* Method 3 */}
               <ScrollAnimation direction="right" delay={0.6}>
                 <motion.div 
                   whileHover={{ y: -10 }}
                   transition={{ duration: 0.3 }}
-                  className="bg-white p-6 rounded-lg border border-gray-100 shadow-sm h-full hover:shadow-md transition-all duration-300"
+                  className="bg-white p-6 rounded-xl shadow-md h-full"
                 >
-                  <motion.div 
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    transition={{ duration: 0.2 }}
-                    className="w-14 h-14 bg-sarai-primary/10 rounded-full flex items-center justify-center mb-4"
-                  >
-                    <svg className="w-6 h-6 text-sarai-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
-                    </svg>
-                  </motion.div>
-                  <h3 className="text-xl font-bold mb-2 text-sarai-text">Inmersión Cultural</h3>
+                  <div className="w-16 h-16 bg-sarai-accent/20 rounded-full flex items-center justify-center mb-4">
+                    <Heart className="h-8 w-8 text-sarai-accent" />
+                  </div>
+                  <h3 className="text-xl font-bold text-sarai-text mb-3">Divertido</h3>
                   <p className="text-gray-600">
-                    Aprende sobre culturas hispanas, tradiciones y diferencias regionales para entender el contexto detrás del idioma.
-                  </p>
-                </motion.div>
-              </ScrollAnimation>
-              
-              {/* Method 4 */}
-              <ScrollAnimation direction="down" delay={0.8}>
-                <motion.div 
-                  whileHover={{ y: -10 }}
-                  transition={{ duration: 0.3 }}
-                  className="bg-white p-6 rounded-lg border border-gray-100 shadow-sm h-full hover:shadow-md transition-all duration-300"
-                >
-                  <motion.div 
-                    whileHover={{ scale: 1.1, rotate: -5 }}
-                    transition={{ duration: 0.2 }}
-                    className="w-14 h-14 bg-sarai-primary/10 rounded-full flex items-center justify-center mb-4"
-                  >
-                    <svg className="w-6 h-6 text-sarai-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                    </svg>
-                  </motion.div>
-                  <h3 className="text-xl font-bold mb-2 text-sarai-text">Evaluación Continua</h3>
-                  <p className="text-gray-600">
-                    Revisiones regulares de progreso y retroalimentación para mantenerte en el camino correcto y mejorar continuamente tus habilidades.
+                    Creo que aprender debe ser enjoyable. Uso juegos, historias y actividades interactivas para hacer el proceso memorable.
                   </p>
                 </motion.div>
               </ScrollAnimation>
             </div>
           </div>
         </section>
-        
-        {/* Certifications */}
+
+        {/* Por qué elegirme Section */}
         <section className="sarai-section bg-white">
           <div className="sarai-container">
             <ScrollAnimation direction="up" className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-sarai-text">
-                Calificaciones & Experiencia
+              <h2 className="text-3xl md:text-4xl font-bold text-sarai-text mb-4">
+                ¿Por qué elegir mis clases?
               </h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                Lo que me diferencia como tu profesora de español
+              </p>
             </ScrollAnimation>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              {/* Qualifications */}
-              <ScrollAnimation direction="left" delay={0.2}>
-                <div>
-                  <h3 className="text-xl font-bold text-sarai-primary mb-6 flex items-center">
-                    <motion.svg 
-                      whileHover={{ rotate: 360 }}
-                      transition={{ duration: 0.5 }}
-                      className="w-6 h-6 mr-2" 
-                      fill="none" 
-                      viewBox="0 0 24 24" 
-                      stroke="currentColor"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                    </motion.svg>
-                    Cualificaciones Académicas
-                  </h3>
-                  <ul className="space-y-4">
-                    <li className="pl-8 relative">
-                      <div className="absolute left-0 top-1.5 w-4 h-4 bg-sarai-primary rounded-full"></div>
-                      <h4 className="font-semibold text-sarai-text">Certificado de Enseñanza de Español como Lengua Extranjera</h4>
-                      <p className="text-gray-600">Metodologías especializadas para la enseñanza del español</p>
-                    </li>
-                    <li className="pl-8 relative">
-                      <div className="absolute left-0 top-1.5 w-4 h-4 bg-sarai-primary rounded-full"></div>
-                      <h4 className="font-semibold text-sarai-text">Estudios en Español como Lengua Extranjera (ELE)</h4>
-                      <p className="text-gray-600">Especialización en metodologías de enseñanza del español</p>
-                    </li>
-                    <li className="pl-8 relative">
-                      <div className="absolute left-0 top-1.5 w-4 h-4 bg-sarai-primary rounded-full"></div>
-                      <h4 className="font-semibold text-sarai-text">Curso de Inglés (A1 a C1)</h4>
-                      <p className="text-gray-600">Escuela Oficial de Idiomas, Las Palmas de Gran Canaria (EOI LPGC), España, 2021-2023</p>
-                    </li>
-                    <li className="pl-8 relative">
-                      <div className="absolute left-0 top-1.5 w-4 h-4 bg-sarai-primary rounded-full"></div>
-                      <h4 className="font-semibold text-sarai-text">Curso de Inglés</h4>
-                      <p className="text-gray-600">Universidad Industrial de Santander (UIS), Bucaramanga, Colombia, 2018</p>
-                    </li>
-                  </ul>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <ScrollAnimation direction="left">
+                <div className="space-y-6">
+                  <div className="flex items-start">
+                    <div className="flex-shrink-0 w-8 h-8 bg-sarai-secondary rounded-full flex items-center justify-center mr-4 mt-1">
+                      <CheckCircle className="h-5 w-5 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-sarai-text mb-2">Metodología Probada</h3>
+                      <p className="text-gray-600">
+                        Utilizo enfoques pedagógicos modernos y efectivos, adaptados a las necesidades del aprendizaje online.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start">
+                    <div className="flex-shrink-0 w-8 h-8 bg-sarai-secondary rounded-full flex items-center justify-center mr-4 mt-1">
+                      <CheckCircle className="h-5 w-5 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-sarai-text mb-2">Flexibilidad Total</h3>
+                      <p className="text-gray-600">
+                        Horarios que se adaptan a tu vida, sin importar tu zona horaria o agenda ocupada.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start">
+                    <div className="flex-shrink-0 w-8 h-8 bg-sarai-secondary rounded-full flex items-center justify-center mr-4 mt-1">
+                      <CheckCircle className="h-5 w-5 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-sarai-text mb-2">Apoyo Continuo</h3>
+                      <p className="text-gray-600">
+                        Recibes retroalimentación detallada y recursos adicionales entre clases para acelerar tu progreso.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start">
+                    <div className="flex-shrink-0 w-8 h-8 bg-sarai-secondary rounded-full flex items-center justify-center mr-4 mt-1">
+                      <CheckCircle className="h-5 w-5 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-sarai-text mb-2">Cultura Auténtica</h3>
+                      <p className="text-gray-600">
+                        Aprende no solo el idioma, sino también la rica cultura hispanoamericana de manera natural.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </ScrollAnimation>
               
-              {/* Experience */}
-              <ScrollAnimation direction="right" delay={0.4}>
-                <div>
-                  <h3 className="text-xl font-bold text-sarai-primary mb-6 flex items-center">
-                    <motion.svg 
-                      whileHover={{ rotate: 360 }}
-                      transition={{ duration: 0.5 }}
-                      className="w-6 h-6 mr-2" 
-                      fill="none" 
-                      viewBox="0 0 24 24" 
-                      stroke="currentColor"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </motion.svg>
-                    Experiencia Profesional
-                  </h3>
+              <ScrollAnimation direction="right">
+                <div className="bg-gradient-to-br from-sarai-primary/10 to-sarai-secondary/10 p-8 rounded-2xl">
+                  <div className="w-full h-80 bg-gradient-to-br from-sarai-primary via-sarai-secondary to-sarai-accent rounded-xl flex items-center justify-center">
+                    <div className="text-center text-white">
+                      <Users className="h-20 w-20 mx-auto mb-4 opacity-90" />
+                      <h3 className="text-2xl font-bold mb-2">Comunidad Global</h3>
+                      <p className="text-lg opacity-90">Estudiantes de todo el mundo</p>
+                      <div className="flex justify-center mt-4">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="w-5 h-5 fill-current text-yellow-300" />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ScrollAnimation>
+            </div>
+          </div>
+        </section>
+
+        {/* Cualificaciones Section */}
+        <section className="sarai-section bg-gray-50">
+          <div className="sarai-container">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              
+              {/* Cualificaciones Académicas */}
+              <ScrollAnimation direction="left">
+                <div className="bg-white p-8 rounded-xl shadow-md">
+                  <div className="flex items-center mb-6">
+                    <div className="w-12 h-12 bg-sarai-primary/20 rounded-full flex items-center justify-center mr-4">
+                      <GraduationCap className="h-6 w-6 text-sarai-primary" />
+                    </div>
+                    <h2 className="text-2xl font-bold text-sarai-text">Cualificaciones Académicas</h2>
+                  </div>
+                  
+                  <div className="space-y-6">
+                    <div className="border-l-4 border-sarai-secondary pl-4">
+                      <h3 className="font-semibold text-sarai-text mb-1">Certificado de Enseñanza de Español como Lengua Extranjera</h3>
+                      <p className="text-sm text-gray-600 mb-2">Institución Especializada en Formación Docente, 2025</p>
+                    </div>
+                    
+                    <div className="border-l-4 border-sarai-secondary pl-4">
+                      <h3 className="font-semibold text-sarai-text mb-1">Estudios en Español como Lengua Extranjera (ELE)</h3>
+                      <p className="text-sm text-gray-600 mb-2">Formación especializada en metodologías de enseñanza</p>
+                    </div>
+                    
+                    <div className="border-l-4 border-sarai-secondary pl-4">
+                      <h3 className="font-semibold text-sarai-text mb-1">Título Técnico en Contabilidad para Operaciones Comerciales y Financieras</h3>
+                      <p className="text-sm text-gray-600 mb-2">SENA, Colombia</p>
+                    </div>
+                    
+                    <div className="border-l-4 border-sarai-secondary pl-4">
+                      <h3 className="font-semibold text-sarai-text mb-1">Curso de Inglés (A1 a C1)</h3>
+                      <p className="text-sm text-gray-600 mb-2">Escuela Oficial de Idiomas, Las Palmas de Gran Canaria (EOI LPGC), España, 2021-2023</p>
+                    </div>
+                    
+                    <div className="border-l-4 border-sarai-secondary pl-4">
+                      <h3 className="font-semibold text-sarai-text mb-1">Curso de Inglés</h3>
+                      <p className="text-sm text-gray-600 mb-2">Universidad Industrial de Santander (UIS), Bucaramanga, Colombia, 2018</p>
+                    </div>
+                  </div>
+                </div>
+              </ScrollAnimation>
+              
+              {/* Experiencia Profesional */}
+              <ScrollAnimation direction="right">
+                <div className="bg-white p-8 rounded-xl shadow-md">
+                  <div className="flex items-center mb-6">
+                    <div className="w-12 h-12 bg-sarai-secondary/20 rounded-full flex items-center justify-center mr-4">
+                      <Award className="h-6 w-6 text-sarai-secondary" />
+                    </div>
+                    <h2 className="text-2xl font-bold text-sarai-text">Experiencia Profesional</h2>
+                  </div>
+                  
                   <ul className="space-y-4">
                     <li className="pl-8 relative">
                       <div className="absolute left-0 top-1.5 w-4 h-4 bg-sarai-secondary rounded-full"></div>
@@ -296,153 +363,25 @@ const About = () => {
             </div>
           </div>
         </section>
-        
-        {/* Skills Section */}
-        <section className="sarai-section bg-gray-50">
-          <div className="sarai-container">
-            <ScrollAnimation direction="up" className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-sarai-text">
-                Habilidades Profesionales
-              </h2>
-            </ScrollAnimation>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* Skills Column 1 */}
-              <ScrollAnimation direction="left" delay={0.2}>
-                <div className="space-y-3">
-                  <div className="bg-white p-4 rounded-lg shadow-sm flex items-center hover:shadow-md transition-all duration-300">
-                    <div className="w-10 h-10 bg-sarai-primary/10 rounded-full flex items-center justify-center mr-4">
-                      <svg className="w-5 h-5 text-sarai-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                      </svg>
-                    </div>
-                    <span className="font-semibold text-sarai-text">Enseñanza de Español (ELE)</span>
-                  </div>
-                  
-                  <div className="bg-white p-4 rounded-lg shadow-sm flex items-center hover:shadow-md transition-all duration-300">
-                    <div className="w-10 h-10 bg-sarai-primary/10 rounded-full flex items-center justify-center mr-4">
-                      <svg className="w-5 h-5 text-sarai-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-                      </svg>
-                    </div>
-                    <span className="font-semibold text-sarai-text">Métodos Comunicativos e Inmersivos</span>
-                  </div>
-                  
-                  <div className="bg-white p-4 rounded-lg shadow-sm flex items-center hover:shadow-md transition-all duration-300">
-                    <div className="w-10 h-10 bg-sarai-primary/10 rounded-full flex items-center justify-center mr-4">
-                      <svg className="w-5 h-5 text-sarai-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                    <span className="font-semibold text-sarai-text">Planificación de Lecciones y Diseño Curricular</span>
-                  </div>
-                </div>
-              </ScrollAnimation>
-              
-              {/* Skills Column 2 */}
-              <ScrollAnimation direction="up" delay={0.4}>
-                <div className="space-y-3">
-                  <div className="bg-white p-4 rounded-lg shadow-sm flex items-center hover:shadow-md transition-all duration-300">
-                    <div className="w-10 h-10 bg-sarai-primary/10 rounded-full flex items-center justify-center mr-4">
-                      <svg className="w-5 h-5 text-sarai-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                    <span className="font-semibold text-sarai-text">Plataformas de Enseñanza Online (Preply, Zoom)</span>
-                  </div>
-                  
-                  <div className="bg-white p-4 rounded-lg shadow-sm flex items-center hover:shadow-md transition-all duration-300">
-                    <div className="w-10 h-10 bg-sarai-primary/10 rounded-full flex items-center justify-center mr-4">
-                      <svg className="w-5 h-5 text-sarai-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                      </svg>
-                    </div>
-                    <span className="font-semibold text-sarai-text">Comunicación Bilingüe (Español - Inglés)</span>
-                  </div>
-                  
-                  <div className="bg-white p-4 rounded-lg shadow-sm flex items-center hover:shadow-md transition-all duration-300">
-                    <div className="w-10 h-10 bg-sarai-primary/10 rounded-full flex items-center justify-center mr-4">
-                      <svg className="w-5 h-5 text-sarai-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                      </svg>
-                    </div>
-                    <span className="font-semibold text-sarai-text">Instrucción Centrada en el Estudiante</span>
-                  </div>
-                </div>
-              </ScrollAnimation>
-              
-              {/* Skills Column 3 */}
-              <ScrollAnimation direction="right" delay={0.6}>
-                <div className="space-y-3">
-                  <div className="bg-white p-4 rounded-lg shadow-sm flex items-center hover:shadow-md transition-all duration-300">
-                    <div className="w-10 h-10 bg-sarai-primary/10 rounded-full flex items-center justify-center mr-4">
-                      <svg className="w-5 h-5 text-sarai-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                    <span className="font-semibold text-sarai-text">Retroalimentación en Tiempo Real</span>
-                  </div>
-                  
-                  <div className="bg-white p-4 rounded-lg shadow-sm flex items-center hover:shadow-md transition-all duration-300">
-                    <div className="w-10 h-10 bg-sarai-primary/10 rounded-full flex items-center justify-center mr-4">
-                      <svg className="w-5 h-5 text-sarai-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-                      </svg>
-                    </div>
-                    <span className="font-semibold text-sarai-text">Comunicación Intercultural</span>
-                  </div>
-                  
-                  <div className="bg-white p-4 rounded-lg shadow-sm flex items-center hover:shadow-md transition-all duration-300">
-                    <div className="w-10 h-10 bg-sarai-primary/10 rounded-full flex items-center justify-center mr-4">
-                      <svg className="w-5 h-5 text-sarai-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11" />
-                      </svg>
-                    </div>
-                    <span className="font-semibold text-sarai-text">Paciencia y Empatía</span>
-                  </div>
-                </div>
-              </ScrollAnimation>
-            </div>
-          </div>
-        </section>
-        
+
         {/* CTA Section */}
-        <section className="bg-sarai-secondary text-white py-16">
+        <section className="bg-sarai-primary text-white py-16">
           <div className="sarai-container">
-            <ScrollAnimation direction="up" className="max-w-3xl mx-auto text-center">
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
+            <ScrollAnimation direction="up" className="text-center max-w-3xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                ¿Listo para comenzar tu aventura en español?
+              </h2>
+              <p className="text-xl mb-8">
+                Reserva tu clase de prueba de 25 minutos por solo $9.99 y da el primer paso hacia la fluidez en español.
+              </p>
+              <motion.a 
+                href="/book"
+                whileHover={{ scale: 1.05, y: -5 }} 
+                whileTap={{ scale: 0.95 }}
+                className="inline-block bg-white text-sarai-primary hover:bg-gray-100 font-semibold py-3 px-8 text-lg rounded-lg shadow-lg transition-all duration-300"
               >
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                  Comienza Tu Viaje en Español Hoy
-                </h2>
-                <p className="text-xl mb-8">
-                  Trabajemos juntos para alcanzar tus metas lingüísticas con lecciones personalizadas adaptadas especialmente para ti.
-                </p>
-                <div className="flex flex-wrap justify-center gap-4">
-                  <Link to="/book">
-                    <motion.div 
-                      whileHover={{ scale: 1.05, y: -5 }} 
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <button className="bg-white text-sarai-secondary hover:bg-gray-100 font-semibold py-3 px-8 rounded-md transition-all duration-200">
-                        Reserva una Prueba por $9.99
-                      </button>
-                    </motion.div>
-                  </Link>
-                  <Link to="/services">
-                    <motion.div 
-                      whileHover={{ scale: 1.05, y: -5 }} 
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <button className="bg-transparent border-2 border-white text-white hover:bg-white/10 font-semibold py-3 px-8 rounded-md transition-all duration-200">
-                        Ver Mis Servicios
-                      </button>
-                    </motion.div>
-                  </Link>
-                </div>
-              </motion.div>
+                Reserva tu Clase de Prueba
+              </motion.a>
             </ScrollAnimation>
           </div>
         </section>
