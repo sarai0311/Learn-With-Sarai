@@ -124,10 +124,10 @@ const Services = () => {
                           title="Starter Package"
                           description="Perfect for beginners or those testing the waters with consistent learning."
                           icon="🚀"
-                          price="$118.75"
+                          price="$116.25"
                           features={[
                             "5 standard classes",
-                            "$23.75 per class (5% off)",
+                            "$23.25 per class (7% off)",
                             "Valid for 2 months",
                             "Basic study materials included",
                             "Flexible scheduling"
@@ -141,10 +141,10 @@ const Services = () => {
                           title="Committed Learner"
                           description="Our most popular package for steady and consistent progress."
                           icon="🔥"
-                          price="$225.00"
+                          price="$215.00"
                           features={[
                             "10 standard classes",
-                            "$22.50 per class (10% off)",
+                            "$21.50 per class (14% off)",
                             "Valid for 3 months",
                             "Complete study materials",
                             "Priority scheduling"
@@ -158,10 +158,10 @@ const Services = () => {
                           title="Immersion Package"
                           description="Intensive learning experience for rapid progress and deep immersion."
                           icon="🌟"
-                          price="$400.00"
+                          price="$360.00"
                           features={[
                             "20 standard classes",
-                            "$20.00 per class (20% off)",
+                            "$18.00 per class (28% off)",
                             "Valid for 6 months",
                             "Premium learning materials",
                             "Chat support between sessions"
@@ -190,8 +190,9 @@ const Services = () => {
                           title="Spanish for Travel"
                           description="Quick, practical Spanish skills for travelers heading to Spanish-speaking countries."
                           icon="✈️"
-                          price="$30.00"
+                          price="$28.00"
                           features={[
+                            "60-minute sessions",
                             "Survival phrases & vocabulary",
                             "Cultural etiquette guidance",
                             "Travel-specific role play",
@@ -207,8 +208,9 @@ const Services = () => {
                           title="Colombian Spanish"
                           description="Learn the unique accent, expressions, and cultural nuances of Colombian Spanish."
                           icon="🇨🇴"
-                          price="$27.50"
+                          price="$28.00"
                           features={[
+                            "60-minute sessions",
                             "Colombian accent & pronunciation",
                             "Regional expressions & slang",
                             "Cultural context & customs",
