@@ -164,7 +164,7 @@ const Services = () => {
                             "$20.00 per class (20% off)",
                             "Valid for 6 months",
                             "Premium learning materials",
-                            "WhatsApp support between sessions"
+                            "Chat support between sessions"
                           ]}
                         />
                       </motion.div>
@@ -190,7 +190,7 @@ const Services = () => {
                           title="Spanish for Travel"
                           description="Quick, practical Spanish skills for travelers heading to Spanish-speaking countries."
                           icon="✈️"
-                          price="Custom"
+                          price="$30.00"
                           features={[
                             "Survival phrases & vocabulary",
                             "Cultural etiquette guidance",
