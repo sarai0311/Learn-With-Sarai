@@ -1,4 +1,5 @@
 
+
 import { Link } from 'react-router-dom';
 import { Image as ImageIcon, BookOpen, Star, Check } from 'lucide-react';
 
@@ -71,7 +72,7 @@ const Hero = () => {
                   />
                 </div>
                 <div>
-                  <p className="text-sm text-sarai-steel">Join <span className="text-sarai-secondary font-semibold">300+</span> satisfied students</p>
+                  <p className="text-sm text-sarai-steel">Join my <span className="text-sarai-secondary font-semibold">global community</span> of Spanish learners</p>
                   <div className="flex text-yellow-400 mt-1">
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} className="w-4 h-4 fill-current" />
@@ -130,3 +131,4 @@ const Hero = () => {
 };
 
 export default Hero;
+

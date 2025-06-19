@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollAnimation from '@/components/ScrollAnimation';
@@ -277,19 +276,19 @@ const About = () => {
                   <ul className="space-y-4">
                     <li className="pl-8 relative">
                       <div className="absolute left-0 top-1.5 w-4 h-4 bg-sarai-secondary rounded-full"></div>
-                      <h4 className="font-semibold text-sarai-text">Profesora de Español en línea</h4>
-                      <p className="text-gray-600">Preply (Remoto), Marzo 2025-Presente</p>
+                      <h4 className="font-semibold text-sarai-text">Profesora de Español Online</h4>
+                      <p className="text-gray-600">Especialista en Enseñanza Virtual, 2025-Presente</p>
                       <ul className="mt-2 list-disc list-inside text-sm text-gray-600">
-                        <li>Impartí más de 176 horas y 179 lecciones individuales a 33 estudiantes internacionales.</li>
-                        <li>Personalicé lecciones utilizando métodos comunicativos e inmersivos.</li>
-                        <li>Proporcioné correcciones en tiempo real y retroalimentación personalizada.</li>
-                        <li>Reconocida como Super Tutora por la excelente calidad de enseñanza.</li>
+                        <li>Desarrollo e implementación de metodologías de enseñanza personalizadas para estudiantes internacionales.</li>
+                        <li>Creación de programas de estudio adaptativos utilizando enfoques comunicativos e inmersivos.</li>
+                        <li>Especialización en corrección lingüística en tiempo real y retroalimentación pedagógica individualizada.</li>
+                        <li>Reconocida como educadora destacada por la excelencia en la calidad de enseñanza y resultados de aprendizaje.</li>
                       </ul>
                     </li>
                     <li className="pl-8 relative">
                       <div className="absolute left-0 top-1.5 w-4 h-4 bg-sarai-secondary rounded-full"></div>
                       <h4 className="font-semibold text-sarai-text">Educación Bilingüe en Preescolar</h4>
-                      <p className="text-gray-600">Práctica voluntaria enseñando a niños de preescolar en español e inglés, desarrollando actividades educativas bilingües que permitían a los pequeños aprender ambos idiomas de manera natural y divertida desde temprana edad.</p>
+                      <p className="text-gray-600">Experiencia en educación temprana bilingüe, desarrollando actividades educativas innovadoras que facilitan el aprendizaje natural y lúdico de español e inglés desde temprana edad, fomentando el desarrollo cognitivo y lingüístico integral.</p>
                     </li>
                   </ul>
                 </div>
