@@ -1,36 +1,63 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { format, parse } from 'date-fns';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Calendar } from '@/components/ui/calendar';
+import { format, addDays, startOfWeek, isToday, isSameDay } from 'date-fns';
 import { es } from 'date-fns/locale';
+import { ChevronLeft, ChevronRight, CalendarIcon, Clock } from 'lucide-react';
 
 // Las Palmas de Gran Canaria timezone
 const DEFAULT_TIMEZONE = 'Atlantic/Canary';
 
-// Mock time slots based on 2 PM to 10 PM in Las Palmas time
-const WEEKDAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+// Time slots from 2 PM to 10 PM (excluding 7-8 PM)
 const TIME_SLOTS = [
-  '02:00 PM', '03:00 PM', '04:00 PM', 
-  '05:00 PM', '06:00 PM', '07:00 PM', 
-  '08:00 PM', '09:00 PM', '10:00 PM'
+  '14:00', '15:00', '16:00', 
+  '17:00', '18:00', '19:00', 
+  '20:00', '21:00', '22:00'
 ];
 
-// Generate random availability
+const TIME_LABELS = {
+  '14:00': '2:00 PM',
+  '15:00': '3:00 PM', 
+  '16:00': '4:00 PM',
+  '17:00': '5:00 PM',
+  '18:00': '6:00 PM', 
+  '19:00': '7:00 PM',
+  '20:00': '8:00 PM',
+  '21:00': '9:00 PM',
+  '22:00': '10:00 PM'
+};
+
+// Generate random availability for the next 14 days
 const generateMockAvailability = () => {
-  return WEEKDAYS.map(day => ({
-    day,
-    slots: TIME_SLOTS.map(time => ({
+  const availability: Record<string, { time: string; available: boolean }[]> = {};
+  
+  for (let i = 0; i < 14; i++) {
+    const date = addDays(new Date(), i);
+    const dateKey = format(date, 'yyyy-MM-dd');
+    
+    // Skip weekends (Saturday = 6, Sunday = 0)
+    if (date.getDay() === 0 || date.getDay() === 6) {
+      availability[dateKey] = [];
+      continue;
+    }
+    
+    availability[dateKey] = TIME_SLOTS.map(time => ({
       time,
-      available: Math.random() > 0.4, // 60% chance of being available
-    }))
-  }));
+      available: Math.random() > 0.3 // 70% chance of being available
+    }));
+  }
+  
+  return availability;
 };
 
 const AvailabilityCalendar = () => {
   const [availability] = useState(generateMockAvailability());
-  const [selectedSlot, setSelectedSlot] = useState<{day: string, time: string} | null>(null);
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+  const [selectedSlot, setSelectedSlot] = useState<{date: string, time: string} | null>(null);
   const [timeZone, setTimeZone] = useState(DEFAULT_TIMEZONE);
+  const [currentWeek, setCurrentWeek] = useState(new Date());
   
   // Get user's timezone
   useEffect(() => {
@@ -42,25 +69,49 @@ const AvailabilityCalendar = () => {
     }
   }, []);
 
-  const handleSlotClick = (day: string, time: string) => {
-    setSelectedSlot({ day, time });
+  const handleSlotClick = (date: string, time: string) => {
+    setSelectedSlot({ date, time });
+  };
+
+  const getWeekDays = (startDate: Date) => {
+    const week = [];
+    const start = startOfWeek(startDate, { weekStartsOn: 1 }); // Monday start
+    
+    for (let i = 0; i < 7; i++) {
+      week.push(addDays(start, i));
+    }
+    return week;
+  };
+
+  const weekDays = getWeekDays(currentWeek);
+  const selectedDateKey = format(selectedDate, 'yyyy-MM-dd');
+  const availableSlots = availability[selectedDateKey] || [];
+
+  const goToPreviousWeek = () => {
+    setCurrentWeek(addDays(currentWeek, -7));
+  };
+
+  const goToNextWeek = () => {
+    setCurrentWeek(addDays(currentWeek, 7));
   };
 
   return (
-    <div className="w-full">
-      <div className="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div className="w-full space-y-6">
+      {/* Header with timezone selector */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <h3 className="text-xl font-semibold text-sarai-text">
-          Available Class Times
+          Horarios Disponibles
         </h3>
-        <div className="flex items-center">
-          <span className="text-gray-600 mr-2">Time Zone:</span>
+        <div className="flex items-center gap-2">
+          <Clock className="w-4 h-4 text-gray-500" />
+          <span className="text-gray-600 text-sm">Zona horaria:</span>
           <select 
-            className="border-gray-300 rounded-md text-sarai-text focus:border-sarai-primary focus:ring focus:ring-sarai-primary/20 focus:ring-opacity-50"
+            className="border border-gray-300 rounded-md px-3 py-1 text-sm text-sarai-text focus:border-sarai-primary focus:ring focus:ring-sarai-primary/20 focus:ring-opacity-50"
             value={timeZone}
             onChange={(e) => setTimeZone(e.target.value)}
           >
-            <option value={DEFAULT_TIMEZONE}>Las Palmas de Gran Canaria (WEST)</option>
-            <option value="UTC">UTC (Coordinated Universal Time)</option>
+            <option value={DEFAULT_TIMEZONE}>Las Palmas (WEST)</option>
+            <option value="UTC">UTC</option>
             <option value="America/New_York">Eastern Time (ET)</option>
             <option value="America/Chicago">Central Time (CT)</option>
             <option value="America/Denver">Mountain Time (MT)</option>
@@ -72,72 +123,144 @@ const AvailabilityCalendar = () => {
         </div>
       </div>
 
-      <Card className="overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="min-w-full">
-            <thead>
-              <tr className="bg-gray-50 border-b">
-                <th className="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Time
-                </th>
-                {WEEKDAYS.map((day) => (
-                  <th key={day} className="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    {day}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {TIME_SLOTS.map((time) => (
-                <tr key={time} className="hover:bg-gray-50">
-                  <td className="py-3 px-6 text-sm font-medium text-gray-900">
-                    {time}
-                  </td>
-                  {WEEKDAYS.map((day) => {
-                    const dayData = availability.find(d => d.day === day);
-                    const slot = dayData?.slots.find(s => s.time === time);
-                    const isAvailable = slot?.available || false;
-                    const isSelected = selectedSlot?.day === day && selectedSlot?.time === time;
-                    
-                    return (
-                      <td key={`${day}-${time}`} className="py-3 px-6 text-sm text-gray-500">
-                        {isAvailable ? (
-                          <Button
-                            variant={isSelected ? "default" : "outline"}
-                            className={`w-full ${isSelected ? 'bg-sarai-primary hover:bg-sarai-primary/90' : 'border-sarai-primary text-sarai-primary hover:bg-sarai-primary/10'}`}
-                            onClick={() => handleSlotClick(day, time)}
-                          >
-                            {isSelected ? 'Selected' : 'Available'}
-                          </Button>
-                        ) : (
-                          <span className="inline-block w-full text-center text-gray-400 py-2 px-4 rounded-md bg-gray-100">
-                            Unavailable
-                          </span>
-                        )}
-                      </td>
-                    );
-                  })}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Calendar Section */}
+        <Card className="lg:col-span-1">
+          <CardHeader className="pb-4">
+            <CardTitle className="text-lg flex items-center gap-2">
+              <CalendarIcon className="w-5 h-5" />
+              Selecciona una fecha
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Calendar
+              mode="single"
+              selected={selectedDate}
+              onSelect={(date) => date && setSelectedDate(date)}
+              disabled={(date) => {
+                const dayOfWeek = date.getDay();
+                const dateKey = format(date, 'yyyy-MM-dd');
+                // Disable weekends and past dates
+                return dayOfWeek === 0 || dayOfWeek === 6 || date < new Date() || !availability[dateKey];
+              }}
+              className="w-full"
+            />
+          </CardContent>
+        </Card>
+
+        {/* Available Times Section */}
+        <Card className="lg:col-span-2">
+          <CardHeader className="pb-4">
+            <CardTitle className="text-lg">
+              Horarios para {format(selectedDate, "EEEE, d 'de' MMMM", { locale: es })}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            {availableSlots.length === 0 ? (
+              <div className="text-center py-8 text-gray-500">
+                <Clock className="w-8 h-8 mx-auto mb-2 opacity-50" />
+                <p>No hay horarios disponibles para este día</p>
+                <p className="text-sm">Solo trabajo de lunes a viernes</p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {availableSlots.map((slot) => {
+                  const isSelected = selectedSlot?.date === selectedDateKey && selectedSlot?.time === slot.time;
+                  const timeLabel = TIME_LABELS[slot.time as keyof typeof TIME_LABELS];
+                  
+                  return (
+                    <Button
+                      key={slot.time}
+                      variant={isSelected ? "default" : slot.available ? "outline" : "ghost"}
+                      className={`h-12 ${
+                        isSelected
+                          ? 'bg-sarai-primary hover:bg-sarai-primary/90 text-white'
+                          : slot.available
+                          ? 'border-sarai-primary text-sarai-primary hover:bg-sarai-primary/10'
+                          : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                      }`}
+                      onClick={() => slot.available && handleSlotClick(selectedDateKey, slot.time)}
+                      disabled={!slot.available}
+                    >
+                      {timeLabel}
+                    </Button>
+                  );
+                })}
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Weekly Overview */}
+      <Card>
+        <CardHeader className="pb-4">
+          <div className="flex items-center justify-between">
+            <CardTitle className="text-lg">Vista Semanal</CardTitle>
+            <div className="flex items-center gap-2">
+              <Button variant="outline" size="sm" onClick={goToPreviousWeek}>
+                <ChevronLeft className="w-4 h-4" />
+              </Button>
+              <span className="text-sm font-medium px-3">
+                {format(weekDays[0], "d MMM", { locale: es })} - {format(weekDays[6], "d MMM yyyy", { locale: es })}
+              </span>
+              <Button variant="outline" size="sm" onClick={goToNextWeek}>
+                <ChevronRight className="w-4 h-4" />
+              </Button>
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-7 gap-2">
+            {weekDays.map((day) => {
+              const dayKey = format(day, 'yyyy-MM-dd');
+              const daySlots = availability[dayKey] || [];
+              const isWeekend = day.getDay() === 0 || day.getDay() === 6;
+              const availableCount = daySlots.filter(s => s.available).length;
+              
+              return (
+                <div
+                  key={dayKey}
+                  className={`p-3 rounded-lg border text-center ${
+                    isSameDay(day, selectedDate)
+                      ? 'border-sarai-primary bg-sarai-primary/10'
+                      : 'border-gray-200'
+                  } ${isWeekend ? 'opacity-50' : ''}`}
+                >
+                  <div className="text-xs font-medium text-gray-600 mb-1">
+                    {format(day, "EEE", { locale: es })}
+                  </div>
+                  <div className={`text-lg font-semibold mb-1 ${
+                    isToday(day) ? 'text-sarai-primary' : 'text-gray-900'
+                  }`}>
+                    {format(day, "d")}
+                  </div>
+                  <div className="text-xs text-gray-500">
+                    {isWeekend ? 'Cerrado' : `${availableCount} slots`}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </CardContent>
       </Card>
 
+      {/* Selected Slot Confirmation */}
       {selectedSlot && (
-        <div className="mt-6 bg-sarai-accent/10 border border-sarai-accent/20 rounded-md p-4">
-          <h4 className="font-semibold text-sarai-text mb-2">
-            You Selected:
-          </h4>
-          <p className="text-gray-700">
-            {selectedSlot.day} at {selectedSlot.time} ({timeZone})
-          </p>
-          <div className="mt-4">
+        <Card className="border-sarai-accent/20 bg-sarai-accent/10">
+          <CardContent className="pt-6">
+            <h4 className="font-semibold text-sarai-text mb-2">
+              Horario Seleccionado:
+            </h4>
+            <p className="text-gray-700 mb-4">
+              {format(new Date(selectedSlot.date), "EEEE, d 'de' MMMM 'de' yyyy", { locale: es })} 
+              {" "}a las {TIME_LABELS[selectedSlot.time as keyof typeof TIME_LABELS]} ({timeZone})
+            </p>
             <Button className="bg-sarai-accent hover:bg-sarai-accent/90">
-              Confirm This Time Slot
+              Confirmar Este Horario
             </Button>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
       )}
     </div>
   );
