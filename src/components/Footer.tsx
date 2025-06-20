@@ -8,9 +8,9 @@ const Footer = () => {
   return (
     <footer className="bg-gray-100 pt-12 pb-8">
       <div className="sarai-container">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Brand section */}
-          <div className="col-span-1 md:col-span-2">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* Brand section - takes up more space */}
+          <div className="col-span-1 md:col-span-3">
             <Link to="/" className="flex items-center space-x-2">
               <span className="text-sarai-primary font-montserrat text-2xl font-bold">
                 LEARN<span className="text-sarai-secondary">WithSarai</span>
@@ -22,36 +22,28 @@ const Footer = () => {
             </p>
           </div>
           
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-lg font-semibold text-sarai-text mb-4">Quick Links</h3>
+          {/* Quick Links moved to the right */}
+          <div className="col-span-1">
+            <h3 className="text-lg font-semibold text-sarai-text mb-4">Enlaces Rápidos</h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/">
-                  <Button variant="ghost" className="w-full justify-start p-0 h-auto text-gray-600 hover:text-sarai-primary hover:bg-transparent font-normal">
-                    Home
-                  </Button>
+                <Link to="/" className="text-gray-600 hover:text-sarai-primary transition-colors duration-200 text-sm">
+                  Hogar
                 </Link>
               </li>
               <li>
-                <Link to="/about">
-                  <Button variant="ghost" className="w-full justify-start p-0 h-auto text-gray-600 hover:text-sarai-primary hover:bg-transparent font-normal">
-                    About Me
-                  </Button>
+                <Link to="/about" className="text-gray-600 hover:text-sarai-primary transition-colors duration-200 text-sm">
+                  Acerca de mí
                 </Link>
               </li>
               <li>
-                <Link to="/services">
-                  <Button variant="ghost" className="w-full justify-start p-0 h-auto text-gray-600 hover:text-sarai-primary hover:bg-transparent font-normal">
-                    Services
-                  </Button>
+                <Link to="/services" className="text-gray-600 hover:text-sarai-primary transition-colors duration-200 text-sm">
+                  Servicios
                 </Link>
               </li>
               <li>
-                <Link to="/book">
-                  <Button variant="ghost" className="w-full justify-start p-0 h-auto text-gray-600 hover:text-sarai-primary hover:bg-transparent font-normal">
-                    Book a Class
-                  </Button>
+                <Link to="/book" className="text-gray-600 hover:text-sarai-primary transition-colors duration-200 text-sm">
+                  Reservar una clase
                 </Link>
               </li>
             </ul>
