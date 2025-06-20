@@ -259,7 +259,7 @@ const About = () => {
                     <div>
                       <h3 className="text-lg font-semibold text-sarai-text mb-2">Cultura Auténtica</h3>
                       <p className="text-gray-600">
-                        Aprende no solo el idioma, sino también la rica cultura hispanoamericana de manera natural.
+                        Aprende no solo el idioma, sino también la rica cultura hispanohablante de manera natural.
                       </p>
                     </div>
                   </div>
