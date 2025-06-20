@@ -1,5 +1,6 @@
 
 import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -24,11 +25,35 @@ const Footer = () => {
           {/* Quick Links */}
           <div>
             <h3 className="text-lg font-semibold text-sarai-text mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li><Link to="/" className="text-gray-600 hover:text-sarai-primary">Home</Link></li>
-              <li><Link to="/about" className="text-gray-600 hover:text-sarai-primary">About Me</Link></li>
-              <li><Link to="/services" className="text-gray-600 hover:text-sarai-primary">Services</Link></li>
-              <li><Link to="/book" className="text-gray-600 hover:text-sarai-primary">Book a Class</Link></li>
+            <ul className="space-y-3">
+              <li>
+                <Link to="/">
+                  <Button variant="ghost" className="w-full justify-start p-0 h-auto text-gray-600 hover:text-sarai-primary hover:bg-transparent font-normal">
+                    Home
+                  </Button>
+                </Link>
+              </li>
+              <li>
+                <Link to="/about">
+                  <Button variant="ghost" className="w-full justify-start p-0 h-auto text-gray-600 hover:text-sarai-primary hover:bg-transparent font-normal">
+                    About Me
+                  </Button>
+                </Link>
+              </li>
+              <li>
+                <Link to="/services">
+                  <Button variant="ghost" className="w-full justify-start p-0 h-auto text-gray-600 hover:text-sarai-primary hover:bg-transparent font-normal">
+                    Services
+                  </Button>
+                </Link>
+              </li>
+              <li>
+                <Link to="/book">
+                  <Button variant="ghost" className="w-full justify-start p-0 h-auto text-gray-600 hover:text-sarai-primary hover:bg-transparent font-normal">
+                    Book a Class
+                  </Button>
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
