@@ -313,18 +313,13 @@ const About = () => {
                     </div>
                     
                     <div className="border-l-4 border-sarai-secondary pl-4">
-                      <h3 className="font-semibold text-sarai-text mb-1">Título Técnico en Contabilidad para Operaciones Comerciales y Financieras</h3>
-                      <p className="text-sm text-gray-600 mb-2">SENA, Colombia</p>
+                      <h3 className="font-semibold text-sarai-text mb-1">Estudios Avanzados de Inglés - Nivel C1</h3>
+                      <p className="text-sm text-gray-600 mb-2">Formación universitaria especializada en lengua inglesa avanzada</p>
                     </div>
                     
                     <div className="border-l-4 border-sarai-secondary pl-4">
-                      <h3 className="font-semibold text-sarai-text mb-1">Curso de Inglés (A1 a C1)</h3>
-                      <p className="text-sm text-gray-600 mb-2">Escuela Oficial de Idiomas, Las Palmas de Gran Canaria (EOI LPGC), España, 2021-2023</p>
-                    </div>
-                    
-                    <div className="border-l-4 border-sarai-secondary pl-4">
-                      <h3 className="font-semibold text-sarai-text mb-1">Curso de Inglés</h3>
-                      <p className="text-sm text-gray-600 mb-2">Universidad Industrial de Santander (UIS), Bucaramanga, Colombia, 2018</p>
+                      <h3 className="font-semibold text-sarai-text mb-1">Certificación en Lingüística Aplicada</h3>
+                      <p className="text-sm text-gray-600 mb-2">Especialización en metodologías de enseñanza de idiomas</p>
                     </div>
                   </div>
                 </div>
