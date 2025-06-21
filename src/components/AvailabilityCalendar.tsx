@@ -1,4 +1,5 @@
 
+
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -10,10 +11,10 @@ import { ChevronLeft, ChevronRight, CalendarIcon, Clock } from 'lucide-react';
 // Las Palmas de Gran Canaria timezone
 const DEFAULT_TIMEZONE = 'Atlantic/Canary';
 
-// Time slots from 2 PM to 10 PM (excluding 7-8 PM)
+// Time slots from 2 PM to 10 PM (excluding 7-8 PM for dinner)
 const TIME_SLOTS = [
   '14:00', '15:00', '16:00', 
-  '17:00', '18:00', '19:00', 
+  '17:00', '18:00', // Skip 19:00 (7 PM) - dinner time
   '20:00', '21:00', '22:00'
 ];
 
@@ -22,8 +23,7 @@ const TIME_LABELS = {
   '15:00': '3:00 PM', 
   '16:00': '4:00 PM',
   '17:00': '5:00 PM',
-  '18:00': '6:00 PM', 
-  '19:00': '7:00 PM',
+  '18:00': '6:00 PM',
   '20:00': '8:00 PM',
   '21:00': '9:00 PM',
   '22:00': '10:00 PM'
@@ -123,9 +123,9 @@ const AvailabilityCalendar = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
         {/* Calendar Section */}
-        <Card className="lg:col-span-1">
+        <Card className="xl:col-span-1">
           <CardHeader className="pb-4">
             <CardTitle className="text-lg flex items-center gap-2">
               <CalendarIcon className="w-5 h-5" />
@@ -143,17 +143,20 @@ const AvailabilityCalendar = () => {
                 // Disable weekends and past dates
                 return dayOfWeek === 0 || dayOfWeek === 6 || date < new Date() || !availability[dateKey];
               }}
-              className="w-full"
+              className="w-full mx-auto"
             />
           </CardContent>
         </Card>
 
         {/* Available Times Section */}
-        <Card className="lg:col-span-2">
+        <Card className="xl:col-span-2">
           <CardHeader className="pb-4">
             <CardTitle className="text-lg">
               Horarios para {format(selectedDate, "EEEE, d 'de' MMMM", { locale: es })}
             </CardTitle>
+            <p className="text-sm text-gray-600 mt-1">
+              * De 7:00 PM a 7:50 PM no hay clases (hora de cena)
+            </p>
           </CardHeader>
           <CardContent>
             {availableSlots.length === 0 ? (
@@ -163,7 +166,7 @@ const AvailabilityCalendar = () => {
                 <p className="text-sm">Solo trabajo de lunes a viernes</p>
               </div>
             ) : (
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
                 {availableSlots.map((slot) => {
                   const isSelected = selectedSlot?.date === selectedDateKey && selectedSlot?.time === slot.time;
                   const timeLabel = TIME_LABELS[slot.time as keyof typeof TIME_LABELS];
@@ -221,10 +224,10 @@ const AvailabilityCalendar = () => {
               return (
                 <div
                   key={dayKey}
-                  className={`p-3 rounded-lg border text-center ${
+                  className={`p-3 rounded-lg border text-center transition-colors ${
                     isSameDay(day, selectedDate)
                       ? 'border-sarai-primary bg-sarai-primary/10'
-                      : 'border-gray-200'
+                      : 'border-gray-200 hover:border-gray-300'
                   } ${isWeekend ? 'opacity-50' : ''}`}
                 >
                   <div className="text-xs font-medium text-gray-600 mb-1">
@@ -267,3 +270,4 @@ const AvailabilityCalendar = () => {
 };
 
 export default AvailabilityCalendar;
+
