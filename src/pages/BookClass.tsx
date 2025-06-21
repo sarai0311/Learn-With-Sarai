@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AvailabilityCalendar from "@/components/AvailabilityCalendar";
@@ -131,27 +130,20 @@ const BookClass = () => {
                         <Input id="email" type="email" required />
                       </div>
                       
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="space-y-2">
-                          <Label htmlFor="phone">WhatsApp Number (optional)</Label>
-                          <Input id="phone" />
-                        </div>
-                        
-                        <div className="space-y-2">
-                          <Label htmlFor="level">Your Spanish Level</Label>
-                          <Select defaultValue="beginner">
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select your level" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="complete-beginner">Complete Beginner</SelectItem>
-                              <SelectItem value="beginner">Beginner</SelectItem>
-                              <SelectItem value="intermediate">Intermediate</SelectItem>
-                              <SelectItem value="advanced">Advanced</SelectItem>
-                              <SelectItem value="fluent">Near Fluent</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="level">Your Spanish Level</Label>
+                        <Select defaultValue="beginner">
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select your level" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="complete-beginner">Complete Beginner</SelectItem>
+                            <SelectItem value="beginner">Beginner</SelectItem>
+                            <SelectItem value="intermediate">Intermediate</SelectItem>
+                            <SelectItem value="advanced">Advanced</SelectItem>
+                            <SelectItem value="fluent">Near Fluent</SelectItem>
+                          </SelectContent>
+                        </Select>
                       </div>
                       
                       <div className="space-y-2">
