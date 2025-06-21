@@ -1,3 +1,4 @@
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ServiceCard from "@/components/ServiceCard";
@@ -182,7 +183,7 @@ const Services = () => {
                     </p>
                   </ScrollAnimation>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <ScrollAnimation direction="left" delay={0.2}>
                       <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
                         <ServiceCard
@@ -201,7 +202,7 @@ const Services = () => {
                         />
                       </motion.div>
                     </ScrollAnimation>
-                    <ScrollAnimation direction="right" delay={0.4}>
+                    <ScrollAnimation direction="up" delay={0.4}>
                       <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
                         <ServiceCard
                           title="Colombian Spanish"
@@ -215,6 +216,24 @@ const Services = () => {
                             "Cultural context & customs",
                             "Paisa, Costeño & Bogotano dialects",
                             "Native Colombian instructor"
+                          ]}
+                        />
+                      </motion.div>
+                    </ScrollAnimation>
+                    <ScrollAnimation direction="right" delay={0.6}>
+                      <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
+                        <ServiceCard
+                          title="Conversational Classes"
+                          description="Practice speaking Spanish in a relaxed environment with real-time corrections and feedback."
+                          icon="💬"
+                          price="$25.00"
+                          features={[
+                            "50-minute sessions",
+                            "100% conversation practice",
+                            "Real-time pronunciation correction",
+                            "Natural fluency development",
+                            "Topic-based discussions",
+                            "Confidence building focus"
                           ]}
                         />
                       </motion.div>
