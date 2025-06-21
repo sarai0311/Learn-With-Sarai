@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ServiceCard from "@/components/ServiceCard";
@@ -190,9 +189,9 @@ const Services = () => {
                           title="Spanish for Travel"
                           description="Quick, practical Spanish skills for travelers heading to Spanish-speaking countries."
                           icon="✈️"
-                          price="$28.00"
+                          price="$30.00"
                           features={[
-                            "60-minute sessions",
+                            "50-minute sessions",
                             "Survival phrases & vocabulary",
                             "Cultural etiquette guidance",
                             "Travel-specific role play",
@@ -210,7 +209,7 @@ const Services = () => {
                           icon="🇨🇴"
                           price="$28.00"
                           features={[
-                            "60-minute sessions",
+                            "50-minute sessions",
                             "Colombian accent & pronunciation",
                             "Regional expressions & slang",
                             "Cultural context & customs",
