@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -210,7 +209,7 @@ const AvailabilityCalendar = () => {
                 <ChevronLeft className="w-4 h-4" />
               </Button>
               <span className="text-sm font-medium px-3">
-                {format(weekDays[0], "d MMM", { locale: es })} - {format(weekDays[6], "d MMM yyyy", { locale: es })}
+                {format(weekDays[0], "d MMM")} - {format(weekDays[6], "d MMM yyyy")}
               </span>
               <Button variant="outline" size="sm" onClick={goToNextWeek}>
                 <ChevronRight className="w-4 h-4" />
@@ -236,7 +235,7 @@ const AvailabilityCalendar = () => {
                   } ${isWeekend ? 'opacity-50' : ''}`}
                 >
                   <div className="text-xs font-medium text-gray-600 mb-1">
-                    {format(day, "EEE", { locale: es })}
+                    {format(day, "EEE")}
                   </div>
                   <div className={`text-lg font-semibold mb-1 ${
                     isToday(day) ? 'text-sarai-primary' : 'text-gray-900'
