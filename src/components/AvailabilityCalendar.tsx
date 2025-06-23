@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -115,13 +116,13 @@ const AvailabilityCalendar = () => {
           >
             <option value={DEFAULT_TIMEZONE}>Las Palmas (WEST)</option>
             <option value="UTC">UTC</option>
-            <option value="America/New_York">Eastern Time (ET)</option>
-            <option value="America/Chicago">Central Time (CT)</option>
-            <option value="America/Denver">Mountain Time (MT)</option>
-            <option value="America/Los_Angeles">Pacific Time (PT)</option>
-            <option value="Europe/London">London (GMT)</option>
-            <option value="Europe/Paris">Paris (CET)</option>
-            <option value="Asia/Tokyo">Tokyo (JST)</option>
+            <option value="America/New_York">Hora del Este (ET)</option>
+            <option value="America/Chicago">Hora Central (CT)</option>
+            <option value="America/Denver">Hora de Montaña (MT)</option>
+            <option value="America/Los_Angeles">Hora del Pacífico (PT)</option>
+            <option value="Europe/London">Londres (GMT)</option>
+            <option value="Europe/Paris">París (CET)</option>
+            <option value="Asia/Tokyo">Tokio (JST)</option>
           </select>
         </div>
       </div>
@@ -135,19 +136,22 @@ const AvailabilityCalendar = () => {
               Selecciona una fecha
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <Calendar
-              mode="single"
-              selected={selectedDate}
-              onSelect={(date) => date && setSelectedDate(date)}
-              disabled={(date) => {
-                const dayOfWeek = date.getDay();
-                const dateKey = format(date, 'yyyy-MM-dd');
-                // Disable weekends and past dates
-                return dayOfWeek === 0 || dayOfWeek === 6 || date < new Date() || !availability[dateKey];
-              }}
-              className="w-full mx-auto"
-            />
+          <CardContent className="flex justify-center">
+            <div className="w-full max-w-sm">
+              <Calendar
+                mode="single"
+                selected={selectedDate}
+                onSelect={(date) => date && setSelectedDate(date)}
+                disabled={(date) => {
+                  const dayOfWeek = date.getDay();
+                  const dateKey = format(date, 'yyyy-MM-dd');
+                  // Disable weekends and past dates
+                  return dayOfWeek === 0 || dayOfWeek === 6 || date < new Date() || !availability[dateKey];
+                }}
+                className="w-full"
+                locale={es}
+              />
+            </div>
           </CardContent>
         </Card>
 
@@ -239,7 +243,7 @@ const AvailabilityCalendar = () => {
                     {format(day, "d")}
                   </div>
                   <div className="text-xs text-gray-500">
-                    {isWeekend ? 'Cerrado' : `${availableCount} slots`}
+                    {isWeekend ? 'Cerrado' : `${availableCount} disponibles`}
                   </div>
                 </div>
               );
