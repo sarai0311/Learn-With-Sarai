@@ -1,5 +1,3 @@
-
-
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -11,27 +9,32 @@ import { ChevronLeft, ChevronRight, CalendarIcon, Clock } from 'lucide-react';
 // Las Palmas de Gran Canaria timezone
 const DEFAULT_TIMEZONE = 'Atlantic/Canary';
 
-// Time slots from 2 PM to 10 PM (excluding 7-8 PM for dinner)
+// Time slots from 1 PM to 10 PM (including reserved slots)
 const TIME_SLOTS = [
-  '14:00', '15:00', '16:00', 
-  '17:00', '18:00', // Skip 19:00 (7 PM) - dinner time
+  '13:00', '14:00', '15:00', '16:00', 
+  '17:00', '18:00', '19:00',
   '20:00', '21:00', '22:00'
 ];
 
 const TIME_LABELS = {
+  '13:00': '1:00 PM',
   '14:00': '2:00 PM',
   '15:00': '3:00 PM', 
   '16:00': '4:00 PM',
   '17:00': '5:00 PM',
   '18:00': '6:00 PM',
+  '19:00': '7:00 PM',
   '20:00': '8:00 PM',
   '21:00': '9:00 PM',
   '22:00': '10:00 PM'
 };
 
+// Permanently reserved slots
+const RESERVED_SLOTS = ['13:00', '19:00'];
+
 // Generate random availability for the next 14 days
 const generateMockAvailability = () => {
-  const availability: Record<string, { time: string; available: boolean }[]> = {};
+  const availability: Record<string, { time: string; available: boolean; reserved?: boolean }[]> = {};
   
   for (let i = 0; i < 14; i++) {
     const date = addDays(new Date(), i);
@@ -45,7 +48,8 @@ const generateMockAvailability = () => {
     
     availability[dateKey] = TIME_SLOTS.map(time => ({
       time,
-      available: Math.random() > 0.3 // 70% chance of being available
+      available: RESERVED_SLOTS.includes(time) ? false : Math.random() > 0.3, // 70% chance of being available for non-reserved slots
+      reserved: RESERVED_SLOTS.includes(time) // Mark reserved slots
     }));
   }
   
@@ -154,9 +158,6 @@ const AvailabilityCalendar = () => {
             <CardTitle className="text-lg">
               Horarios para {format(selectedDate, "EEEE, d 'de' MMMM", { locale: es })}
             </CardTitle>
-            <p className="text-sm text-gray-600 mt-1">
-              * De 7:00 PM a 7:50 PM no hay clases (hora de cena)
-            </p>
           </CardHeader>
           <CardContent>
             {availableSlots.length === 0 ? (
@@ -180,12 +181,17 @@ const AvailabilityCalendar = () => {
                           ? 'bg-sarai-primary hover:bg-sarai-primary/90 text-white'
                           : slot.available
                           ? 'border-sarai-primary text-sarai-primary hover:bg-sarai-primary/10'
+                          : slot.reserved
+                          ? 'bg-orange-100 text-orange-700 border-orange-200 cursor-not-allowed'
                           : 'bg-gray-100 text-gray-400 cursor-not-allowed'
                       }`}
                       onClick={() => slot.available && handleSlotClick(selectedDateKey, slot.time)}
                       disabled={!slot.available}
                     >
-                      {timeLabel}
+                      <div className="flex flex-col items-center">
+                        <span>{timeLabel}</span>
+                        {slot.reserved && <span className="text-xs">Reservado</span>}
+                      </div>
                     </Button>
                   );
                 })}
@@ -270,4 +276,3 @@ const AvailabilityCalendar = () => {
 };
 
 export default AvailabilityCalendar;
-
