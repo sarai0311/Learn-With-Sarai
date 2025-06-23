@@ -136,8 +136,8 @@ const AvailabilityCalendar = () => {
               Selecciona una fecha
             </CardTitle>
           </CardHeader>
-          <CardContent className="flex justify-center">
-            <div className="w-full max-w-sm">
+          <CardContent className="p-4">
+            <div className="flex justify-center">
               <Calendar
                 mode="single"
                 selected={selectedDate}
@@ -148,8 +148,9 @@ const AvailabilityCalendar = () => {
                   // Disable weekends and past dates
                   return dayOfWeek === 0 || dayOfWeek === 6 || date < new Date() || !availability[dateKey];
                 }}
-                className="w-full"
                 locale={es}
+                className="rounded-md border w-fit mx-auto"
+                weekStartsOn={1}
               />
             </div>
           </CardContent>
