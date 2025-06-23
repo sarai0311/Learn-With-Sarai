@@ -29,12 +29,12 @@ const TIME_LABELS = {
   '22:00': '10:00 PM'
 };
 
-// Permanently reserved slots
+// Permanently reserved slots (appear as unavailable like other booked slots)
 const RESERVED_SLOTS = ['13:00', '19:00'];
 
 // Generate random availability for the next 14 days
 const generateMockAvailability = () => {
-  const availability: Record<string, { time: string; available: boolean; reserved?: boolean }[]> = {};
+  const availability: Record<string, { time: string; available: boolean }[]> = {};
   
   for (let i = 0; i < 14; i++) {
     const date = addDays(new Date(), i);
@@ -48,8 +48,7 @@ const generateMockAvailability = () => {
     
     availability[dateKey] = TIME_SLOTS.map(time => ({
       time,
-      available: RESERVED_SLOTS.includes(time) ? false : Math.random() > 0.3, // 70% chance of being available for non-reserved slots
-      reserved: RESERVED_SLOTS.includes(time) // Mark reserved slots
+      available: RESERVED_SLOTS.includes(time) ? false : Math.random() > 0.3 // 70% chance of being available for non-reserved slots
     }));
   }
   
@@ -181,17 +180,12 @@ const AvailabilityCalendar = () => {
                           ? 'bg-sarai-primary hover:bg-sarai-primary/90 text-white'
                           : slot.available
                           ? 'border-sarai-primary text-sarai-primary hover:bg-sarai-primary/10'
-                          : slot.reserved
-                          ? 'bg-orange-100 text-orange-700 border-orange-200 cursor-not-allowed'
                           : 'bg-gray-100 text-gray-400 cursor-not-allowed'
                       }`}
                       onClick={() => slot.available && handleSlotClick(selectedDateKey, slot.time)}
                       disabled={!slot.available}
                     >
-                      <div className="flex flex-col items-center">
-                        <span>{timeLabel}</span>
-                        {slot.reserved && <span className="text-xs">Reservado</span>}
-                      </div>
+                      {timeLabel}
                     </Button>
                   );
                 })}
