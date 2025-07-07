@@ -95,10 +95,10 @@ const EnhancedTestimonials = () => {
           </motion.div>
           
           <h2 className="text-4xl md:text-5xl font-bold text-sarai-text mb-6 decorated-heading">
-            Lo Que Dicen Mis Estudiantes
+            What My Students Say
           </h2>
           <p className="text-xl text-sarai-steel max-w-3xl mx-auto leading-relaxed">
-            Historias reales de personas que ya están disfrutando de hablar español fluidamente
+            Real stories from people who are already enjoying speaking Spanish fluently
           </p>
           
           <motion.div
@@ -110,7 +110,6 @@ const EnhancedTestimonials = () => {
           />
         </ScrollAnimation>
 
-        {/* Testimonials Carousel */}
         <div className="relative">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             {getVisibleTestimonials().map((testimonial, index) => (
@@ -197,7 +196,7 @@ const EnhancedTestimonials = () => {
                       <div className="mt-6 pt-6 border-t border-sarai-primary/10 text-sm text-sarai-steel/70 flex justify-between items-center relative z-10">
                         <div className="flex items-center">
                           <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
-                          <span>Estudiante verificado</span>
+                          <span>Verified Student</span>
                         </div>
                         <span className="font-medium">{testimonial.months}</span>
                       </div>
@@ -208,7 +207,6 @@ const EnhancedTestimonials = () => {
             ))}
           </div>
 
-          {/* Navigation Buttons */}
           <ScrollAnimation direction="up" delay={0.8} className="flex justify-center items-center space-x-6">
             <motion.button
               whileHover={{ scale: 1.1 }}
@@ -254,7 +252,7 @@ const EnhancedTestimonials = () => {
               href="#" 
               className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-sarai-primary to-sarai-secondary text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
             >
-              <span className="mr-3">Ver todas las reseñas</span>
+              <span className="mr-3">View All Reviews</span>
               <motion.svg 
                 className="w-5 h-5" 
                 fill="none" 
