@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { Image as ImageIcon, BookOpen, Star, Check } from 'lucide-react';
 
@@ -74,7 +73,7 @@ const Hero = () => {
                 </div>
               </div>
               <p className="mt-2 text-sarai-steel text-sm italic">
-                "Reserve your 25-minute trial class for just <span className="font-bold text-sarai-secondary">$9.99</span> and take the first step towards Spanish fluency."
+                "Reserve your 25-minute trial class for just <span className="font-bold text-sarai-secondary">$12.50</span> and take the first step towards Spanish fluency."
               </p>
             </div>
           </div>
@@ -102,7 +101,7 @@ const Hero = () => {
                   
                   <div className="absolute -bottom-4 -left-4 bg-white p-2 rounded-lg shadow-lg">
                     <div className="flex bg-sarai-secondary/20 p-2 rounded-lg">
-                      <span className="font-bold text-sarai-secondary">$9.99</span>
+                      <span className="font-bold text-sarai-secondary">$12.50</span>
                       <span className="text-xs ml-1 text-sarai-secondary">Trial Class</span>
                     </div>
                   </div>
@@ -113,7 +112,6 @@ const Hero = () => {
         </div>
       </div>
       
-      {/* Added decorative wave */}
       <div className="w-full overflow-hidden">
         <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-12 text-white">
           <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.11,130.83,141.14,214.86,124.16Z" 

@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ServiceCard from "@/components/ServiceCard";
@@ -58,7 +57,7 @@ const Services = () => {
                           title="Trial Class"
                           description="Try a 25-minute class to assess your level and discuss your learning goals."
                           icon="🎁"
-                          price="$9.99"
+                          price="$12.50"
                           features={[
                             "Level assessment",
                             "Learning goals discussion",
@@ -466,7 +465,7 @@ const Services = () => {
                   Ready to Start Learning Spanish?
                 </h2>
                 <p className="text-xl mb-8">
-                  Book your trial class today for just $9.99 and take the first step towards fluency.
+                  Book your trial class today for just $12.50 and take the first step towards fluency.
                 </p>
                 <Link to="/book">
                   <motion.div 
