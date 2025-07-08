@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ServiceCard from "@/components/ServiceCard";
@@ -124,10 +123,9 @@ const Services = () => {
                           title="Starter Package"
                           description="Perfect for beginners or those testing the waters with consistent learning."
                           icon="🚀"
-                          price="$116.25"
+                          price="$120.00"
                           features={[
                             "5 standard classes",
-                            "$23.25 per class (7% off)",
                             "Valid for 2 months",
                             "Basic study materials included",
                             "Flexible scheduling"
@@ -141,10 +139,9 @@ const Services = () => {
                           title="Committed Learner"
                           description="Our most popular package for steady and consistent progress."
                           icon="🔥"
-                          price="$215.00"
+                          price="$230.00"
                           features={[
                             "10 standard classes",
-                            "$21.50 per class (14% off)",
                             "Valid for 3 months",
                             "Complete study materials",
                             "Priority scheduling"
@@ -158,10 +155,9 @@ const Services = () => {
                           title="Immersion Package"
                           description="Intensive learning experience for rapid progress and deep immersion."
                           icon="🌟"
-                          price="$360.00"
+                          price="$440.00"
                           features={[
                             "20 standard classes",
-                            "$18.00 per class (28% off)",
                             "Valid for 6 months",
                             "Premium learning materials",
                             "Chat support between sessions"

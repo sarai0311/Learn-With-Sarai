@@ -20,7 +20,6 @@ const ServiceCard = ({ title, description, icon, price, features }: ServiceCardP
         <p className="text-gray-600 mb-4">{description}</p>
         <div className="mb-6">
           <span className="text-2xl font-bold text-sarai-primary">{price}</span>
-          {price !== 'Custom' && <span className="text-gray-500"> / class</span>}
         </div>
         
         <ul className="space-y-2 mb-6">
