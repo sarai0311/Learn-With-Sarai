@@ -127,7 +127,7 @@ const Services = () => {
                           price="€161.28"
                           features={[
                             "8 standard classes",
-                            "4% discount (save €6.72)",
+                            "4% discount",
                             "Valid for 1 month",
                             "Basic study materials included",
                             "Flexible scheduling"
@@ -144,7 +144,7 @@ const Services = () => {
                           price="€312.48"
                           features={[
                             "16 standard classes",
-                            "7% discount (save €23.52)",
+                            "7% discount",
                             "Valid for 2 months",
                             "Complete study materials",
                             "Priority scheduling"
@@ -161,7 +161,7 @@ const Services = () => {
                           price="€378.00"
                           features={[
                             "20 standard classes",
-                            "10% discount (save €42.00)",
+                            "10% discount",
                             "Valid for 3 months",
                             "Premium learning materials",
                             "Chat support between sessions"
