@@ -131,7 +131,7 @@ const Index = () => {
                     </motion.div>
                     <h3 className="text-xl font-bold mb-2 text-sarai-text">Book a Trial Class</h3>
                     <p className="text-gray-600">
-                      Schedule a 25-minute trial class to assess your current level and discuss your goals. Just $9.99 to get started.
+                      Schedule a 25-minute trial class to assess your current level and discuss your goals. Just €10.50 to get started.
                     </p>
                   </motion.div>
                   <motion.div 
@@ -233,7 +233,7 @@ const Index = () => {
                   Ready to Start Your Spanish Journey?
                 </h2>
                 <p className="text-xl mb-8">
-                  Book your 25-minute trial class for just $9.99 and take the first step towards Spanish fluency.
+                  Book your 25-minute trial class for just €10.50 and take the first step towards Spanish fluency.
                 </p>
                 <Link to="/book">
                   <motion.div 

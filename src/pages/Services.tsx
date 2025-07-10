@@ -57,7 +57,7 @@ const Services = () => {
                           title="Trial Class"
                           description="Try a 25-minute class to assess your level and discuss your learning goals."
                           icon="🎁"
-                          price="$12.50"
+                          price="€10.50"
                           features={[
                             "Level assessment",
                             "Learning goals discussion",
@@ -74,7 +74,7 @@ const Services = () => {
                           title="Standard Class"
                           description="Regular one-on-one Spanish lessons focused on your specific learning goals."
                           icon="📚"
-                          price="$25.00"
+                          price="€21.00"
                           features={[
                             "50-minute sessions",
                             "Customized curriculum",
@@ -91,7 +91,7 @@ const Services = () => {
                           title="Premium Class"
                           description="Extended sessions for faster progress with additional materials and support."
                           icon="⭐"
-                          price="$35.00"
+                          price="€31.50"
                           features={[
                             "75-minute sessions",
                             "Personalized learning materials",
@@ -123,7 +123,7 @@ const Services = () => {
                           title="Starter Package"
                           description="Perfect for beginners or those testing the waters with consistent learning."
                           icon="🚀"
-                          price="$120.00"
+                          price="€100.00"
                           features={[
                             "5 standard classes",
                             "Valid for 1 month",
@@ -139,7 +139,7 @@ const Services = () => {
                           title="Committed Learner"
                           description="Our most popular package for steady and consistent progress."
                           icon="🔥"
-                          price="$230.00"
+                          price="€190.00"
                           features={[
                             "10 standard classes",
                             "Valid for 2 months",
@@ -155,7 +155,7 @@ const Services = () => {
                           title="Immersion Package"
                           description="Intensive learning experience for rapid progress and deep immersion."
                           icon="🌟"
-                          price="$440.00"
+                          price="€360.00"
                           features={[
                             "20 standard classes",
                             "Valid for 3 months",
@@ -186,7 +186,7 @@ const Services = () => {
                           title="Spanish for Travel"
                           description="Quick, practical Spanish skills for travelers heading to Spanish-speaking countries."
                           icon="✈️"
-                          price="$30.00"
+                          price="€25.00"
                           features={[
                             "50-minute sessions",
                             "Survival phrases & vocabulary",
@@ -204,7 +204,7 @@ const Services = () => {
                           title="Colombian Spanish"
                           description="Learn the unique accent, expressions, and cultural nuances of Colombian Spanish."
                           icon="🇨🇴"
-                          price="$28.00"
+                          price="€23.50"
                           features={[
                             "50-minute sessions",
                             "Colombian accent & pronunciation",
@@ -222,7 +222,7 @@ const Services = () => {
                           title="Conversational Classes"
                           description="Practice speaking Spanish in a relaxed environment with real-time corrections and feedback."
                           icon="💬"
-                          price="$25.00"
+                          price="€21.00"
                           features={[
                             "50-minute sessions",
                             "100% conversation practice",
@@ -465,7 +465,7 @@ const Services = () => {
                   Ready to Start Learning Spanish?
                 </h2>
                 <p className="text-xl mb-8">
-                  Book your trial class today for just $12.50 and take the first step towards fluency.
+                  Book your trial class today for just €10.50 and take the first step towards fluency.
                 </p>
                 <Link to="/book">
                   <motion.div 

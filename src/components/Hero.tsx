@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom';
 import { Image as ImageIcon, BookOpen, Star, Check } from 'lucide-react';
 
@@ -73,7 +74,7 @@ const Hero = () => {
                 </div>
               </div>
               <p className="mt-2 text-sarai-steel text-sm italic">
-                "Reserve your 25-minute trial class for just <span className="font-bold text-sarai-secondary">$12.50</span> and take the first step towards Spanish fluency."
+                "Reserve your 25-minute trial class for just <span className="font-bold text-sarai-secondary">€10.50</span> and take the first step towards Spanish fluency."
               </p>
             </div>
           </div>
@@ -101,7 +102,7 @@ const Hero = () => {
                   
                   <div className="absolute -bottom-4 -left-4 bg-white p-2 rounded-lg shadow-lg">
                     <div className="flex bg-sarai-secondary/20 p-2 rounded-lg">
-                      <span className="font-bold text-sarai-secondary">$12.50</span>
+                      <span className="font-bold text-sarai-secondary">€10.50</span>
                       <span className="text-xs ml-1 text-sarai-secondary">Trial Class</span>
                     </div>
                   </div>
