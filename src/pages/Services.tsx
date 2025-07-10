@@ -1,3 +1,4 @@
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ServiceCard from "@/components/ServiceCard";
@@ -127,7 +128,7 @@ const Services = () => {
                           features={[
                             "8 standard classes",
                             "4% discount (save €6.72)",
-                            "Valid for 2 months",
+                            "Valid for 1 month",
                             "Basic study materials included",
                             "Flexible scheduling"
                           ]}
@@ -144,7 +145,7 @@ const Services = () => {
                           features={[
                             "16 standard classes",
                             "7% discount (save €23.52)",
-                            "Valid for 4 months",
+                            "Valid for 2 months",
                             "Complete study materials",
                             "Priority scheduling"
                           ]}
@@ -161,7 +162,7 @@ const Services = () => {
                           features={[
                             "20 standard classes",
                             "10% discount (save €42.00)",
-                            "Valid for 5 months",
+                            "Valid for 3 months",
                             "Premium learning materials",
                             "Chat support between sessions"
                           ]}
