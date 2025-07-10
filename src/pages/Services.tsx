@@ -120,13 +120,14 @@ const Services = () => {
                     <ScrollAnimation direction="left" delay={0.2}>
                       <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
                         <ServiceCard
-                          title="Starter Package"
+                          title="8-Class Package"
                           description="Perfect for beginners or those testing the waters with consistent learning."
                           icon="🚀"
-                          price="€100.00"
+                          price="€161.28"
                           features={[
-                            "5 standard classes",
-                            "Valid for 1 month",
+                            "8 standard classes",
+                            "4% discount (save €6.72)",
+                            "Valid for 2 months",
                             "Basic study materials included",
                             "Flexible scheduling"
                           ]}
@@ -136,13 +137,14 @@ const Services = () => {
                     <ScrollAnimation direction="up" delay={0.4}>
                       <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
                         <ServiceCard
-                          title="Committed Learner"
+                          title="16-Class Package"
                           description="Our most popular package for steady and consistent progress."
                           icon="🔥"
-                          price="€190.00"
+                          price="€312.48"
                           features={[
-                            "10 standard classes",
-                            "Valid for 2 months",
+                            "16 standard classes",
+                            "7% discount (save €23.52)",
+                            "Valid for 4 months",
                             "Complete study materials",
                             "Priority scheduling"
                           ]}
@@ -152,13 +154,14 @@ const Services = () => {
                     <ScrollAnimation direction="right" delay={0.6}>
                       <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
                         <ServiceCard
-                          title="Immersion Package"
+                          title="20-Class Package"
                           description="Intensive learning experience for rapid progress and deep immersion."
                           icon="🌟"
-                          price="€360.00"
+                          price="€378.00"
                           features={[
                             "20 standard classes",
-                            "Valid for 3 months",
+                            "10% discount (save €42.00)",
+                            "Valid for 5 months",
                             "Premium learning materials",
                             "Chat support between sessions"
                           ]}
