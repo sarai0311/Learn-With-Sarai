@@ -121,7 +121,7 @@ const Services = () => {
                     <ScrollAnimation direction="left" delay={0.2}>
                       <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
                         <ServiceCard
-                          title="8-Class Package"
+                          title="Starter Bundle"
                           description="Perfect for beginners or those testing the waters with consistent learning."
                           icon="🚀"
                           price="€161.28"
@@ -138,7 +138,7 @@ const Services = () => {
                     <ScrollAnimation direction="up" delay={0.4}>
                       <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
                         <ServiceCard
-                          title="16-Class Package"
+                          title="Progress Pro"
                           description="Our most popular package for steady and consistent progress."
                           icon="🔥"
                           price="€312.48"
@@ -155,7 +155,7 @@ const Services = () => {
                     <ScrollAnimation direction="right" delay={0.6}>
                       <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
                         <ServiceCard
-                          title="20-Class Package"
+                          title="Fluency Master"
                           description="Intensive learning experience for rapid progress and deep immersion."
                           icon="🌟"
                           price="€378.00"
