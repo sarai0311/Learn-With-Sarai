@@ -19,19 +19,19 @@ const About = () => {
               <ScrollAnimation direction="left">
                 <div>
                   <h1 className="text-4xl md:text-5xl font-bold text-sarai-text mb-6">
-                    Conoce a tu <span className="text-sarai-secondary">Profesora de Español</span>
+                    Meet Your <span className="text-sarai-secondary">Spanish Teacher</span>
                   </h1>
                   <p className="text-lg text-sarai-steel mb-6">
-                    ¡Hola! Soy Sarai, profesora certificada de español de Colombia. Mi pasión es ayudar a estudiantes de todo el mundo a alcanzar sus metas en el idioma español de manera personalizada, efectiva y divertida.
+                    Hello! I'm Sarai, a certified Spanish teacher from Colombia. My passion is helping students from around the world achieve their Spanish language goals in a personalized, effective, and fun way.
                   </p>
                   <div className="flex flex-wrap gap-4">
                     <div className="flex items-center bg-white px-4 py-2 rounded-lg shadow-sm">
                       <Globe className="h-5 w-5 text-sarai-primary mr-2" />
-                      <span className="text-sm font-medium">Estudiantes Internacionales</span>
+                      <span className="text-sm font-medium">International Students</span>
                     </div>
                     <div className="flex items-center bg-white px-4 py-2 rounded-lg shadow-sm">
                       <Award className="h-5 w-5 text-sarai-secondary mr-2" />
-                      <span className="text-sm font-medium">Educadora Destacada</span>
+                      <span className="text-sm font-medium">Outstanding Educator</span>
                     </div>
                   </div>
                 </div>
@@ -46,8 +46,8 @@ const About = () => {
                     <div className="w-80 h-80 bg-gradient-to-br from-sarai-primary via-sarai-secondary to-sarai-accent rounded-xl flex items-center justify-center">
                       <div className="text-center text-white">
                         <GraduationCap className="h-24 w-24 mx-auto mb-4 opacity-90" />
-                        <h3 className="text-3xl font-bold mb-2">Profesora Sarai</h3>
-                        <p className="text-xl opacity-90">Especialista en Español</p>
+                        <h3 className="text-3xl font-bold mb-2">Teacher Sarai</h3>
+                        <p className="text-xl opacity-90">Spanish Specialist</p>
                         <div className="flex justify-center mt-4">
                           {[...Array(5)].map((_, i) => (
                             <Star key={i} className="w-6 h-6 fill-current text-yellow-300" />
@@ -67,10 +67,10 @@ const About = () => {
           <div className="sarai-container">
             <ScrollAnimation direction="up" className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-sarai-text mb-4">
-                Mi Historia
+                My Story
               </h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                Descubre cómo mi pasión por los idiomas se convirtió en mi misión de ayudar a otros
+                Discover how my passion for languages became my mission to help others
               </p>
             </ScrollAnimation>
             
@@ -81,7 +81,7 @@ const About = () => {
                     <div className="w-full h-64 bg-gradient-to-br from-sarai-primary via-sarai-secondary to-sarai-accent rounded-xl flex items-center justify-center mb-6">
                       <div className="text-center text-white">
                         <Heart className="h-16 w-16 mx-auto mb-4 opacity-90" />
-                        <p className="text-xl font-semibold">Pasión por Enseñar</p>
+                        <p className="text-xl font-semibold">Passion for Teaching</p>
                       </div>
                     </div>
                     <div className="absolute -top-4 -right-4 bg-white p-3 rounded-full shadow-lg">
@@ -98,10 +98,10 @@ const About = () => {
                       <Globe className="h-6 w-6 text-sarai-primary" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-sarai-text mb-2">Experiencia Internacional</h3>
+                      <h3 className="text-xl font-bold text-sarai-text mb-2">International Experience</h3>
                       <p className="text-gray-600">
-                        He tenido la oportunidad de trabajar con estudiantes de diferentes culturas y nacionalidades, 
-                        lo que me ha permitido entender las necesidades específicas de cada alumno y adaptar mis métodos de enseñanza.
+                        I've had the opportunity to work with students from different cultures and nationalities, 
+                        which has allowed me to understand each student's specific needs and adapt my teaching methods.
                       </p>
                     </div>
                   </div>
@@ -111,10 +111,10 @@ const About = () => {
                       <Heart className="h-6 w-6 text-sarai-secondary" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-sarai-text mb-2">Pasión por la Enseñanza</h3>
+                      <h3 className="text-xl font-bold text-sarai-text mb-2">Passion for Teaching</h3>
                       <p className="text-gray-600">
-                        Mi amor por los idiomas y la educación me impulsa a crear experiencias de aprendizaje 
-                        significativas que van más allá de la gramática tradicional.
+                        My love for languages and education drives me to create meaningful learning experiences 
+                        that go beyond traditional grammar.
                       </p>
                     </div>
                   </div>
@@ -124,10 +124,10 @@ const About = () => {
                       <Award className="h-6 w-6 text-sarai-accent" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-sarai-text mb-2">Compromiso con la Excelencia</h3>
+                      <h3 className="text-xl font-bold text-sarai-text mb-2">Commitment to Excellence</h3>
                       <p className="text-gray-600">
-                        Mi reconocimiento como educadora destacada refleja mi dedicación constante a 
-                        proporcionar la mejor calidad de enseñanza y apoyo a mis estudiantes.
+                        My recognition as an outstanding educator reflects my constant dedication to 
+                        providing the best quality teaching and support to my students.
                       </p>
                     </div>
                   </div>
@@ -142,10 +142,10 @@ const About = () => {
           <div className="sarai-container">
             <ScrollAnimation direction="up" className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-sarai-text mb-4">
-                Mi Enfoque de Enseñanza
+                My Teaching Approach
               </h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                Descubre cómo hago que aprender español sea efectivo, divertido y personalizado
+                Discover how I make learning Spanish effective, fun, and personalized
               </p>
             </ScrollAnimation>
             
@@ -159,9 +159,9 @@ const About = () => {
                   <div className="w-16 h-16 bg-sarai-primary/20 rounded-full flex items-center justify-center mb-4">
                     <Target className="h-8 w-8 text-sarai-primary" />
                   </div>
-                  <h3 className="text-xl font-bold text-sarai-text mb-3">Personalizado</h3>
+                  <h3 className="text-xl font-bold text-sarai-text mb-3">Personalized</h3>
                   <p className="text-gray-600">
-                    Cada clase está diseñada específicamente para ti, adaptándose a tu nivel, objetivos y estilo de aprendizaje único.
+                    Each class is designed specifically for you, adapting to your level, goals, and unique learning style.
                   </p>
                 </motion.div>
               </ScrollAnimation>
@@ -175,9 +175,9 @@ const About = () => {
                   <div className="w-16 h-16 bg-sarai-secondary/20 rounded-full flex items-center justify-center mb-4">
                     <MessageCircle className="h-8 w-8 text-sarai-secondary" />
                   </div>
-                  <h3 className="text-xl font-bold text-sarai-text mb-3">Comunicativo</h3>
+                  <h3 className="text-xl font-bold text-sarai-text mb-3">Communicative</h3>
                   <p className="text-gray-600">
-                    Priorizo la comunicación real y práctica desde el primer día, para que uses el español en situaciones reales.
+                    I prioritize real and practical communication from day one, so you can use Spanish in real situations.
                   </p>
                 </motion.div>
               </ScrollAnimation>
@@ -191,9 +191,9 @@ const About = () => {
                   <div className="w-16 h-16 bg-sarai-accent/20 rounded-full flex items-center justify-center mb-4">
                     <Heart className="h-8 w-8 text-sarai-accent" />
                   </div>
-                  <h3 className="text-xl font-bold text-sarai-text mb-3">Divertido</h3>
+                  <h3 className="text-xl font-bold text-sarai-text mb-3">Fun</h3>
                   <p className="text-gray-600">
-                    Creo que aprender debe ser enjoyable. Uso juegos, historias y actividades interactivas para hacer el proceso memorable.
+                    I believe learning should be enjoyable. I use games, stories, and interactive activities to make the process memorable.
                   </p>
                 </motion.div>
               </ScrollAnimation>
@@ -206,10 +206,10 @@ const About = () => {
           <div className="sarai-container">
             <ScrollAnimation direction="up" className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-sarai-text mb-4">
-                ¿Por qué elegir mis clases?
+                Why Choose My Classes?
               </h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                Lo que me diferencia como tu profesora de español
+                What sets me apart as your Spanish teacher
               </p>
             </ScrollAnimation>
             
@@ -221,9 +221,9 @@ const About = () => {
                       <CheckCircle className="h-5 w-5 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-sarai-text mb-2">Metodología Probada</h3>
+                      <h3 className="text-lg font-semibold text-sarai-text mb-2">Proven Methodology</h3>
                       <p className="text-gray-600">
-                        Utilizo enfoques pedagógicos modernos y efectivos, adaptados a las necesidades del aprendizaje online.
+                        I use modern and effective pedagogical approaches, adapted to the needs of online learning.
                       </p>
                     </div>
                   </div>
@@ -233,9 +233,9 @@ const About = () => {
                       <CheckCircle className="h-5 w-5 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-sarai-text mb-2">Flexibilidad Total</h3>
+                      <h3 className="text-lg font-semibold text-sarai-text mb-2">Total Flexibility</h3>
                       <p className="text-gray-600">
-                        Horarios que se adaptan a tu vida, sin importar tu zona horaria o agenda ocupada.
+                        Schedules that adapt to your life, regardless of your time zone or busy agenda.
                       </p>
                     </div>
                   </div>
@@ -245,9 +245,9 @@ const About = () => {
                       <CheckCircle className="h-5 w-5 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-sarai-text mb-2">Apoyo Continuo</h3>
+                      <h3 className="text-lg font-semibold text-sarai-text mb-2">Continuous Support</h3>
                       <p className="text-gray-600">
-                        Recibes retroalimentación detallada y recursos adicionales entre clases para acelerar tu progreso.
+                        You receive detailed feedback and additional resources between classes to accelerate your progress.
                       </p>
                     </div>
                   </div>
@@ -257,9 +257,9 @@ const About = () => {
                       <CheckCircle className="h-5 w-5 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-sarai-text mb-2">Cultura Auténtica</h3>
+                      <h3 className="text-lg font-semibold text-sarai-text mb-2">Authentic Culture</h3>
                       <p className="text-gray-600">
-                        Aprende no solo el idioma, sino también la rica cultura hispanohablante de manera natural.
+                        Learn not just the language, but also the rich Spanish-speaking culture in a natural way.
                       </p>
                     </div>
                   </div>
@@ -271,8 +271,8 @@ const About = () => {
                   <div className="w-full h-80 bg-gradient-to-br from-sarai-primary via-sarai-secondary to-sarai-accent rounded-xl flex items-center justify-center">
                     <div className="text-center text-white">
                       <Users className="h-20 w-20 mx-auto mb-4 opacity-90" />
-                      <h3 className="text-2xl font-bold mb-2">Comunidad Global</h3>
-                      <p className="text-lg opacity-90">Estudiantes de todo el mundo</p>
+                      <h3 className="text-2xl font-bold mb-2">Global Community</h3>
+                      <p className="text-lg opacity-90">Students from around the world</p>
                       <div className="flex justify-center mt-4">
                         {[...Array(5)].map((_, i) => (
                           <Star key={i} className="w-5 h-5 fill-current text-yellow-300" />
@@ -298,28 +298,28 @@ const About = () => {
                     <div className="w-12 h-12 bg-sarai-primary/20 rounded-full flex items-center justify-center mr-4">
                       <GraduationCap className="h-6 w-6 text-sarai-primary" />
                     </div>
-                    <h2 className="text-2xl font-bold text-sarai-text">Cualificaciones Académicas</h2>
+                    <h2 className="text-2xl font-bold text-sarai-text">Academic Qualifications</h2>
                   </div>
                   
                   <div className="space-y-6">
                     <div className="border-l-4 border-sarai-secondary pl-4">
-                      <h3 className="font-semibold text-sarai-text mb-1">Certificado de Enseñanza de Español como Lengua Extranjera</h3>
-                      <p className="text-sm text-gray-600 mb-2">Institución Especializada en Formación Docente, 2025</p>
+                      <h3 className="font-semibold text-sarai-text mb-1">Certificate in Teaching Spanish as a Foreign Language</h3>
+                      <p className="text-sm text-gray-600 mb-2">Specialized Institution in Teacher Training, 2025</p>
                     </div>
                     
                     <div className="border-l-4 border-sarai-secondary pl-4">
-                      <h3 className="font-semibold text-sarai-text mb-1">Estudios en Español como Lengua Extranjera (ELE)</h3>
-                      <p className="text-sm text-gray-600 mb-2">Formación especializada en metodologías de enseñanza</p>
+                      <h3 className="font-semibold text-sarai-text mb-1">Studies in Spanish as a Foreign Language (ELE)</h3>
+                      <p className="text-sm text-gray-600 mb-2">Specialized training in teaching methodologies</p>
                     </div>
                     
                     <div className="border-l-4 border-sarai-secondary pl-4">
-                      <h3 className="font-semibold text-sarai-text mb-1">Estudios Avanzados de Inglés - Nivel C1</h3>
-                      <p className="text-sm text-gray-600 mb-2">Formación universitaria especializada en lengua inglesa avanzada</p>
+                      <h3 className="font-semibold text-sarai-text mb-1">Advanced English Studies - C1 Level</h3>
+                      <p className="text-sm text-gray-600 mb-2">Specialized university training in advanced English language</p>
                     </div>
                     
                     <div className="border-l-4 border-sarai-secondary pl-4">
-                      <h3 className="font-semibold text-sarai-text mb-1">Certificación en Lingüística Aplicada</h3>
-                      <p className="text-sm text-gray-600 mb-2">Especialización en metodologías de enseñanza de idiomas</p>
+                      <h3 className="font-semibold text-sarai-text mb-1">Certification in Applied Linguistics</h3>
+                      <p className="text-sm text-gray-600 mb-2">Specialization in language teaching methodologies</p>
                     </div>
                   </div>
                 </div>
@@ -332,25 +332,25 @@ const About = () => {
                     <div className="w-12 h-12 bg-sarai-secondary/20 rounded-full flex items-center justify-center mr-4">
                       <Award className="h-6 w-6 text-sarai-secondary" />
                     </div>
-                    <h2 className="text-2xl font-bold text-sarai-text">Experiencia Profesional</h2>
+                    <h2 className="text-2xl font-bold text-sarai-text">Professional Experience</h2>
                   </div>
                   
                   <ul className="space-y-4">
                     <li className="pl-8 relative">
                       <div className="absolute left-0 top-1.5 w-4 h-4 bg-sarai-secondary rounded-full"></div>
-                      <h4 className="font-semibold text-sarai-text">Profesora de Español Online</h4>
-                      <p className="text-gray-600">Especialista en Enseñanza Virtual, 2025-Presente</p>
+                      <h4 className="font-semibold text-sarai-text">Online Spanish Teacher</h4>
+                      <p className="text-gray-600">Virtual Teaching Specialist, 2025-Present</p>
                       <ul className="mt-2 list-disc list-inside text-sm text-gray-600">
-                        <li>Desarrollo e implementación de metodologías de enseñanza personalizadas para estudiantes internacionales.</li>
-                        <li>Creación de programas de estudio adaptativos utilizando enfoques comunicativos e inmersivos.</li>
-                        <li>Especialización en corrección lingüística en tiempo real y retroalimentación pedagógica individualizada.</li>
-                        <li>Reconocida como educadora destacada por la excelencia en la calidad de enseñanza y resultados de aprendizaje.</li>
+                        <li>Development and implementation of personalized teaching methodologies for international students.</li>
+                        <li>Creation of adaptive study programs using communicative and immersive approaches.</li>
+                        <li>Specialization in real-time linguistic correction and individualized pedagogical feedback.</li>
+                        <li>Recognized as an outstanding educator for excellence in teaching quality and learning outcomes.</li>
                       </ul>
                     </li>
                     <li className="pl-8 relative">
                       <div className="absolute left-0 top-1.5 w-4 h-4 bg-sarai-secondary rounded-full"></div>
-                      <h4 className="font-semibold text-sarai-text">Educación Bilingüe en Preescolar</h4>
-                      <p className="text-gray-600">Experiencia en educación temprana bilingüe, desarrollando actividades educativas innovadoras que facilitan el aprendizaje natural y lúdico de español e inglés desde temprana edad, fomentando el desarrollo cognitivo y lingüístico integral.</p>
+                      <h4 className="font-semibold text-sarai-text">Bilingual Preschool Education</h4>
+                      <p className="text-gray-600">Experience in early bilingual education, developing innovative educational activities that facilitate natural and playful learning of Spanish and English from an early age, fostering comprehensive cognitive and linguistic development.</p>
                     </li>
                   </ul>
                 </div>
@@ -364,10 +364,10 @@ const About = () => {
           <div className="sarai-container">
             <ScrollAnimation direction="up" className="text-center max-w-3xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                ¿Listo para comenzar tu aventura en español?
+                Ready to Start Your Spanish Adventure?
               </h2>
               <p className="text-xl mb-8">
-                Reserva tu clase de prueba de 25 minutos por solo $9.99 y da el primer paso hacia la fluidez en español.
+                Book your 25-minute trial class for just €10.50 and take the first step towards Spanish fluency.
               </p>
               <motion.a 
                 href="/book"
@@ -375,7 +375,7 @@ const About = () => {
                 whileTap={{ scale: 0.95 }}
                 className="inline-block bg-white text-sarai-primary hover:bg-gray-100 font-semibold py-3 px-8 text-lg rounded-lg shadow-lg transition-all duration-300"
               >
-                Reserva tu Clase de Prueba
+                Book Your Trial Class
               </motion.a>
             </ScrollAnimation>
           </div>

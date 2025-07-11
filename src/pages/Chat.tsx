@@ -27,12 +27,12 @@ interface Message {
 const Chat = () => {
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
   
-  // Datos de ejemplo - en una aplicación real estos vendrían de una base de datos
+  // Sample data - in a real application this would come from a database
   const [students] = useState<Student[]>([
     {
       id: '1',
       name: 'María González',
-      lastMessage: 'Tengo una pregunta sobre la tarea de verbos',
+      lastMessage: 'I have a question about the verb assignment',
       lastMessageTime: '10:30 AM',
       unreadCount: 2,
       online: true
@@ -40,7 +40,7 @@ const Chat = () => {
     {
       id: '2',
       name: 'Carlos Rodríguez',
-      lastMessage: 'Gracias por la explicación de ayer',
+      lastMessage: 'Thank you for yesterday\'s explanation',
       lastMessageTime: '9:15 AM',
       unreadCount: 0,
       online: false
@@ -48,8 +48,8 @@ const Chat = () => {
     {
       id: '3',
       name: 'Ana Martínez',
-      lastMessage: '¿Podemos repasar los tiempos verbales?',
-      lastMessageTime: 'Ayer',
+      lastMessage: 'Can we review verb tenses?',
+      lastMessageTime: 'Yesterday',
       unreadCount: 1,
       online: true
     }
@@ -60,7 +60,7 @@ const Chat = () => {
       id: '1',
       senderId: '1',
       senderName: 'María González',
-      content: 'Hola Sarai, tengo una duda sobre los verbos irregulares',
+      content: 'Hello Sarai, I have a question about irregular verbs',
       timestamp: '10:25 AM',
       isFromTeacher: false
     },
@@ -68,7 +68,7 @@ const Chat = () => {
       id: '2',
       senderId: 'teacher',
       senderName: 'Sarai',
-      content: 'Hola María! Claro, dime cuál es tu duda específica',
+      content: 'Hello María! Of course, tell me what your specific question is',
       timestamp: '10:27 AM',
       isFromTeacher: true
     },
@@ -76,7 +76,7 @@ const Chat = () => {
       id: '3',
       senderId: '1',
       senderName: 'María González',
-      content: 'No entiendo bien cuándo usar "ser" y cuándo "estar"',
+      content: 'I don\'t understand well when to use "ser" and when "estar"',
       timestamp: '10:30 AM',
       isFromTeacher: false
     }
@@ -95,10 +95,10 @@ const Chat = () => {
           <div className="sarai-container py-8">
             <div className="text-center mb-8">
               <h1 className="text-4xl font-bold text-sarai-primary mb-4">
-                Chat con Estudiantes
+                Student Chat
               </h1>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Mantente conectada con tus estudiantes, resuelve dudas y brinda apoyo personalizado
+                Stay connected with your students, resolve doubts, and provide personalized support
               </p>
             </div>
 

@@ -24,26 +24,26 @@ const Footer = () => {
           
           {/* Quick Links moved to the right */}
           <div className="col-span-1">
-            <h3 className="text-lg font-semibold text-sarai-text mb-4">Enlaces Rápidos</h3>
+            <h3 className="text-lg font-semibold text-sarai-text mb-4">Quick Links</h3>
             <ul className="space-y-3">
               <li>
                 <Link to="/" className="text-gray-600 hover:text-sarai-primary transition-colors duration-200 text-sm">
-                  Hogar
+                  Home
                 </Link>
               </li>
               <li>
                 <Link to="/about" className="text-gray-600 hover:text-sarai-primary transition-colors duration-200 text-sm">
-                  Acerca de mí
+                  About Me
                 </Link>
               </li>
               <li>
                 <Link to="/services" className="text-gray-600 hover:text-sarai-primary transition-colors duration-200 text-sm">
-                  Servicios
+                  Services
                 </Link>
               </li>
               <li>
                 <Link to="/book" className="text-gray-600 hover:text-sarai-primary transition-colors duration-200 text-sm">
-                  Reservar una clase
+                  Book a Class
                 </Link>
               </li>
             </ul>

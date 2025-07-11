@@ -7,57 +7,57 @@ const EnhancedTestimonials = () => {
   const testimonials = [
     {
       name: "Jahquahiel",
-      country: "Estados Unidos",
+      country: "United States",
       flag: "us",
       rating: 5,
       image: "https://randomuser.me/api/portraits/men/32.jpg",
       text: "Sarai has to be one of the best teachers I've found online, she has kept the same positive energy since day one and I feel like I've already learned so much in one month. 10/10 would recommend!",
-      months: "1 mes de clases"
+      months: "1 month of classes"
     },
     {
       name: "Neil",
-      country: "Reino Unido", 
+      country: "United Kingdom", 
       flag: "gb",
       rating: 5,
       image: "https://randomuser.me/api/portraits/men/44.jpg",
       text: "I just finished my lesson with Sarai and right from the start I saw she came well prepared for the class and was extremely professional, and a super warm and nice person who is ready to help you with whatever you need to improve your Spanish.",
-      months: "2 meses de clases"
+      months: "2 months of classes"
     },
     {
       name: "Caleb",
-      country: "Estados Unidos",
+      country: "United States",
       flag: "us", 
       rating: 5,
       image: "https://randomuser.me/api/portraits/men/22.jpg",
       text: "Sarai is kind and incredibly patient. She's a great listener and seems very adaptable. Her specialty is flexibility and conversation. Unlike most online teachers I've tried, Sarai will adjust to meet your needs.",
-      months: "3 meses de clases"
+      months: "3 months of classes"
     },
     {
       name: "Sophie Williams",
-      country: "Reino Unido",
+      country: "United Kingdom",
       flag: "gb",
       rating: 5,
       image: "https://randomuser.me/api/portraits/women/67.jpg",
-      text: "Las clases con Sarai han sido increíbles. Su enfoque personalizado y paciencia infinita me han ayudado a ganar confianza al hablar español. ¡Ahora puedo comunicarme mucho mejor durante mis viajes!",
-      months: "4 meses de clases"
+      text: "Classes with Sarai have been incredible. Her personalized approach and infinite patience have helped me gain confidence in speaking Spanish. Now I can communicate much better during my travels!",
+      months: "4 months of classes"
     },
     {
       name: "Julia Chen",
-      country: "Canadá",
+      country: "Canada",
       flag: "ca",
       rating: 5,
       image: "https://randomuser.me/api/portraits/women/32.jpg",
-      text: "Después de intentar varios métodos de aprendizaje online, las clases con Sarai han sido lo único que realmente me ha ayudado a dominar el español. Su conocimiento cultural y sus explicaciones claras hacen que cada clase sea valiosa.",
-      months: "6 meses de clases"
+      text: "After trying various online learning methods, classes with Sarai have been the only thing that has really helped me master Spanish. Her cultural knowledge and clear explanations make each class valuable.",
+      months: "6 months of classes"
     },
     {
       name: "Marcus Johnson",
-      country: "Estados Unidos",
+      country: "United States",
       flag: "us",
       rating: 5,
       image: "https://randomuser.me/api/portraits/men/15.jpg",
-      text: "Sarai es una profesora excepcional que realmente se preocupa por el progreso de sus estudiantes. Sus clases son divertidas, interactivas y siempre adaptadas a mis necesidades específicas.",
-      months: "5 meses de clases"
+      text: "Sarai is an exceptional teacher who really cares about her students' progress. Her classes are fun, interactive, and always adapted to my specific needs.",
+      months: "5 months of classes"
     }
   ];
 

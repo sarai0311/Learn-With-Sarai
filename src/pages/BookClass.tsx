@@ -81,7 +81,7 @@ const BookClass = () => {
                     Pick a Time That Works For You
                   </h2>
                   <p className="text-gray-600">
-                    Choose a time slot that fits your schedule. I'm available Monday to Friday from 2 PM to 10 PM (Las Palmas de Gran Canaria time zone).
+                    Choose a time slot that fits your schedule. I'm available Monday to Friday from 2 PM to 10 PM (Las Palmas, Gran Canaria time zone).
                   </p>
                 </div>
                 
@@ -162,11 +162,11 @@ const BookClass = () => {
                             <SelectValue placeholder="Select class type" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="trial">Trial Class (25 min - $9.99)</SelectItem>
-                            <SelectItem value="standard">Standard Class (50 min - $24.99)</SelectItem>
-                            <SelectItem value="premium">Premium Class (75 min - $44.99)</SelectItem>
-                            <SelectItem value="business">Business Spanish (50 min - $30)</SelectItem>
-                            <SelectItem value="exam">DELE/SIELE Exam Prep (50 min - $35)</SelectItem>
+                            <SelectItem value="trial">Trial Class (25 min - €10.50)</SelectItem>
+                            <SelectItem value="standard">Standard Class (50 min - €21.00)</SelectItem>
+                            <SelectItem value="premium">Premium Class (75 min - €31.50)</SelectItem>
+                            <SelectItem value="business">Business Spanish (50 min - €25.00)</SelectItem>
+                            <SelectItem value="exam">DELE/SIELE Exam Prep (50 min - €30.00)</SelectItem>
                             <SelectItem value="travel">Spanish for Travel (Custom)</SelectItem>
                           </SelectContent>
                         </Select>
@@ -226,11 +226,11 @@ const BookClass = () => {
                       </div>
                       <div className="flex justify-between items-center pb-2 border-b border-gray-100">
                         <span className="text-gray-600">Time Zone:</span>
-                        <span className="font-medium">Las Palmas de Gran Canaria</span>
+                        <span className="font-medium">Las Palmas, Gran Canaria</span>
                       </div>
                       <div className="flex justify-between items-center pb-2 border-b border-gray-100">
                         <span className="text-gray-600">Price:</span>
-                        <span className="font-medium">$9.99</span>
+                        <span className="font-medium">€10.50</span>
                       </div>
                     </div>
                   </CardContent>
