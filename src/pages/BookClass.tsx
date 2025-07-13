@@ -13,6 +13,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import { CheckCircle, CreditCard, Calendar, User, ArrowLeft } from "lucide-react";
 import { userProfileService, bookingService } from "@/lib/supabase";
+import { googleCalendarService } from "@/lib/googleCalendar";
 
 interface ServiceOption {
   id: string;
@@ -26,10 +27,11 @@ interface ServiceOption {
 const BookClass = () => {
   const [step, setStep] = useState(1);
   const [selectedService, setSelectedService] = useState<ServiceOption | null>(null);
+  const [selectedSlot, setSelectedSlot] = useState<{date: string, time: string} | null>(null);
   const [customerInfo, setCustomerInfo] = useState({
     name: "",
     email: "",
-    timezone: "",
+    timezone: "Atlantic/Canary",
     level: "",
     goals: "",
   });
@@ -37,7 +39,94 @@ const BookClass = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [isCreatingProfile, setIsCreatingProfile] = useState(false);
 
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+
+  // Handle slot selection
+  const handleSlotSelect = (slot: { date: string; time: string } | null) => {
+    setSelectedSlot(slot);
+  };
+
+  // Check if user can continue to payment
+  const canContinueToPayment = () => {
+    return customerInfo.name && customerInfo.email && customerInfo.level && selectedSlot;
+  };
+
+  const handleContinueToPayment = () => {
+    if (canContinueToPayment()) {
+      setStep(3);
+    }
+  };
+
+  const handlePaymentSuccess = async () => {
+    setIsCreatingProfile(true);
+    
+    try {
+      // Save user profile to Supabase
+      const userProfile = await userProfileService.createOrUpdateProfile({
+        email: customerInfo.email,
+        name: customerInfo.name,
+        level: customerInfo.level,
+        goals: customerInfo.goals,
+        timezone: customerInfo.timezone,
+      });
+
+      // Create booking record if service is selected
+      if (selectedService && selectedSlot) {
+        const booking = await bookingService.createBooking({
+          user_id: userProfile.id,
+          service_type: selectedService.id,
+          service_name: selectedService.name,
+          price: selectedService.price,
+          duration: selectedService.duration,
+          booking_date: selectedSlot.date,
+          booking_time: selectedSlot.time,
+          status: 'confirmed',
+        });
+
+        // Create calendar event
+        try {
+          const calendarResult = await googleCalendarService.createCalendarEvent({
+            date: selectedSlot.date,
+            time: selectedSlot.time,
+            title: `Spanish Class - ${selectedService.name}`,
+            description: `Spanish class with ${customerInfo.name}\nLevel: ${customerInfo.level}\nGoals: ${customerInfo.goals}\nStudent timezone: ${customerInfo.timezone}`,
+            attendeeEmail: customerInfo.email,
+            attendeeName: customerInfo.name
+          });
+
+          if (calendarResult.success) {
+            console.log('Calendar event created:', calendarResult.eventId);
+          } else {
+            console.error('Calendar event creation failed:', calendarResult.error);
+          }
+        } catch (calendarError) {
+          console.error('Error creating calendar event:', calendarError);
+          // Don't fail the entire process if calendar creation fails
+        }
+      }
+
+      console.log('User profile and booking saved successfully:', userProfile);
+      setPaymentStatus('success');
+      setStep(4);
+    } catch (error) {
+      console.error('Error saving user profile:', error);
+      setPaymentStatus('error');
+      setErrorMessage('Payment successful but profile creation failed. Please contact support.');
+    } finally {
+      setIsCreatingProfile(false);
+    }
+  };
+
+  const handlePaymentError = (error: string) => {
+    setPaymentStatus('error');
+    setErrorMessage(error);
+  };
+
+  const goBack = () => {
+    if (step > 1) {
+      setStep(step - 1);
+    }
+  };
 
   const serviceOptions: ServiceOption[] = [
     {
@@ -69,62 +158,6 @@ const BookClass = () => {
   const handleServiceSelect = (service: ServiceOption) => {
     setSelectedService(service);
     setStep(2);
-  };
-
-  const handleContinueToPayment = () => {
-    if (customerInfo.name && customerInfo.email && customerInfo.level) {
-      setStep(3);
-    }
-  };
-
-  const handlePaymentSuccess = async () => {
-    setIsCreatingProfile(true);
-    
-    try {
-      // Save user profile to Supabase
-      const userProfile = await userProfileService.createOrUpdateProfile({
-        email: customerInfo.email,
-        name: customerInfo.name,
-        level: customerInfo.level,
-        goals: customerInfo.goals,
-        timezone: customerInfo.timezone,
-      });
-
-      // Create booking record if service is selected
-      if (selectedService) {
-        await bookingService.createBooking({
-          user_id: userProfile.id,
-          service_type: selectedService.id,
-          service_name: selectedService.name,
-          price: selectedService.price,
-          duration: selectedService.duration,
-          booking_date: new Date().toISOString().split('T')[0], // Today's date
-          booking_time: "TBD", // Can be updated later with actual time selection
-          status: 'confirmed',
-        });
-      }
-
-      console.log('User profile and booking saved successfully:', userProfile);
-      setPaymentStatus('success');
-      setStep(4);
-    } catch (error) {
-      console.error('Error saving user profile:', error);
-      setPaymentStatus('error');
-      setErrorMessage('Payment successful but profile creation failed. Please contact support.');
-    } finally {
-      setIsCreatingProfile(false);
-    }
-  };
-
-  const handlePaymentError = (error: string) => {
-    setPaymentStatus('error');
-    setErrorMessage(error);
-  };
-
-  const goBack = () => {
-    if (step > 1) {
-      setStep(step - 1);
-    }
   };
 
   return (
@@ -282,32 +315,29 @@ const BookClass = () => {
                             <SelectValue placeholder="Select your timezone" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="UTC-12:00">(UTC-12:00) International Date Line West</SelectItem>
-                            <SelectItem value="UTC-11:00">(UTC-11:00) Coordinated Universal Time-11</SelectItem>
-                            <SelectItem value="UTC-10:00">(UTC-10:00) Hawaii</SelectItem>
-                            <SelectItem value="UTC-09:00">(UTC-09:00) Alaska</SelectItem>
-                            <SelectItem value="UTC-08:00">(UTC-08:00) Pacific Time (US & Canada)</SelectItem>
-                            <SelectItem value="UTC-07:00">(UTC-07:00) Mountain Time (US & Canada)</SelectItem>
-                            <SelectItem value="UTC-06:00">(UTC-06:00) Central Time (US & Canada)</SelectItem>
-                            <SelectItem value="UTC-05:00">(UTC-05:00) Eastern Time (US & Canada)</SelectItem>
-                            <SelectItem value="UTC-04:00">(UTC-04:00) Atlantic Time (Canada)</SelectItem>
-                            <SelectItem value="UTC-03:00">(UTC-03:00) Argentina, Brazil</SelectItem>
-                            <SelectItem value="UTC-02:00">(UTC-02:00) Mid-Atlantic</SelectItem>
-                            <SelectItem value="UTC-01:00">(UTC-01:00) Azores</SelectItem>
-                            <SelectItem value="UTC+00:00">(UTC+00:00) London, Dublin, Edinburgh</SelectItem>
-                            <SelectItem value="UTC+01:00">(UTC+01:00) Madrid, Paris, Berlin</SelectItem>
-                            <SelectItem value="UTC+02:00">(UTC+02:00) Cairo, Helsinki, Athens</SelectItem>
-                            <SelectItem value="UTC+03:00">(UTC+03:00) Moscow, Baghdad, Kuwait</SelectItem>
-                            <SelectItem value="UTC+04:00">(UTC+04:00) Abu Dhabi, Muscat</SelectItem>
-                            <SelectItem value="UTC+05:00">(UTC+05:00) Islamabad, Karachi</SelectItem>
-                            <SelectItem value="UTC+05:30">(UTC+05:30) Mumbai, New Delhi</SelectItem>
-                            <SelectItem value="UTC+06:00">(UTC+06:00) Almaty, Dhaka</SelectItem>
-                            <SelectItem value="UTC+07:00">(UTC+07:00) Bangkok, Hanoi, Jakarta</SelectItem>
-                            <SelectItem value="UTC+08:00">(UTC+08:00) Beijing, Singapore, Perth</SelectItem>
-                            <SelectItem value="UTC+09:00">(UTC+09:00) Tokyo, Seoul, Osaka</SelectItem>
-                            <SelectItem value="UTC+10:00">(UTC+10:00) Canberra, Melbourne, Sydney</SelectItem>
-                            <SelectItem value="UTC+11:00">(UTC+11:00) Magadan, Solomon Is.</SelectItem>
-                            <SelectItem value="UTC+12:00">(UTC+12:00) Auckland, Fiji</SelectItem>
+                            <SelectItem value="Pacific/Honolulu">(UTC-10:00) Hawaii</SelectItem>
+                            <SelectItem value="America/Anchorage">(UTC-09:00) Alaska</SelectItem>
+                            <SelectItem value="America/Los_Angeles">(UTC-08:00) Pacific Time (US & Canada)</SelectItem>
+                            <SelectItem value="America/Denver">(UTC-07:00) Mountain Time (US & Canada)</SelectItem>
+                            <SelectItem value="America/Chicago">(UTC-06:00) Central Time (US & Canada)</SelectItem>
+                            <SelectItem value="America/New_York">(UTC-05:00) Eastern Time (US & Canada)</SelectItem>
+                            <SelectItem value="America/Halifax">(UTC-04:00) Atlantic Time (Canada)</SelectItem>
+                            <SelectItem value="America/Sao_Paulo">(UTC-03:00) Argentina, Brazil</SelectItem>
+                            <SelectItem value="Atlantic/Azores">(UTC-01:00) Azores</SelectItem>
+                            <SelectItem value="Europe/London">(UTC+00:00) London, Dublin, Edinburgh</SelectItem>
+                            <SelectItem value="Atlantic/Canary">(UTC+01:00) Las Palmas, Canary Islands</SelectItem>
+                            <SelectItem value="Europe/Madrid">(UTC+01:00) Madrid, Paris, Berlin</SelectItem>
+                            <SelectItem value="Europe/Cairo">(UTC+02:00) Cairo, Helsinki, Athens</SelectItem>
+                            <SelectItem value="Europe/Moscow">(UTC+03:00) Moscow, Baghdad, Kuwait</SelectItem>
+                            <SelectItem value="Asia/Dubai">(UTC+04:00) Abu Dhabi, Muscat</SelectItem>
+                            <SelectItem value="Asia/Karachi">(UTC+05:00) Islamabad, Karachi</SelectItem>
+                            <SelectItem value="Asia/Kolkata">(UTC+05:30) Mumbai, New Delhi</SelectItem>
+                            <SelectItem value="Asia/Dhaka">(UTC+06:00) Almaty, Dhaka</SelectItem>
+                            <SelectItem value="Asia/Bangkok">(UTC+07:00) Bangkok, Hanoi, Jakarta</SelectItem>
+                            <SelectItem value="Asia/Shanghai">(UTC+08:00) Beijing, Singapore, Perth</SelectItem>
+                            <SelectItem value="Asia/Tokyo">(UTC+09:00) Tokyo, Seoul, Osaka</SelectItem>
+                            <SelectItem value="Australia/Sydney">(UTC+10:00) Canberra, Melbourne, Sydney</SelectItem>
+                            <SelectItem value="Pacific/Auckland">(UTC+12:00) Auckland, Fiji</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
@@ -342,10 +372,22 @@ const BookClass = () => {
                       <Button 
                         onClick={handleContinueToPayment} 
                         className="w-full bg-sarai-primary hover:bg-sarai-primary/90"
-                        disabled={!customerInfo.name || !customerInfo.email || !customerInfo.level}
+                        disabled={!canContinueToPayment()}
                       >
-                        {t('book.continue')}
+                        {!selectedSlot 
+                          ? (language === 'es' ? 'Selecciona una hora arriba' : 'Select a time slot above')
+                          : t('book.continue')
+                        }
                       </Button>
+                      
+                      {!selectedSlot && (
+                        <p className="text-sm text-gray-500 text-center mt-2">
+                          {language === 'es' 
+                            ? 'Por favor selecciona una hora disponible para continuar' 
+                            : 'Please select an available time slot to continue'
+                          }
+                        </p>
+                      )}
                     </CardContent>
                   </Card>
 
@@ -369,7 +411,10 @@ const BookClass = () => {
                           </div>
                         </div>
                         
-                        <AvailabilityCalendar />
+                        <AvailabilityCalendar 
+                          userTimezone={customerInfo.timezone || 'Atlantic/Canary'} 
+                          onSlotSelect={handleSlotSelect}
+                        />
                       </div>
                     </CardContent>
                   </Card>
@@ -427,6 +472,14 @@ const BookClass = () => {
                         <p className="text-sm"><strong>Email:</strong> {customerInfo.email}</p>
                         <p className="text-sm"><strong>Level:</strong> {customerInfo.level}</p>
                         <p className="text-sm"><strong>Goals:</strong> {customerInfo.goals}</p>
+                        {selectedSlot && (
+                          <div className="pt-2 border-t">
+                            <h4 className="font-semibold text-sarai-text mb-2">Selected Class Time:</h4>
+                            <p className="text-sm"><strong>Date:</strong> {selectedSlot.date}</p>
+                            <p className="text-sm"><strong>Time:</strong> {selectedSlot.time}</p>
+                            <p className="text-sm"><strong>Your Timezone:</strong> {customerInfo.timezone}</p>
+                          </div>
+                        )}
                       </div>
 
                       {paymentStatus === 'error' && (

@@ -6,16 +6,41 @@ import { format, addDays, startOfWeek, isToday, isSameDay } from 'date-fns';
 import { es, enUS } from 'date-fns/locale';
 import { ChevronLeft, ChevronRight, CalendarIcon, Clock } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { googleCalendarService, TimeSlot, DayAvailability } from '@/lib/googleCalendar';
+
+// Helper function to get timezone display name
+const getTimezoneDisplayName = (timezone: string) => {
+  const timezoneNames: Record<string, string> = {
+    'Pacific/Honolulu': 'Hawaii Time',
+    'America/Anchorage': 'Alaska Time',
+    'America/Los_Angeles': 'Pacific Time',
+    'America/Denver': 'Mountain Time',
+    'America/Chicago': 'Central Time',
+    'America/New_York': 'Eastern Time',
+    'America/Halifax': 'Atlantic Time',
+    'America/Sao_Paulo': 'Brazil Time',
+    'Atlantic/Azores': 'Azores Time',
+    'Europe/London': 'London Time',
+    'Atlantic/Canary': 'Canary Islands Time',
+    'Europe/Madrid': 'Central European Time',
+    'Europe/Cairo': 'Cairo Time',
+    'Europe/Moscow': 'Moscow Time',
+    'Asia/Dubai': 'Gulf Time',
+    'Asia/Karachi': 'Pakistan Time',
+    'Asia/Kolkata': 'India Time',
+    'Asia/Dhaka': 'Bangladesh Time',
+    'Asia/Bangkok': 'Thailand Time',
+    'Asia/Shanghai': 'China Time',
+    'Asia/Tokyo': 'Japan Time',
+    'Australia/Sydney': 'Sydney Time',
+    'Pacific/Auckland': 'New Zealand Time'
+  };
+  
+  return timezoneNames[timezone] || timezone;
+};
 
 // Las Palmas de Gran Canaria timezone
 const DEFAULT_TIMEZONE = 'Atlantic/Canary';
-
-// Time slots from 1 PM to 10 PM (including reserved slots)
-const TIME_SLOTS = [
-  '13:00', '14:00', '15:00', '16:00', 
-  '17:00', '18:00', '19:00',
-  '20:00', '21:00', '22:00'
-];
 
 const TIME_LABELS = {
   '13:00': '1:00 PM',
@@ -30,47 +55,120 @@ const TIME_LABELS = {
   '22:00': '10:00 PM'
 };
 
-// Permanently reserved slots (appear as unavailable like other booked slots)
-const RESERVED_SLOTS = ['13:00', '19:00'];
-
-// Generate random availability for the next 14 days
-const generateMockAvailability = () => {
-  const availability: Record<string, { time: string; available: boolean }[]> = {};
-  
-  for (let i = 0; i < 14; i++) {
-    const date = addDays(new Date(), i);
-    const dateKey = format(date, 'yyyy-MM-dd');
-    
-    // Skip weekends (Saturday = 6, Sunday = 0)
-    if (date.getDay() === 0 || date.getDay() === 6) {
-      availability[dateKey] = [];
-      continue;
-    }
-    
-    availability[dateKey] = TIME_SLOTS.map(time => ({
-      time,
-      available: RESERVED_SLOTS.includes(time) ? false : Math.random() > 0.3 // 70% chance of being available for non-reserved slots
-    }));
-  }
-  
-  return availability;
+// Convert 24-hour time to 12-hour format
+const formatTimeDisplay = (time: string) => {
+  const [hours, minutes] = time.split(':');
+  const hour = parseInt(hours);
+  const ampm = hour >= 12 ? 'PM' : 'AM';
+  const hour12 = hour % 12 || 12;
+  return `${hour12}:${minutes} ${ampm}`;
 };
 
-const AvailabilityCalendar = () => {
-  const [availability] = useState(generateMockAvailability());
+interface AvailabilityCalendarProps {
+  onSlotSelect?: (slot: { date: string; time: string } | null) => void;
+  selectedSlot?: { date: string; time: string } | null;
+  userTimezone?: string;
+}
+
+const AvailabilityCalendar = ({ onSlotSelect, selectedSlot: externalSelectedSlot, userTimezone = 'Atlantic/Canary' }: AvailabilityCalendarProps) => {
+  const [availability, setAvailability] = useState<Record<string, DayAvailability>>({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
-  const [selectedSlot, setSelectedSlot] = useState<{date: string, time: string} | null>(null);
+  const [internalSelectedSlot, setInternalSelectedSlot] = useState<{date: string, time: string} | null>(null);
   const { language, t } = useLanguage();
+
+  // Use external or internal selected slot
+  const selectedSlot = externalSelectedSlot || internalSelectedSlot;
 
   // Get the correct locale based on current language
   const locale = language === 'es' ? es : enUS;
 
+  // Fetch availability data on component mount or when userTimezone changes
+  useEffect(() => {
+    const fetchAvailability = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const availabilityData = await googleCalendarService.getAvailability(14, userTimezone);
+        setAvailability(availabilityData.availability);
+      } catch (err) {
+        console.error('Error fetching availability:', err);
+        setError(err instanceof Error ? err.message : 'Failed to load availability');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAvailability();
+  }, [userTimezone]);
+
   const handleSlotClick = (date: string, time: string) => {
-    setSelectedSlot({ date, time });
+    const newSlot = { date, time };
+    
+    // Update internal state
+    setInternalSelectedSlot(newSlot);
+    
+    // Call external handler if provided
+    if (onSlotSelect) {
+      onSlotSelect(newSlot);
+    }
   };
 
   const selectedDateKey = format(selectedDate, 'yyyy-MM-dd');
-  const availableSlots = availability[selectedDateKey] || [];
+  const availableSlots = availability[selectedDateKey]?.slots || [];
+
+  // Loading state
+  if (loading) {
+    return (
+      <div className="w-full">
+        <Card className="w-full">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-sm flex items-center gap-2 text-gray-800">
+              <CalendarIcon className="w-4 h-4" />
+              {language === 'es' ? 'Programa tu Clase' : 'Schedule Your Class'}
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="px-3 pb-4">
+            <div className="text-center py-8">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sarai-primary mx-auto"></div>
+              <p className="mt-2 text-sm text-gray-600">
+                {language === 'es' ? 'Cargando disponibilidad...' : 'Loading availability...'}
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <div className="w-full">
+        <Card className="w-full">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-sm flex items-center gap-2 text-gray-800">
+              <CalendarIcon className="w-4 h-4" />
+              {language === 'es' ? 'Programa tu Clase' : 'Schedule Your Class'}
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="px-3 pb-4">
+            <div className="text-center py-8">
+              <p className="text-red-600 text-sm">{error}</p>
+              <Button 
+                onClick={() => window.location.reload()} 
+                variant="outline" 
+                className="mt-2"
+              >
+                {language === 'es' ? 'Reintentar' : 'Retry'}
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full">
@@ -128,12 +226,20 @@ const AvailabilityCalendar = () => {
 
           {/* Available Times Section */}
           <div className="border-t pt-4">
-            <h4 className="text-sm font-medium text-gray-800 mb-3 text-center">
-              {language === 'es' 
-                ? `Horarios disponibles para ${format(selectedDate, "d 'de' MMM, yyyy", { locale })}` 
-                : `Available times for ${format(selectedDate, "MMM d, yyyy", { locale })}`
-              }
-            </h4>
+            <div className="text-center mb-3">
+              <h4 className="text-sm font-medium text-gray-800">
+                {language === 'es' 
+                  ? `Horarios disponibles para ${format(selectedDate, "d 'de' MMM, yyyy", { locale })}` 
+                  : `Available times for ${format(selectedDate, "MMM d, yyyy", { locale })}`
+                }
+              </h4>
+              <p className="text-xs text-gray-600 mt-1">
+                {language === 'es' 
+                  ? `Horarios mostrados en ${getTimezoneDisplayName(userTimezone)}` 
+                  : `Times shown in ${getTimezoneDisplayName(userTimezone)}`
+                }
+              </p>
+            </div>
             
             {availableSlots.length === 0 ? (
               <div className="text-center py-6 text-gray-500">
@@ -144,9 +250,9 @@ const AvailabilityCalendar = () => {
             ) : (
               <>
                 <div className="grid grid-cols-3 gap-2 mb-3">
-                  {availableSlots.slice(0, 6).map((slot) => {
+                  {availableSlots.map((slot) => {
                     const isSelected = selectedSlot?.date === selectedDateKey && selectedSlot?.time === slot.time;
-                    const timeLabel = TIME_LABELS[slot.time as keyof typeof TIME_LABELS];
+                    const timeDisplay = formatTimeDisplay(slot.time);
                     
                     return (
                       <Button
@@ -162,20 +268,21 @@ const AvailabilityCalendar = () => {
                         }`}
                         onClick={() => slot.available && handleSlotClick(selectedDateKey, slot.time)}
                         disabled={!slot.available}
+                        title={
+                          !slot.available && slot.reason === 'busy' 
+                            ? (language === 'es' ? 'Ocupado' : 'Busy')
+                            : !slot.available && slot.reason === 'weekend'
+                            ? (language === 'es' ? 'Fin de semana' : 'Weekend')
+                            : !slot.available && slot.reason === 'outside-hours'
+                            ? (language === 'es' ? 'Fuera de horario' : 'Outside hours')
+                            : undefined
+                        }
                       >
-                        {timeLabel}
+                        {timeDisplay}
                       </Button>
                     );
                   })}
                 </div>
-                
-                {availableSlots.length > 6 && (
-                  <div className="text-center">
-                    <p className="text-xs text-gray-500">
-                      +{availableSlots.length - 6} {language === 'es' ? 'horarios más disponibles' : 'more times available'}
-                    </p>
-                  </div>
-                )}
               </>
             )}
           </div>
@@ -194,10 +301,13 @@ const AvailabilityCalendar = () => {
             </div>
             <p className="text-sm text-green-700 mt-1 font-medium">
               {format(new Date(selectedSlot.date), language === 'es' ? "EEEE, d 'de' MMM, yyyy" : "EEEE, MMM d, yyyy", { locale })} {language === 'es' ? 'a las' : 'at'}{" "}
-              {TIME_LABELS[selectedSlot.time as keyof typeof TIME_LABELS]}
+              {formatTimeDisplay(selectedSlot.time)}
             </p>
             <p className="text-xs text-green-600 mt-1">
-              {language === 'es' ? 'Zona horaria Las Palmas (WEST)' : 'Las Palmas timezone (WEST)'}
+              {language === 'es' 
+                ? `${getTimezoneDisplayName(userTimezone)} • La clase será en ${getTimezoneDisplayName('Atlantic/Canary')}`
+                : `${getTimezoneDisplayName(userTimezone)} • Class will be in ${getTimezoneDisplayName('Atlantic/Canary')}`
+              }
             </p>
           </CardContent>
         </Card>
