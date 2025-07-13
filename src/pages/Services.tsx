@@ -57,52 +57,52 @@ const Services = () => {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <ScrollAnimation direction="left" delay={0.2}>
                       <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
-                        <ServiceCard
-                          title={t('services.trial.title')}
-                          description={t('services.trial.description')}
-                          icon="🎁"
-                          price={t('services.trial.price')}
-                          features={[
-                            t('services.trial.feature1'),
-                            t('services.trial.feature2'),
-                            t('services.trial.feature3'),
-                            t('services.trial.feature4'),
-                            t('services.trial.feature5')
-                          ]}
+                         <ServiceCard
+                           title="Trial Lesson"
+                           description="Get to know my teaching style with this short introductory session."
+                           icon="🎁"
+                           price="€5.00"
+                           features={[
+                             "15-minute session",
+                             "Level assessment",
+                             "Learning plan discussion",
+                             "Teaching methodology introduction",
+                             "Q&A about your goals"
+                           ]}
                         />
                       </motion.div>
                     </ScrollAnimation>
                     <ScrollAnimation direction="up" delay={0.4}>
                       <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
-                        <ServiceCard
-                          title={t('services.standard.title')}
-                          description={t('services.standard.description')}
-                          icon="📚"
-                          price={t('services.standard.price')}
-                          features={[
-                            t('services.standard.feature1'),
-                            t('services.standard.feature2'),
-                            t('services.standard.feature3'),
-                            t('services.standard.feature4'),
-                            t('services.standard.feature5')
-                          ]}
+                         <ServiceCard
+                           title="Standard Class"
+                           description="Comprehensive Spanish lessons covering all essential skills."
+                           icon="📚"
+                           price="€21.00"
+                           features={[
+                             "50-minute session",
+                             "Complete curriculum coverage",
+                             "Speaking & listening practice",
+                             "Grammar & vocabulary building",
+                             "Homework assignments"
+                           ]}
                         />
                       </motion.div>
                     </ScrollAnimation>
                     <ScrollAnimation direction="right" delay={0.6}>
                       <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
-                        <ServiceCard
-                          title={t('services.premium.title')}
-                          description={t('services.premium.description')}
-                          icon="⭐"
-                          price={t('services.premium.price')}
-                          features={[
-                            t('services.premium.feature1'),
-                            t('services.premium.feature2'),
-                            t('services.premium.feature3'),
-                            t('services.premium.feature4'),
-                            t('services.premium.feature5')
-                          ]}
+                         <ServiceCard
+                           title="Premium Class"
+                           description="Extended sessions for intensive learning and deep practice."
+                           icon="⭐"
+                           price="€42.00"
+                           features={[
+                             "100-minute session",
+                             "Intensive conversation practice",
+                             "Advanced grammar concepts",
+                             "Cultural immersion activities",
+                             "Personalized study materials"
+                           ]}
                         />
                       </motion.div>
                     </ScrollAnimation>
@@ -123,52 +123,52 @@ const Services = () => {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <ScrollAnimation direction="left" delay={0.2}>
                       <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
-                        <ServiceCard
-                          title="Starter Bundle"
-                          description="Perfect for beginners or those testing the waters with consistent learning."
-                          icon="🚀"
-                          price="€161.28"
-                          features={[
-                            "8 standard classes",
-                            "4% discount",
-                            "Valid for 1 month",
-                            "Basic study materials included",
-                            "Flexible scheduling"
-                          ]}
+                         <ServiceCard
+                           title="Starter Bundle"
+                           description="Perfect for beginners starting their Spanish learning journey."
+                           icon="🚀"
+                           price="€105.00"
+                           features={[
+                             "5 classes of 50 minutes each",
+                             "Basic study materials included",
+                             "Flexible scheduling",
+                             "Foundation grammar coverage",
+                             "Essential vocabulary building"
+                           ]}
                         />
                       </motion.div>
                     </ScrollAnimation>
                     <ScrollAnimation direction="up" delay={0.4}>
                       <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
-                        <ServiceCard
-                          title="Progress Pro"
-                          description="Our most popular package for steady and consistent progress."
-                          icon="🔥"
-                          price="€312.48"
-                          features={[
-                            "16 standard classes",
-                            "7% discount",
-                            "Valid for 2 months",
-                            "Complete study materials",
-                            "Priority scheduling"
-                          ]}
+                         <ServiceCard
+                           title="Progress Pro"
+                           description="Our most popular package for steady and consistent progress."
+                           icon="🔥"
+                           price="€201.00"
+                           features={[
+                             "10 classes of 50 minutes each",
+                             "Complete study materials",
+                             "Priority scheduling",
+                             "Intermediate skill development",
+                             "Regular progress assessments"
+                           ]}
                         />
                       </motion.div>
                     </ScrollAnimation>
                     <ScrollAnimation direction="right" delay={0.6}>
                       <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
-                        <ServiceCard
-                          title="Fluency Master"
-                          description="Intensive learning experience for rapid progress and deep immersion."
-                          icon="🌟"
-                          price="€378.00"
-                          features={[
-                            "20 standard classes",
-                            "10% discount",
-                            "Valid for 3 months",
-                            "Premium learning materials",
-                            "Chat support between sessions"
-                          ]}
+                         <ServiceCard
+                           title="Fluency Master"
+                           description="Intensive learning experience for rapid progress and deep immersion."
+                           icon="🌟"
+                           price="€379.00"
+                           features={[
+                             "20 classes of 50 minutes each",
+                             "Premium learning materials",
+                             "Chat support between sessions",
+                             "Advanced conversation practice",
+                             "Cultural immersion activities"
+                           ]}
                         />
                       </motion.div>
                     </ScrollAnimation>
@@ -189,55 +189,55 @@ const Services = () => {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <ScrollAnimation direction="left" delay={0.2}>
                       <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
-                        <ServiceCard
-                          title={t('services.travel.title')}
-                          description={t('services.travel.description')}
-                          icon="✈️"
-                          price={t('services.travel.price')}
-                          features={[
-                            "50-minute sessions",
-                            "Survival phrases & vocabulary",
-                            "Cultural etiquette guidance",
-                            "Travel-specific role play",
-                            "Practical pronunciation focus",
-                            "Regional dialect awareness"
-                          ]}
+                         <ServiceCard
+                           title="Spanish for Travel"
+                           description="Learn essential Spanish for your travel adventures and cultural experiences."
+                           icon="✈️"
+                           price="€25.00"
+                           features={[
+                             "50-minute sessions",
+                             "Survival phrases & vocabulary",
+                             "Cultural etiquette guidance",
+                             "Travel-specific role play",
+                             "Practical pronunciation focus",
+                             "Regional dialect awareness"
+                           ]}
                         />
                       </motion.div>
                     </ScrollAnimation>
                     <ScrollAnimation direction="up" delay={0.4}>
                       <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
-                        <ServiceCard
-                          title="Business Spanish"
-                          description="Professional Spanish skills for workplace communication and business meetings."
-                          icon="💼"
-                          price="€28.00"
-                          features={[
-                            "60-minute sessions",
-                            "Business vocabulary",
-                            "Email writing skills",
-                            "Presentation techniques",
-                            "Negotiation phrases",
-                            "Industry-specific terminology"
-                          ]}
+                         <ServiceCard
+                           title="Colombian Spanish"
+                           description="Immerse yourself in authentic Colombian Spanish culture and expressions."
+                           icon="🇨🇴"
+                           price="€25.00"
+                           features={[
+                             "50-minute sessions",
+                             "Colombian culture & expressions",
+                             "Regional vocabulary & slang",
+                             "Traditional music & stories",
+                             "Colombian history insights",
+                             "Authentic pronunciation practice"
+                           ]}
                         />
                       </motion.div>
                     </ScrollAnimation>
                     <ScrollAnimation direction="right" delay={0.6}>
                       <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
-                        <ServiceCard
-                          title="DELE Exam Prep"
-                          description="Focused preparation for official Spanish language certification exams."
-                          icon="🎯"
-                          price="€26.00"
-                          features={[
-                            "55-minute sessions",
-                            "Exam-focused curriculum",
-                            "Practice tests included",
-                            "Speaking test simulation",
-                            "Writing task guidance",
-                            "Test-taking strategies"
-                          ]}
+                         <ServiceCard
+                           title="Conversational Spanish"
+                           description="Focus on building confidence in real-world Spanish conversations."
+                           icon="💬"
+                           price="€21.00"
+                           features={[
+                             "50-minute sessions",
+                             "Natural conversation practice",
+                             "Everyday vocabulary building",
+                             "Pronunciation improvement",
+                             "Cultural context discussions",
+                             "Confidence building exercises"
+                           ]}
                         />
                       </motion.div>
                     </ScrollAnimation>

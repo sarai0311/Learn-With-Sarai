@@ -5,10 +5,7 @@ import Footer from "@/components/Footer";
 import ScrollAnimation from '@/components/ScrollAnimation';
 import { motion } from 'framer-motion';
 import { BookOpen, Globe, Heart, Award, GraduationCap, Users, Star, CheckCircle, Target, Clock, MessageCircle } from 'lucide-react';
-import { useLanguage } from '@/contexts/LanguageContext';
-
 const About = () => {
-  const { t } = useLanguage();
   
   return (
     <div className="min-h-screen flex flex-col">
@@ -22,19 +19,19 @@ const About = () => {
               <ScrollAnimation direction="left">
                 <div>
                   <h1 className="text-4xl md:text-5xl font-bold text-sarai-text mb-6">
-                    {t('about.hero.title')} <span className="text-sarai-secondary">{t('about.hero.titleHighlight')}</span>
+                    Meet Your <span className="text-sarai-secondary">Spanish Teacher</span>
                   </h1>
                   <p className="text-lg text-sarai-steel mb-6">
-                    {t('about.hero.subtitle')}
+                    Professional, certified, and passionate about helping you achieve fluency in Spanish with personalized lessons from Colombia.
                   </p>
                   <div className="flex flex-wrap gap-4">
                     <div className="flex items-center bg-white px-4 py-2 rounded-lg shadow-sm">
                       <Globe className="h-5 w-5 text-sarai-primary mr-2" />
-                      <span className="text-sm font-medium">{t('about.hero.badge1')}</span>
+                      <span className="text-sm font-medium">Native Colombian Speaker</span>
                     </div>
                     <div className="flex items-center bg-white px-4 py-2 rounded-lg shadow-sm">
                       <Award className="h-5 w-5 text-sarai-secondary mr-2" />
-                      <span className="text-sm font-medium">{t('about.hero.badge2')}</span>
+                      <span className="text-sm font-medium">Certified Spanish Teacher</span>
                     </div>
                   </div>
                 </div>
@@ -252,10 +249,10 @@ const About = () => {
           <div className="sarai-container">
             <ScrollAnimation direction="up" className="text-center max-w-3xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                {t('about.cta.title')}
+                Ready to Start Your Spanish Journey?
               </h2>
               <p className="text-xl mb-8">
-                {t('about.cta.subtitle')}
+                Book your first lesson today and discover how enjoyable learning Spanish can be with personalized, one-on-one instruction.
               </p>
               <motion.a 
                 href="/book"
@@ -263,7 +260,7 @@ const About = () => {
                 whileTap={{ scale: 0.95 }}
                 className="inline-block bg-white text-sarai-primary hover:bg-gray-100 font-semibold py-3 px-8 text-lg rounded-lg shadow-lg transition-all duration-300"
               >
-                {t('about.cta.button')}
+                Schedule Your First Class
               </motion.a>
             </ScrollAnimation>
           </div>
