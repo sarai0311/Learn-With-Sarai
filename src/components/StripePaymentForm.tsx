@@ -55,7 +55,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
 
     try {
       // Create payment intent on your backend
-      const response = await fetch('http://localhost:3001/api/create-payment-intent', {
+      const response = await fetch('/api/create-payment-intent', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

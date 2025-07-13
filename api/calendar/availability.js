@@ -1,23 +1,6 @@
-import dotenv from 'dotenv';
-import express from 'express';
-import cors from 'cors';
 import { google } from 'googleapis';
 import { format, addDays, startOfDay, endOfDay } from 'date-fns';
-import { zonedTimeToUtc, utcToZonedTime, formatInTimeZone } from 'date-fns-tz';
-import Stripe from 'stripe';
-
-// Load environment variables from .env.local
-dotenv.config({ path: '.env.local' });
-
-const app = express();
-const PORT = process.env.PORT || 3001;
-
-// Middleware
-app.use(cors());
-app.use(express.json());
-
-// Stripe configuration
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+import { toZonedTime, fromZonedTime, formatInTimeZone } from 'date-fns-tz';
 
 // Google Calendar configuration
 const SERVICE_ACCOUNT_EMAIL = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
@@ -38,12 +21,12 @@ const convertTimeSlot = (timeSlot, date, serverTimezone, userTimezone) => {
     const serverDateTime = new Date(`${date}T${timeSlot}:00`);
     
     // Convert from server timezone to UTC, then to user timezone
-    const serverZoned = zonedTimeToUtc(serverDateTime, serverTimezone);
-    const userZoned = utcToZonedTime(serverZoned, userTimezone);
+    const utcTime = fromZonedTime(serverDateTime, serverTimezone);
+    const userZonedTime = toZonedTime(utcTime, userTimezone);
     
     // Format the time in user timezone
-    const userTimeString = formatInTimeZone(userZoned, userTimezone, 'HH:mm');
-    const userDateString = formatInTimeZone(userZoned, userTimezone, 'yyyy-MM-dd');
+    const userTimeString = formatInTimeZone(userZonedTime, userTimezone, 'HH:mm');
+    const userDateString = formatInTimeZone(userZonedTime, userTimezone, 'yyyy-MM-dd');
     
     return {
       time: userTimeString,
@@ -123,48 +106,21 @@ const isSlotBusy = (date, time, busyTimes) => {
   });
 };
 
-// Create payment intent endpoint
-app.post('/api/create-payment-intent', async (req, res) => {
-  try {
-    const { amount, currency, serviceType, customerInfo } = req.body;
+export default async function handler(req, res) {
+  // Set CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-    // Validate the request
-    if (!amount || !currency || !serviceType || !customerInfo) {
-      return res.status(400).json({ error: 'Missing required fields' });
-    }
-
-    // Create a payment intent
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: Math.round(amount * 100), // Convert to cents and ensure integer
-      currency: currency.toLowerCase(),
-      metadata: {
-        serviceType,
-        customerName: customerInfo.name,
-        customerEmail: customerInfo.email,
-        customerLevel: customerInfo.level,
-        customerGoals: customerInfo.goals.substring(0, 500), // Stripe metadata has character limits
-      },
-      description: `Spanish Class: ${serviceType}`,
-      receipt_email: customerInfo.email,
-    });
-
-    console.log('Payment intent created:', paymentIntent.id);
-
-    res.status(200).json({
-      clientSecret: paymentIntent.client_secret,
-      paymentIntentId: paymentIntent.id,
-    });
-  } catch (error) {
-    console.error('Error creating payment intent:', error);
-    res.status(500).json({ 
-      error: 'Internal server error',
-      message: error.message 
-    });
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
   }
-});
 
-// Get calendar availability endpoint
-app.post('/api/calendar/availability', async (req, res) => {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
   try {
     const { days = 14, timezone = 'Atlantic/Canary', userTimezone = 'Atlantic/Canary' } = req.body;
     
@@ -254,7 +210,8 @@ app.post('/api/calendar/availability', async (req, res) => {
       Object.values(availability).forEach(dayData => {
         dayData.slots.forEach(slot => {
           const serverDateTime = new Date(`${dayData.date}T${slot.originalTime}:00`);
-          const userDateTime = utcToZonedTime(zonedTimeToUtc(serverDateTime, timezone), userTimezone);
+          const utcTime = fromZonedTime(serverDateTime, timezone);
+          const userDateTime = toZonedTime(utcTime, userTimezone);
           const userDateKey = formatInTimeZone(userDateTime, userTimezone, 'yyyy-MM-dd');
           
           if (regroupedAvailability[userDateKey]) {
@@ -279,90 +236,4 @@ app.post('/api/calendar/availability', async (req, res) => {
       message: error.message 
     });
   }
-});
-
-// Create calendar event endpoint
-app.post('/api/calendar/create-event', async (req, res) => {
-  try {
-    const { 
-      title, 
-      description, 
-      startDateTime, 
-      endDateTime, 
-      attendeeEmail, 
-      attendeeName,
-      timezone = 'Atlantic/Canary'
-    } = req.body;
-
-    const calendar = createCalendarClient();
-    if (!calendar) {
-      return res.status(500).json({ 
-        success: false, 
-        error: 'Calendar service not available' 
-      });
-    }
-
-    const event = {
-      summary: title,
-      description: description,
-      start: {
-        dateTime: startDateTime,
-        timeZone: timezone,
-      },
-      end: {
-        dateTime: endDateTime,
-        timeZone: timezone,
-      },
-      attendees: [
-        {
-          email: attendeeEmail,
-          displayName: attendeeName,
-        }
-      ],
-      reminders: {
-        useDefault: false,
-        overrides: [
-          { method: 'email', minutes: 24 * 60 }, // 24 hours before
-          { method: 'popup', minutes: 30 },     // 30 minutes before
-        ],
-      },
-      conferenceData: {
-        createRequest: {
-          requestId: `meet-${Date.now()}`,
-          conferenceSolutionKey: {
-            type: 'hangoutsMeet'
-          }
-        }
-      }
-    };
-
-    const response = await calendar.events.insert({
-      calendarId: CALENDAR_ID,
-      conferenceDataVersion: 1,
-      sendNotifications: true,
-      requestBody: event,
-    });
-
-    res.json({ 
-      success: true, 
-      eventId: response.data.id,
-      hangoutLink: response.data.hangoutLink
-    });
-  } catch (error) {
-    console.error('Error creating calendar event:', error);
-    res.status(500).json({ 
-      success: false, 
-      error: error.message 
-    });
-  }
-});
-
-// Health check endpoint
-app.get('/health', (req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() });
-});
-
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-}); 
+} 
