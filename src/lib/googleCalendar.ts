@@ -19,7 +19,7 @@ export const googleCalendarService = {
   // Get availability for the next N days
   async getAvailability(days: number = 14, userTimezone: string = 'Atlantic/Canary'): Promise<AvailabilityData> {
     try {
-      const response = await fetch('/api/calendar/availability', {
+      const response = await fetch('http://localhost:3001/api/calendar/availability', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ export const googleCalendarService = {
       const startDateTime = createEventDateTime(eventData.date, eventData.time);
       const endDateTime = createEventDateTime(eventData.date, eventData.time, 60); // 1 hour duration
 
-      const response = await fetch('/api/calendar/create-event', {
+      const response = await fetch('http://localhost:3001/api/calendar/create-event', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
