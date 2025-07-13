@@ -12,6 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import { CheckCircle, CreditCard, Calendar, User, ArrowLeft } from "lucide-react";
+import { userProfileService, bookingService } from "@/lib/supabase";
 
 interface ServiceOption {
   id: string;
@@ -34,6 +35,7 @@ const BookClass = () => {
   });
   const [paymentStatus, setPaymentStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState("");
+  const [isCreatingProfile, setIsCreatingProfile] = useState(false);
 
   const { t } = useLanguage();
 
@@ -75,9 +77,43 @@ const BookClass = () => {
     }
   };
 
-  const handlePaymentSuccess = () => {
-    setPaymentStatus('success');
-    setStep(4);
+  const handlePaymentSuccess = async () => {
+    setIsCreatingProfile(true);
+    
+    try {
+      // Save user profile to Supabase
+      const userProfile = await userProfileService.createOrUpdateProfile({
+        email: customerInfo.email,
+        name: customerInfo.name,
+        level: customerInfo.level,
+        goals: customerInfo.goals,
+        timezone: customerInfo.timezone,
+      });
+
+      // Create booking record if service is selected
+      if (selectedService) {
+        await bookingService.createBooking({
+          user_id: userProfile.id,
+          service_type: selectedService.id,
+          service_name: selectedService.name,
+          price: selectedService.price,
+          duration: selectedService.duration,
+          booking_date: new Date().toISOString().split('T')[0], // Today's date
+          booking_time: "TBD", // Can be updated later with actual time selection
+          status: 'confirmed',
+        });
+      }
+
+      console.log('User profile and booking saved successfully:', userProfile);
+      setPaymentStatus('success');
+      setStep(4);
+    } catch (error) {
+      console.error('Error saving user profile:', error);
+      setPaymentStatus('error');
+      setErrorMessage('Payment successful but profile creation failed. Please contact support.');
+    } finally {
+      setIsCreatingProfile(false);
+    }
   };
 
   const handlePaymentError = (error: string) => {
