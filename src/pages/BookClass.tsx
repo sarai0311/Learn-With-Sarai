@@ -60,8 +60,8 @@ const BookClass = () => {
       id: "premium",
       name: t('services.premium.title'),
       description: t('services.premium.description'),
-      price: 31.50,
-      duration: "75 minutes",
+      price: 42.00,
+      duration: "100 minutes",
       icon: "⭐"
     }
   ];

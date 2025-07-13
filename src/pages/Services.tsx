@@ -58,16 +58,16 @@ const Services = () => {
                     <ScrollAnimation direction="left" delay={0.2}>
                       <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
                         <ServiceCard
-                          title={t('services.trial.title')}
-                          description={t('services.trial.description')}
+                          title="Trial Lesson"
+                          description="Try a 25-minute class to assess your level and discuss your learning goals."
                           icon="🎁"
-                          price={t('services.trial.price')}
+                          price="€10.50"
                           features={[
-                            t('services.trial.feature1'),
-                            t('services.trial.feature2'),
-                            t('services.trial.feature3'),
-                            t('services.trial.feature4'),
-                            t('services.trial.feature5')
+                            "25 minutes",
+                            "Level assessment",
+                            "Learning goals discussion",
+                            "Personalized learning plan",
+                            "Q&A about methodology"
                           ]}
                         />
                       </motion.div>
@@ -75,16 +75,16 @@ const Services = () => {
                     <ScrollAnimation direction="up" delay={0.4}>
                       <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
                         <ServiceCard
-                          title={t('services.standard.title')}
-                          description={t('services.standard.description')}
+                          title="Standard Class"
+                          description="Regular one-on-one Spanish lessons focused on your specific learning goals."
                           icon="📚"
-                          price={t('services.standard.price')}
+                          price="€21.00"
                           features={[
-                            t('services.standard.feature1'),
-                            t('services.standard.feature2'),
-                            t('services.standard.feature3'),
-                            t('services.standard.feature4'),
-                            t('services.standard.feature5')
+                            "50 minutes",
+                            "Customized curriculum",
+                            "Homework assignments",
+                            "Progress tracking",
+                            "Flexible scheduling"
                           ]}
                         />
                       </motion.div>
@@ -92,16 +92,16 @@ const Services = () => {
                     <ScrollAnimation direction="right" delay={0.6}>
                       <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
                         <ServiceCard
-                          title={t('services.premium.title')}
-                          description={t('services.premium.description')}
+                          title="Premium Class"
+                          description="Extended sessions for faster progress with additional materials and support."
                           icon="⭐"
-                          price={t('services.premium.price')}
+                          price="€42.00"
                           features={[
-                            t('services.premium.feature1'),
-                            t('services.premium.feature2'),
-                            t('services.premium.feature3'),
-                            t('services.premium.feature4'),
-                            t('services.premium.feature5')
+                            "100 minutes",
+                            "Personalized learning materials",
+                            "Interactive exercises",
+                            "Email support between classes",
+                            "Monthly progress report"
                           ]}
                         />
                       </motion.div>
@@ -113,10 +113,10 @@ const Services = () => {
                 <TabsContent value="packages">
                   <ScrollAnimation direction="up" delay={0.1} className="text-center mb-8">
                     <h2 className="text-2xl md:text-3xl font-bold text-sarai-text mb-4">
-                      {t('services.packages.title')}
+                      Class Bundles
                     </h2>
                     <p className="text-gray-600 max-w-3xl mx-auto">
-                      {t('services.packages.subtitle')}
+                      Bundle packages for consistent learning and better value
                     </p>
                   </ScrollAnimation>
                   
@@ -127,13 +127,13 @@ const Services = () => {
                           title="Starter Bundle"
                           description="Perfect for beginners or those testing the waters with consistent learning."
                           icon="🚀"
-                          price="€161.28"
+                          price="€105.00"
                           features={[
-                            "8 standard classes",
-                            "4% discount",
-                            "Valid for 1 month",
+                            "5 classes",
+                            "50 minutes each",
+                            "Flexible scheduling",
                             "Basic study materials included",
-                            "Flexible scheduling"
+                            "Valid for 2 months"
                           ]}
                         />
                       </motion.div>
@@ -144,13 +144,13 @@ const Services = () => {
                           title="Progress Pro"
                           description="Our most popular package for steady and consistent progress."
                           icon="🔥"
-                          price="€312.48"
+                          price="€201.00"
                           features={[
-                            "16 standard classes",
-                            "7% discount",
-                            "Valid for 2 months",
+                            "10 classes",
+                            "50 minutes each",
+                            "Priority scheduling",
                             "Complete study materials",
-                            "Priority scheduling"
+                            "Valid for 3 months"
                           ]}
                         />
                       </motion.div>
@@ -161,13 +161,13 @@ const Services = () => {
                           title="Fluency Master"
                           description="Intensive learning experience for rapid progress and deep immersion."
                           icon="🌟"
-                          price="€378.00"
+                          price="€379.00"
                           features={[
-                            "20 standard classes",
-                            "10% discount",
-                            "Valid for 3 months",
+                            "20 classes",
+                            "50 minutes each",
+                            "Chat support between sessions",
                             "Premium learning materials",
-                            "Chat support between sessions"
+                            "Valid for 4 months"
                           ]}
                         />
                       </motion.div>
@@ -179,10 +179,10 @@ const Services = () => {
                 <TabsContent value="specialized">
                   <ScrollAnimation direction="up" delay={0.1} className="text-center mb-8">
                     <h2 className="text-2xl md:text-3xl font-bold text-sarai-text mb-4">
-                      {t('services.specialized.title')}
+                      Specialized Classes
                     </h2>
                     <p className="text-gray-600 max-w-3xl mx-auto">
-                      {t('services.specialized.subtitle')}
+                      Focused courses designed for specific goals and contexts
                     </p>
                   </ScrollAnimation>
                   
@@ -190,17 +190,16 @@ const Services = () => {
                     <ScrollAnimation direction="left" delay={0.2}>
                       <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
                         <ServiceCard
-                          title={t('services.travel.title')}
-                          description={t('services.travel.description')}
+                          title="Spanish for Travel"
+                          description="Quick, practical Spanish skills for travelers heading to Spanish-speaking countries."
                           icon="✈️"
-                          price={t('services.travel.price')}
+                          price="€25.00"
                           features={[
-                            "50-minute sessions",
+                            "50 minutes",
                             "Survival phrases & vocabulary",
                             "Cultural etiquette guidance",
                             "Travel-specific role play",
-                            "Practical pronunciation focus",
-                            "Regional dialect awareness"
+                            "Practical pronunciation focus"
                           ]}
                         />
                       </motion.div>
@@ -208,17 +207,16 @@ const Services = () => {
                     <ScrollAnimation direction="up" delay={0.4}>
                       <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
                         <ServiceCard
-                          title="Business Spanish"
-                          description="Professional Spanish skills for workplace communication and business meetings."
-                          icon="💼"
-                          price="€28.00"
+                          title="Colombian Spanish"
+                          description="Learn Colombian Spanish with native insights into regional expressions and culture."
+                          icon="🇨🇴"
+                          price="€25.00"
                           features={[
-                            "60-minute sessions",
-                            "Business vocabulary",
-                            "Email writing skills",
-                            "Presentation techniques",
-                            "Negotiation phrases",
-                            "Industry-specific terminology"
+                            "50 minutes",
+                            "Colombian expressions",
+                            "Regional pronunciation",
+                            "Cultural context",
+                            "Native speaker insights"
                           ]}
                         />
                       </motion.div>
@@ -226,17 +224,16 @@ const Services = () => {
                     <ScrollAnimation direction="right" delay={0.6}>
                       <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
                         <ServiceCard
-                          title="DELE Exam Prep"
-                          description="Focused preparation for official Spanish language certification exams."
-                          icon="🎯"
-                          price="€26.00"
+                          title="Conversational Spanish"
+                          description="Focus on speaking fluency and natural conversation skills for real-world communication."
+                          icon="💬"
+                          price="€21.00"
                           features={[
-                            "55-minute sessions",
-                            "Exam-focused curriculum",
-                            "Practice tests included",
-                            "Speaking test simulation",
-                            "Writing task guidance",
-                            "Test-taking strategies"
+                            "50 minutes",
+                            "Speaking practice focus",
+                            "Real-world scenarios",
+                            "Pronunciation improvement",
+                            "Confidence building"
                           ]}
                         />
                       </motion.div>
