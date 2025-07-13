@@ -7,8 +7,11 @@ import EnhancedTestimonials from '@/components/EnhancedTestimonials';
 import ScrollAnimation from '@/components/ScrollAnimation';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Index = () => {
+  const { t } = useLanguage();
+  
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -21,10 +24,10 @@ const Index = () => {
           <div className="sarai-container">
             <ScrollAnimation direction="up" className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-sarai-text">
-                Why Learn Spanish with Me?
+                {t('benefits.title')}
               </h2>
               <p className="mt-4 text-gray-600 max-w-3xl mx-auto">
-                Discover how my personalized online Spanish lessons can help you reach your goals
+                {t('benefits.subtitle')}
               </p>
             </ScrollAnimation>
             
@@ -45,9 +48,9 @@ const Index = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                     </svg>
                   </motion.div>
-                  <h3 className="text-xl font-bold mb-2 text-sarai-text">Personalized Learning</h3>
+                  <h3 className="text-xl font-bold mb-2 text-sarai-text">{t('benefits.personalized.title')}</h3>
                   <p className="text-gray-600">
-                    Classes designed just for you - focused on your goals, learning style, and pace. No generic curriculum, just what you actually need.
+                    {t('benefits.personalized.description')}
                   </p>
                 </motion.div>
               </ScrollAnimation>
@@ -68,9 +71,9 @@ const Index = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </motion.div>
-                  <h3 className="text-xl font-bold mb-2 text-sarai-text">Flexible Scheduling</h3>
+                  <h3 className="text-xl font-bold mb-2 text-sarai-text">{t('benefits.flexible.title')}</h3>
                   <p className="text-gray-600">
-                    Book classes when it works for you with our easy booking system that adapts to your time zone, wherever you are.
+                    {t('benefits.flexible.description')}
                   </p>
                 </motion.div>
               </ScrollAnimation>
@@ -91,9 +94,9 @@ const Index = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                     </svg>
                   </motion.div>
-                  <h3 className="text-xl font-bold mb-2 text-sarai-text">Certified Professional</h3>
+                  <h3 className="text-xl font-bold mb-2 text-sarai-text">{t('benefits.certified.title')}</h3>
                   <p className="text-gray-600">
-                    Learn with a certified Spanish teacher with experience teaching students from around the world with proven results.
+                    {t('benefits.certified.description')}
                   </p>
                 </motion.div>
               </ScrollAnimation>
@@ -106,10 +109,10 @@ const Index = () => {
           <div className="sarai-container">
             <ScrollAnimation direction="up" className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-sarai-text">
-                How It Works
+                {t('howItWorks.title')}
               </h2>
               <p className="mt-4 text-gray-600 max-w-3xl mx-auto">
-                Start your Spanish learning journey in three simple steps
+                {t('howItWorks.subtitle')}
               </p>
             </ScrollAnimation>
             
@@ -129,9 +132,9 @@ const Index = () => {
                     >
                       1
                     </motion.div>
-                    <h3 className="text-xl font-bold mb-2 text-sarai-text">Book a Trial Class</h3>
+                    <h3 className="text-xl font-bold mb-2 text-sarai-text">{t('howItWorks.step1.title')}</h3>
                     <p className="text-gray-600">
-                      Schedule a 25-minute trial class to assess your current level and discuss your goals. Just €10.50 to get started.
+                      {t('howItWorks.step1.description')}
                     </p>
                   </motion.div>
                   <motion.div 
@@ -163,9 +166,9 @@ const Index = () => {
                     >
                       2
                     </motion.div>
-                    <h3 className="text-xl font-bold mb-2 text-sarai-text">Get a Learning Plan</h3>
+                    <h3 className="text-xl font-bold mb-2 text-sarai-text">{t('howItWorks.step2.title')}</h3>
                     <p className="text-gray-600">
-                      Receive a customized learning plan based on what you want to achieve, your preferences, and your schedule.
+                      {t('howItWorks.step2.description')}
                     </p>
                   </motion.div>
                   <motion.div 
@@ -197,9 +200,9 @@ const Index = () => {
                     >
                       3
                     </motion.div>
-                    <h3 className="text-xl font-bold mb-2 text-sarai-text">Start Learning</h3>
+                    <h3 className="text-xl font-bold mb-2 text-sarai-text">{t('howItWorks.step3.title')}</h3>
                     <p className="text-gray-600">
-                      Begin your classes in our virtual classroom with personalized materials and ongoing support between sessions.
+                      {t('howItWorks.step3.description')}
                     </p>
                   </motion.div>
                 </div>
@@ -210,7 +213,7 @@ const Index = () => {
               <Link to="/book">
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Button className="bg-sarai-secondary hover:bg-sarai-secondary/90 text-white">
-                    Schedule Your Trial Class
+                    {t('howItWorks.cta')}
                   </Button>
                 </motion.div>
               </Link>
@@ -230,10 +233,10 @@ const Index = () => {
                 transition={{ duration: 0.3 }}
               >
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                  Ready to Start Your Spanish Journey?
+                  {t('cta.title')}
                 </h2>
                 <p className="text-xl mb-8">
-                  Book your 25-minute trial class for just €10.50 and take the first step towards Spanish fluency.
+                  {t('cta.subtitle')}
                 </p>
                 <Link to="/book">
                   <motion.div 
@@ -241,7 +244,7 @@ const Index = () => {
                     whileTap={{ scale: 0.95 }}
                   >
                     <Button className="bg-white text-sarai-primary hover:bg-gray-100 font-semibold py-3 px-8 text-lg shadow-lg">
-                      Book Your Trial Class
+                      {t('cta.button')}
                     </Button>
                   </motion.div>
                 </Link>

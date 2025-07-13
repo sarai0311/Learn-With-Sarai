@@ -2,8 +2,11 @@ import React from 'react';
 import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import ScrollAnimation from './ScrollAnimation';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const EnhancedTestimonials = () => {
+  const { t } = useLanguage();
+  
   const testimonials = [
     {
       name: "Jahquahiel",
@@ -42,22 +45,22 @@ const EnhancedTestimonials = () => {
       months: "4 months of classes"
     },
     {
-      name: "Julia Chen",
+      name: "Marco Rodriguez",
+      country: "United States",
+      flag: "us",
+      rating: 5,
+      image: "https://randomuser.me/api/portraits/men/18.jpg",
+      text: "Learning Spanish with Sarai has been an amazing experience. Her teaching method is very effective and she always adapts to my learning pace. I highly recommend her to anyone wanting to learn Spanish!",
+      months: "5 months of classes"
+    },
+    {
+      name: "Emma Johnson",
       country: "Canada",
       flag: "ca",
       rating: 5,
       image: "https://randomuser.me/api/portraits/women/32.jpg",
-      text: "After trying various online learning methods, classes with Sarai have been the only thing that has really helped me master Spanish. Her cultural knowledge and clear explanations make each class valuable.",
+      text: "Sarai is an exceptional teacher! Her classes are always engaging and fun. She has helped me improve my pronunciation and confidence in speaking Spanish significantly. Thank you, Sarai!",
       months: "6 months of classes"
-    },
-    {
-      name: "Marcus Johnson",
-      country: "United States",
-      flag: "us",
-      rating: 5,
-      image: "https://randomuser.me/api/portraits/men/15.jpg",
-      text: "Sarai is an exceptional teacher who really cares about her students' progress. Her classes are fun, interactive, and always adapted to my specific needs.",
-      months: "5 months of classes"
     }
   ];
 
@@ -69,15 +72,6 @@ const EnhancedTestimonials = () => {
 
   const prevTestimonial = () => {
     setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
-
-  const getVisibleTestimonials = () => {
-    const visible = [];
-    for (let i = 0; i < 3; i++) {
-      const index = (currentIndex + i) % testimonials.length;
-      visible.push(testimonials[index]);
-    }
-    return visible;
   };
 
   return (
@@ -95,10 +89,10 @@ const EnhancedTestimonials = () => {
           </motion.div>
           
           <h2 className="text-4xl md:text-5xl font-bold text-sarai-text mb-6 decorated-heading">
-            What My Students Say
+            {t('testimonials.title')}
           </h2>
           <p className="text-xl text-sarai-steel max-w-3xl mx-auto leading-relaxed">
-            Real stories from people who are already enjoying speaking Spanish fluently
+            {t('testimonials.subtitle')}
           </p>
           
           <motion.div
@@ -110,161 +104,137 @@ const EnhancedTestimonials = () => {
           />
         </ScrollAnimation>
 
-        <div className="relative">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            {getVisibleTestimonials().map((testimonial, index) => (
-              <ScrollAnimation
-                key={`${testimonial.name}-${currentIndex}-${index}`}
-                direction="up"
-                delay={index * 0.2}
-                className="h-full"
-              >
-                <motion.div
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ 
-                    y: -10, 
-                    transition: { duration: 0.3 } 
-                  }}
-                  className="relative group"
-                >
-                  {/* Gradient Border */}
-                  <div className="p-1 rounded-2xl bg-gradient-to-br from-sarai-primary via-sarai-secondary to-sarai-accent group-hover:shadow-2xl transition-all duration-300">
-                    <div className="bg-white p-8 rounded-xl h-full flex flex-col relative overflow-hidden">
-                      {/* Decorative elements */}
-                      <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-sarai-primary/10 to-transparent rounded-full -translate-y-10 translate-x-10"></div>
-                      <div className="absolute bottom-0 left-0 w-16 h-16 bg-gradient-to-tr from-sarai-secondary/10 to-transparent rounded-full translate-y-8 -translate-x-8"></div>
+        {/* Testimonials Carousel */}
+        <div className="relative max-w-4xl mx-auto">
+          <div className="overflow-hidden">
+            <motion.div 
+              className="flex transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+            >
+              {testimonials.map((testimonial, index) => (
+                <div key={index} className="w-full flex-shrink-0 px-4">
+                  <ScrollAnimation direction="up" delay={0.1}>
+                    <motion.div
+                      whileHover={{ y: -10, scale: 1.02 }}
+                      transition={{ duration: 0.3 }}
+                      className="bg-white rounded-2xl p-8 shadow-xl border border-gray-100 relative mx-auto max-w-2xl"
+                    >
+                      <div className="absolute -top-4 left-8">
+                        <Quote className="h-8 w-8 text-sarai-primary bg-white p-1 rounded-full shadow-lg" />
+                      </div>
                       
-                      {/* Header with avatar and info */}
-                      <div className="flex items-center mb-6 relative z-10">
-                        <div className="relative">
-                          <motion.div
-                            whileHover={{ scale: 1.1 }}
-                            transition={{ duration: 0.2 }}
-                            className="w-20 h-20 rounded-full overflow-hidden border-4 border-white shadow-lg relative"
-                          >
-                            <img 
-                              src={testimonial.image} 
-                              alt={testimonial.name}
-                              className="w-full h-full object-cover"
-                            />
-                          </motion.div>
-                          <div className="absolute -bottom-2 -right-2 bg-white rounded-full p-1.5 shadow-md">
-                            <img
-                              src={`https://flagcdn.com/${testimonial.flag}.svg`}
-                              alt={testimonial.country}
-                              className="w-6 h-6 rounded-full"
-                            />
+                      <div className="flex items-start space-x-4 mb-6">
+                        <motion.img
+                          whileHover={{ scale: 1.1, rotate: 5 }}
+                          transition={{ duration: 0.3 }}
+                          src={testimonial.image}
+                          alt={testimonial.name}
+                          className="w-16 h-16 rounded-full border-2 border-sarai-primary/20 shadow-md"
+                        />
+                        <div className="flex-1">
+                          <div className="flex items-center space-x-2 mb-1">
+                            <h4 className="font-bold text-sarai-text text-lg">{testimonial.name}</h4>
+                            <span className="text-2xl">
+                              {testimonial.flag === 'us' && '🇺🇸'}
+                              {testimonial.flag === 'gb' && '🇬🇧'}
+                              {testimonial.flag === 'ca' && '🇨🇦'}
+                            </span>
                           </div>
-                        </div>
-                        <div className="ml-5">
-                          <h3 className="font-bold text-sarai-text text-lg">{testimonial.name}</h3>
-                          <p className="text-sarai-steel text-sm">{testimonial.country}</p>
-                          <div className="flex mt-2">
+                          <p className="text-sm text-gray-500 mb-2">{testimonial.country}</p>
+                          <div className="flex space-x-1 mb-2">
                             {[...Array(testimonial.rating)].map((_, i) => (
                               <motion.div
                                 key={i}
-                                initial={{ scale: 0, rotate: 180 }}
+                                initial={{ scale: 0, rotate: -180 }}
                                 whileInView={{ scale: 1, rotate: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.3, delay: 0.5 + (i * 0.1) }}
+                                transition={{ duration: 0.3, delay: i * 0.1 }}
                               >
-                                <Star className="w-5 h-5 text-yellow-400 fill-current" />
+                                <Star className="h-4 w-4 text-yellow-400 fill-current" />
                               </motion.div>
                             ))}
                           </div>
+                          <span className="text-xs bg-sarai-primary/10 text-sarai-primary px-2 py-1 rounded-full font-medium">
+                            {testimonial.months}
+                          </span>
                         </div>
                       </div>
                       
-                      {/* Testimonial text */}
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.3 }}
-                        className="flex-grow relative z-10"
-                      >
-                        <Quote className="w-8 h-8 text-sarai-primary/30 mb-3" />
-                        <p className="text-sarai-steel italic leading-relaxed text-base">
-                          "{testimonial.text}"
-                        </p>
-                      </motion.div>
-                      
-                      {/* Footer */}
-                      <div className="mt-6 pt-6 border-t border-sarai-primary/10 text-sm text-sarai-steel/70 flex justify-between items-center relative z-10">
-                        <div className="flex items-center">
-                          <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
-                          <span>Verified Student</span>
-                        </div>
-                        <span className="font-medium">{testimonial.months}</span>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              </ScrollAnimation>
-            ))}
+                      <blockquote className="text-gray-700 text-lg leading-relaxed italic">
+                        "{testimonial.text}"
+                      </blockquote>
+                    </motion.div>
+                  </ScrollAnimation>
+                </div>
+              ))}
+            </motion.div>
           </div>
 
-          <ScrollAnimation direction="up" delay={0.8} className="flex justify-center items-center space-x-6">
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={prevTestimonial}
-              className="p-3 rounded-full bg-white shadow-lg border border-sarai-primary/20 text-sarai-primary hover:bg-sarai-primary hover:text-white transition-all duration-300"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </motion.button>
-            
-            <div className="flex space-x-2">
-              {testimonials.map((_, index) => (
-                <motion.button
-                  key={index}
-                  whileHover={{ scale: 1.2 }}
-                  whileTap={{ scale: 0.8 }}
-                  onClick={() => setCurrentIndex(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentIndex ? 'bg-sarai-primary' : 'bg-sarai-primary/30'
-                  }`}
-                />
-              ))}
-            </div>
-            
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={nextTestimonial}
-              className="p-3 rounded-full bg-white shadow-lg border border-sarai-primary/20 text-sarai-primary hover:bg-sarai-primary hover:text-white transition-all duration-300"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </motion.button>
-          </ScrollAnimation>
-        </div>
-        
-        {/* Call to Action */}
-        <ScrollAnimation direction="up" delay={1.0} className="mt-16 text-center">
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.2 }}
+          {/* Navigation Buttons */}
+          <motion.button
+            whileHover={{ scale: 1.1, x: -5 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={prevTestimonial}
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 bg-white p-3 rounded-full shadow-lg border border-gray-200 text-sarai-primary hover:bg-sarai-primary hover:text-white transition-all duration-300"
           >
-            <a 
-              href="#" 
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-sarai-primary to-sarai-secondary text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-            >
-              <span className="mr-3">View All Reviews</span>
-              <motion.svg 
-                className="w-5 h-5" 
-                fill="none" 
-                viewBox="0 0 24 24" 
-                stroke="currentColor"
-                whileHover={{ x: 5 }}
-                transition={{ duration: 0.2 }}
+            <ChevronLeft className="h-6 w-6" />
+          </motion.button>
+          
+          <motion.button
+            whileHover={{ scale: 1.1, x: 5 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={nextTestimonial}
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 bg-white p-3 rounded-full shadow-lg border border-gray-200 text-sarai-primary hover:bg-sarai-primary hover:text-white transition-all duration-300"
+          >
+            <ChevronRight className="h-6 w-6" />
+          </motion.button>
+
+          {/* Dots Indicator */}
+          <div className="flex justify-center space-x-2 mt-8">
+            {testimonials.map((_, index) => (
+              <motion.button
+                key={index}
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.8 }}
+                onClick={() => setCurrentIndex(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === currentIndex 
+                    ? 'bg-sarai-primary scale-125' 
+                    : 'bg-gray-300 hover:bg-sarai-primary/50'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Statistics Section */}
+        <ScrollAnimation direction="up" delay={0.4} className="mt-20">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto">
+            {[
+              { number: "500+", label: "Happy Students" },
+              { number: "15+", label: "Countries" },
+              { number: "4.9/5", label: "Average Rating" },
+              { number: "2000+", label: "Classes Taught" }
+            ].map((stat, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ y: -5, scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+                className="text-center bg-white/70 backdrop-blur-sm rounded-lg p-6 shadow-sm"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-              </motion.svg>
-            </a>
-          </motion.div>
+                <motion.div
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="text-3xl font-bold text-sarai-primary mb-2"
+                >
+                  {stat.number}
+                </motion.div>
+                <div className="text-sm text-gray-600 font-medium">{stat.label}</div>
+              </motion.div>
+            ))}
+          </div>
         </ScrollAnimation>
       </div>
     </div>

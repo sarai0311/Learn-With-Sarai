@@ -6,8 +6,11 @@ import ScrollAnimation from '@/components/ScrollAnimation';
 import { Link } from 'react-router-dom';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Services = () => {
+  const { t } = useLanguage();
+  
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -18,10 +21,10 @@ const Services = () => {
           <div className="sarai-container">
             <ScrollAnimation direction="up" className="max-w-3xl mx-auto text-center">
               <h1 className="text-3xl md:text-4xl font-bold mb-4">
-                Spanish Learning Services
+                {t('services.title')}
               </h1>
               <p className="text-xl opacity-90">
-                Classes designed just for you to help you reach your language goals
+                {t('services.subtitle')}
               </p>
             </ScrollAnimation>
           </div>
@@ -34,9 +37,9 @@ const Services = () => {
               <Tabs defaultValue="individual" className="w-full">
                 <div className="flex justify-center mb-8">
                   <TabsList className="bg-gray-100">
-                    <TabsTrigger value="individual" className="px-6 py-3">Individual Classes</TabsTrigger>
-                    <TabsTrigger value="packages" className="px-6 py-3">Class Packages</TabsTrigger>
-                    <TabsTrigger value="specialized" className="px-6 py-3">Specialized Classes</TabsTrigger>
+                    <TabsTrigger value="individual" className="px-6 py-3">{t('services.tab.individual')}</TabsTrigger>
+                    <TabsTrigger value="packages" className="px-6 py-3">{t('services.tab.packages')}</TabsTrigger>
+                    <TabsTrigger value="specialized" className="px-6 py-3">{t('services.tab.specialized')}</TabsTrigger>
                   </TabsList>
                 </div>
                 
@@ -44,10 +47,10 @@ const Services = () => {
                 <TabsContent value="individual">
                   <ScrollAnimation direction="up" delay={0.1} className="text-center mb-8">
                     <h2 className="text-2xl md:text-3xl font-bold text-sarai-text mb-4">
-                      One-on-One Spanish Classes
+                      {t('services.individual.title')}
                     </h2>
                     <p className="text-gray-600 max-w-3xl mx-auto">
-                      Personalized individual lessons tailored to your specific needs and learning style
+                      {t('services.individual.subtitle')}
                     </p>
                   </ScrollAnimation>
                   
@@ -55,16 +58,16 @@ const Services = () => {
                     <ScrollAnimation direction="left" delay={0.2}>
                       <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
                         <ServiceCard
-                          title="Trial Class"
-                          description="Try a 25-minute class to assess your level and discuss your learning goals."
+                          title={t('services.trial.title')}
+                          description={t('services.trial.description')}
                           icon="🎁"
-                          price="€10.50"
+                          price={t('services.trial.price')}
                           features={[
-                            "Level assessment",
-                            "Learning goals discussion",
-                            "Personalized learning plan",
-                            "Q&A about methodology",
-                            "Payment required to book"
+                            t('services.trial.feature1'),
+                            t('services.trial.feature2'),
+                            t('services.trial.feature3'),
+                            t('services.trial.feature4'),
+                            t('services.trial.feature5')
                           ]}
                         />
                       </motion.div>
@@ -72,16 +75,16 @@ const Services = () => {
                     <ScrollAnimation direction="up" delay={0.4}>
                       <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
                         <ServiceCard
-                          title="Standard Class"
-                          description="Regular one-on-one Spanish lessons focused on your specific learning goals."
+                          title={t('services.standard.title')}
+                          description={t('services.standard.description')}
                           icon="📚"
-                          price="€21.00"
+                          price={t('services.standard.price')}
                           features={[
-                            "50-minute sessions",
-                            "Customized curriculum",
-                            "Homework assignments",
-                            "Progress tracking",
-                            "Flexible scheduling"
+                            t('services.standard.feature1'),
+                            t('services.standard.feature2'),
+                            t('services.standard.feature3'),
+                            t('services.standard.feature4'),
+                            t('services.standard.feature5')
                           ]}
                         />
                       </motion.div>
@@ -89,16 +92,16 @@ const Services = () => {
                     <ScrollAnimation direction="right" delay={0.6}>
                       <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
                         <ServiceCard
-                          title="Premium Class"
-                          description="Extended sessions for faster progress with additional materials and support."
+                          title={t('services.premium.title')}
+                          description={t('services.premium.description')}
                           icon="⭐"
-                          price="€31.50"
+                          price={t('services.premium.price')}
                           features={[
-                            "75-minute sessions",
-                            "Personalized learning materials",
-                            "Interactive exercises",
-                            "Email support between classes",
-                            "Monthly progress report"
+                            t('services.premium.feature1'),
+                            t('services.premium.feature2'),
+                            t('services.premium.feature3'),
+                            t('services.premium.feature4'),
+                            t('services.premium.feature5')
                           ]}
                         />
                       </motion.div>
@@ -110,10 +113,10 @@ const Services = () => {
                 <TabsContent value="packages">
                   <ScrollAnimation direction="up" delay={0.1} className="text-center mb-8">
                     <h2 className="text-2xl md:text-3xl font-bold text-sarai-text mb-4">
-                      Class Packages
+                      {t('services.packages.title')}
                     </h2>
                     <p className="text-gray-600 max-w-3xl mx-auto">
-                      Save money with discounted class packages while committing to consistent learning
+                      {t('services.packages.subtitle')}
                     </p>
                   </ScrollAnimation>
                   
@@ -176,10 +179,10 @@ const Services = () => {
                 <TabsContent value="specialized">
                   <ScrollAnimation direction="up" delay={0.1} className="text-center mb-8">
                     <h2 className="text-2xl md:text-3xl font-bold text-sarai-text mb-4">
-                      Specialized Learning Programs
+                      {t('services.specialized.title')}
                     </h2>
                     <p className="text-gray-600 max-w-3xl mx-auto">
-                      Focused courses designed for specific goals and contexts
+                      {t('services.specialized.subtitle')}
                     </p>
                   </ScrollAnimation>
                   
@@ -187,10 +190,10 @@ const Services = () => {
                     <ScrollAnimation direction="left" delay={0.2}>
                       <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
                         <ServiceCard
-                          title="Spanish for Travel"
-                          description="Quick, practical Spanish skills for travelers heading to Spanish-speaking countries."
+                          title={t('services.travel.title')}
+                          description={t('services.travel.description')}
                           icon="✈️"
-                          price="€25.00"
+                          price={t('services.travel.price')}
                           features={[
                             "50-minute sessions",
                             "Survival phrases & vocabulary",
@@ -205,17 +208,17 @@ const Services = () => {
                     <ScrollAnimation direction="up" delay={0.4}>
                       <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
                         <ServiceCard
-                          title="Colombian Spanish"
-                          description="Learn the unique accent, expressions, and cultural nuances of Colombian Spanish."
-                          icon="🇨🇴"
-                          price="€23.50"
+                          title="Business Spanish"
+                          description="Professional Spanish skills for workplace communication and business meetings."
+                          icon="💼"
+                          price="€28.00"
                           features={[
-                            "50-minute sessions",
-                            "Colombian accent & pronunciation",
-                            "Regional expressions & slang",
-                            "Cultural context & customs",
-                            "Paisa, Costeño & Bogotano dialects",
-                            "Native Colombian instructor"
+                            "60-minute sessions",
+                            "Business vocabulary",
+                            "Email writing skills",
+                            "Presentation techniques",
+                            "Negotiation phrases",
+                            "Industry-specific terminology"
                           ]}
                         />
                       </motion.div>
@@ -223,17 +226,17 @@ const Services = () => {
                     <ScrollAnimation direction="right" delay={0.6}>
                       <motion.div whileHover={{ y: -10 }} transition={{ duration: 0.3 }}>
                         <ServiceCard
-                          title="Conversational Classes"
-                          description="Practice speaking Spanish in a relaxed environment with real-time corrections and feedback."
-                          icon="💬"
-                          price="€21.00"
+                          title="DELE Exam Prep"
+                          description="Focused preparation for official Spanish language certification exams."
+                          icon="🎯"
+                          price="€26.00"
                           features={[
-                            "50-minute sessions",
-                            "100% conversation practice",
-                            "Real-time pronunciation correction",
-                            "Natural fluency development",
-                            "Topic-based discussions",
-                            "Confidence building focus"
+                            "55-minute sessions",
+                            "Exam-focused curriculum",
+                            "Practice tests included",
+                            "Speaking test simulation",
+                            "Writing task guidance",
+                            "Test-taking strategies"
                           ]}
                         />
                       </motion.div>
@@ -245,136 +248,12 @@ const Services = () => {
           </div>
         </section>
         
-        {/* How Classes Work */}
-        <section className="sarai-section bg-gray-50">
-          <div className="sarai-container">
-            <ScrollAnimation direction="up" className="text-center mb-12">
-              <h2 className="text-2xl md:text-3xl font-bold text-sarai-text mb-4">
-                How My Classes Work
-              </h2>
-              <p className="text-gray-600 max-w-3xl mx-auto">
-                A seamless online learning experience designed for your convenience
-              </p>
-            </ScrollAnimation>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <ScrollAnimation direction="left" delay={0.2} className="order-2 md:order-1">
-                <div className="space-y-8">
-                  <motion.div 
-                    whileHover={{ x: 10 }}
-                    transition={{ duration: 0.3 }}
-                    className="flex gap-4"
-                  >
-                    <motion.div 
-                      whileHover={{ scale: 1.1, rotate: 360 }}
-                      transition={{ duration: 0.5 }}
-                      className="flex-shrink-0 w-12 h-12 bg-sarai-primary text-white rounded-full flex items-center justify-center font-bold text-lg"
-                    >
-                      1
-                    </motion.div>
-                    <div>
-                      <h3 className="text-xl font-bold text-sarai-text mb-2">Book Your Class</h3>
-                      <p className="text-gray-600">
-                        Choose a time slot that works for you through our easy online booking system, aligned with your time zone.
-                      </p>
-                    </div>
-                  </motion.div>
-                  
-                  <motion.div 
-                    whileHover={{ x: 10 }}
-                    transition={{ duration: 0.3 }}
-                    className="flex gap-4"
-                  >
-                    <motion.div 
-                      whileHover={{ scale: 1.1, rotate: 360 }}
-                      transition={{ duration: 0.5 }}
-                      className="flex-shrink-0 w-12 h-12 bg-sarai-primary text-white rounded-full flex items-center justify-center font-bold text-lg"
-                    >
-                      2
-                    </motion.div>
-                    <div>
-                      <h3 className="text-xl font-bold text-sarai-text mb-2">Complete Your Payment</h3>
-                      <p className="text-gray-600">
-                        Secure your spot by completing the payment. Your booking is only confirmed after payment is received.
-                      </p>
-                    </div>
-                  </motion.div>
-                  
-                  <motion.div 
-                    whileHover={{ x: 10 }}
-                    transition={{ duration: 0.3 }}
-                    className="flex gap-4"
-                  >
-                    <motion.div 
-                      whileHover={{ scale: 1.1, rotate: 360 }}
-                      transition={{ duration: 0.5 }}
-                      className="flex-shrink-0 w-12 h-12 bg-sarai-primary text-white rounded-full flex items-center justify-center font-bold text-lg"
-                    >
-                      3
-                    </motion.div>
-                    <div>
-                      <h3 className="text-xl font-bold text-sarai-text mb-2">Receive Confirmation</h3>
-                      <p className="text-gray-600">
-                        Get an email confirmation with your class details and a link to join the virtual classroom.
-                      </p>
-                    </div>
-                  </motion.div>
-                  
-                  <motion.div 
-                    whileHover={{ x: 10 }}
-                    transition={{ duration: 0.3 }}
-                    className="flex gap-4"
-                  >
-                    <motion.div 
-                      whileHover={{ scale: 1.1, rotate: 360 }}
-                      transition={{ duration: 0.5 }}
-                      className="flex-shrink-0 w-12 h-12 bg-sarai-primary text-white rounded-full flex items-center justify-center font-bold text-lg"
-                    >
-                      4
-                    </motion.div>
-                    <div>
-                      <h3 className="text-xl font-bold text-sarai-text mb-2">Enjoy Your Class</h3>
-                      <p className="text-gray-600">
-                        Join the virtual classroom at your scheduled time and start learning! You'll receive materials and homework after class.
-                      </p>
-                    </div>
-                  </motion.div>
-                </div>
-              </ScrollAnimation>
-              
-              <ScrollAnimation direction="right" delay={0.4} className="order-1 md:order-2 flex justify-center">
-                <div className="relative">
-                  <motion.div 
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    className="absolute -top-6 -left-6 w-40 h-40 bg-sarai-secondary/10 rounded-full"
-                  ></motion.div>
-                  <motion.div 
-                    animate={{ rotate: -360 }}
-                    transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                    className="absolute -bottom-6 -right-6 w-40 h-40 bg-sarai-primary/10 rounded-full"
-                  ></motion.div>
-                  <div className="relative z-10">
-                    <motion.img 
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.3 }}
-                      src="https://images.unsplash.com/photo-1609749660110-1bca47994248?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" 
-                      alt="Online Spanish Class" 
-                      className="rounded-lg shadow-lg w-full h-auto"
-                    />
-                  </div>
-                </div>
-              </ScrollAnimation>
-            </div>
-          </div>
-        </section>
-        
         {/* FAQ Section */}
         <section className="sarai-section bg-white">
           <div className="sarai-container">
             <ScrollAnimation direction="up" className="text-center mb-12">
               <h2 className="text-2xl md:text-3xl font-bold text-sarai-text mb-4">
-                Frequently Asked Questions
+                {t('services.faq.title')}
               </h2>
             </ScrollAnimation>
             
@@ -386,10 +265,10 @@ const Services = () => {
                   className="py-6"
                 >
                   <h3 className="text-lg font-semibold text-sarai-text mb-2">
-                    What technology do I need for online classes?
+                    {t('services.faq.q1')}
                   </h3>
                   <p className="text-gray-600">
-                    You just need a computer or tablet with a stable internet connection, a webcam, and a microphone. We'll use a simple virtual classroom platform that's easy to access.
+                    {t('services.faq.a1')}
                   </p>
                 </motion.div>
               </ScrollAnimation>
@@ -401,55 +280,10 @@ const Services = () => {
                   className="py-6"
                 >
                   <h3 className="text-lg font-semibold text-sarai-text mb-2">
-                    Do I need to purchase any textbooks?
+                    {t('services.faq.q2')}
                   </h3>
                   <p className="text-gray-600">
-                    Nope! All learning materials are included in your class fee. I create custom materials based on what you need and your learning style.
-                  </p>
-                </motion.div>
-              </ScrollAnimation>
-              
-              <ScrollAnimation direction="left" delay={0.3}>
-                <motion.div 
-                  whileHover={{ x: 10 }}
-                  transition={{ duration: 0.3 }}
-                  className="py-6"
-                >
-                  <h3 className="text-lg font-semibold text-sarai-text mb-2">
-                    What if I need to cancel or reschedule a class?
-                  </h3>
-                  <p className="text-gray-600">
-                    Classes can be rescheduled with at least 24 hours' notice at no charge. Cancellations with less than 24 hours' notice may be charged a fee or forfeit the class.
-                  </p>
-                </motion.div>
-              </ScrollAnimation>
-              
-              <ScrollAnimation direction="right" delay={0.4}>
-                <motion.div 
-                  whileHover={{ x: -10 }}
-                  transition={{ duration: 0.3 }}
-                  className="py-6"
-                >
-                  <h3 className="text-lg font-semibold text-sarai-text mb-2">
-                    How do I pay for classes?
-                  </h3>
-                  <p className="text-gray-600">
-                    Payments can be made securely online via credit card, PayPal, or bank transfer. All classes must be paid for in advance to confirm your booking.
-                  </p>
-                </motion.div>
-              </ScrollAnimation>
-              
-              <ScrollAnimation direction="up" delay={0.5}>
-                <motion.div 
-                  whileHover={{ y: -5 }}
-                  transition={{ duration: 0.3 }}
-                  className="py-6"
-                >
-                  <h3 className="text-lg font-semibold text-sarai-text mb-2">
-                    How quickly will I learn Spanish?
-                  </h3>
-                  <p className="text-gray-600">
-                    Everyone learns at their own pace, depending on your starting level, goals, and how much you practice between classes. Most students notice real improvement within 2-3 months of consistent weekly lessons.
+                    {t('services.faq.a2')}
                   </p>
                 </motion.div>
               </ScrollAnimation>
@@ -466,10 +300,10 @@ const Services = () => {
                 transition={{ duration: 0.3 }}
               >
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                  Ready to Start Learning Spanish?
+                  {t('services.cta.title')}
                 </h2>
                 <p className="text-xl mb-8">
-                  Book your trial class today for just €10.50 and take the first step towards fluency.
+                  {t('services.cta.subtitle')}
                 </p>
                 <Link to="/book">
                   <motion.div 
@@ -477,7 +311,7 @@ const Services = () => {
                     whileTap={{ scale: 0.95 }}
                   >
                     <button className="bg-white text-sarai-accent hover:bg-gray-100 font-semibold py-3 px-8 rounded-md transition-all duration-200">
-                      Schedule Your Trial Class
+                      {t('services.cta.button')}
                     </button>
                   </motion.div>
                 </Link>

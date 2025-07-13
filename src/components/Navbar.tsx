@@ -2,10 +2,13 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Palette } from 'lucide-react'; 
+import { useLanguage } from '@/contexts/LanguageContext';
+import LanguageSelector from '@/components/LanguageSelector';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { t } = useLanguage();
   
   const isActive = (path: string) => {
     return location.pathname === path;
@@ -21,46 +24,52 @@ const Navbar = () => {
               <Palette className="h-6 w-6 text-white" />
             </div>
             <span className="text-sarai-primary font-montserrat text-2xl font-bold">
-              LEARN<span className="text-sarai-secondary">WithSarai</span>
+              {t('nav.brand')}
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
-            <Link 
-              to="/" 
-              className={`font-medium transition-all duration-300 ${isActive('/') ? 'text-sarai-primary scale-110' : 'text-gray-600 hover:text-sarai-primary hover:scale-110'}`}
-            >
-              Home
-            </Link>
-            <Link 
-              to="/about" 
-              className={`font-medium transition-all duration-300 ${isActive('/about') ? 'text-sarai-primary scale-110' : 'text-gray-600 hover:text-sarai-primary hover:scale-110'}`}
-            >
-              About Me
-            </Link>
-            <Link 
-              to="/services" 
-              className={`font-medium transition-all duration-300 ${isActive('/services') ? 'text-sarai-primary scale-110' : 'text-gray-600 hover:text-sarai-primary hover:scale-110'}`}
-            >
-              Services
-            </Link>
-            <Link 
-              to="/chat" 
-              className={`font-medium transition-all duration-300 ${isActive('/chat') ? 'text-sarai-primary scale-110' : 'text-gray-600 hover:text-sarai-primary hover:scale-110'}`}
-            >
-              Chat
-            </Link>
-            <Link 
-              to="/book" 
-              className="btn-primary shadow-lg hover:shadow-sarai-primary/20 transition-all duration-300 transform hover:-translate-y-1"
-            >
-              Book a Class
-            </Link>
+          <div className="hidden md:flex items-center space-x-8">
+            <div className="flex space-x-8">
+              <Link 
+                to="/" 
+                className={`font-medium transition-all duration-300 ${isActive('/') ? 'text-sarai-primary scale-110' : 'text-gray-600 hover:text-sarai-primary hover:scale-110'}`}
+              >
+                {t('nav.home')}
+              </Link>
+              <Link 
+                to="/about" 
+                className={`font-medium transition-all duration-300 ${isActive('/about') ? 'text-sarai-primary scale-110' : 'text-gray-600 hover:text-sarai-primary hover:scale-110'}`}
+              >
+                {t('nav.about')}
+              </Link>
+              <Link 
+                to="/services" 
+                className={`font-medium transition-all duration-300 ${isActive('/services') ? 'text-sarai-primary scale-110' : 'text-gray-600 hover:text-sarai-primary hover:scale-110'}`}
+              >
+                {t('nav.services')}
+              </Link>
+              <Link 
+                to="/chat" 
+                className={`font-medium transition-all duration-300 ${isActive('/chat') ? 'text-sarai-primary scale-110' : 'text-gray-600 hover:text-sarai-primary hover:scale-110'}`}
+              >
+                {t('nav.chat')}
+              </Link>
+              <Link 
+                to="/book" 
+                className="btn-primary shadow-lg hover:shadow-sarai-primary/20 transition-all duration-300 transform hover:-translate-y-1"
+              >
+                {t('nav.book')}
+              </Link>
+            </div>
+            
+            {/* Language Selector */}
+            <LanguageSelector />
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center space-x-3">
+            <LanguageSelector />
             <button
               type="button"
               className="p-2 rounded-md text-gray-600 hover:text-sarai-primary"
@@ -89,35 +98,35 @@ const Navbar = () => {
               className={`block px-3 py-2 rounded-md text-base font-medium ${isActive('/') ? 'text-sarai-primary bg-gray-50' : 'text-gray-600 hover:bg-gray-50 hover:text-sarai-primary'}`}
               onClick={() => setIsOpen(false)}
             >
-              Home
+              {t('nav.home')}
             </Link>
             <Link
               to="/about"
               className={`block px-3 py-2 rounded-md text-base font-medium ${isActive('/about') ? 'text-sarai-primary bg-gray-50' : 'text-gray-600 hover:bg-gray-50 hover:text-sarai-primary'}`}
               onClick={() => setIsOpen(false)}
             >
-              About Me
+              {t('nav.about')}
             </Link>
             <Link
               to="/services"
               className={`block px-3 py-2 rounded-md text-base font-medium ${isActive('/services') ? 'text-sarai-primary bg-gray-50' : 'text-gray-600 hover:bg-gray-50 hover:text-sarai-primary'}`}
               onClick={() => setIsOpen(false)}
             >
-              Services
+              {t('nav.services')}
             </Link>
             <Link
               to="/chat"
               className={`block px-3 py-2 rounded-md text-base font-medium ${isActive('/chat') ? 'text-sarai-primary bg-gray-50' : 'text-gray-600 hover:bg-gray-50 hover:text-sarai-primary'}`}
               onClick={() => setIsOpen(false)}
             >
-              Chat
+              {t('nav.chat')}
             </Link>
             <Link
               to="/book"
               className="block px-3 py-2 rounded-md text-base font-medium btn-primary w-full text-center shadow-lg"
               onClick={() => setIsOpen(false)}
             >
-              Book a Class
+              {t('nav.book')}
             </Link>
           </div>
         </div>
