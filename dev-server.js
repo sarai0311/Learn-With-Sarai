@@ -13,15 +13,33 @@ const PORT = 3001;
 app.use(cors());
 app.use(express.json());
 
+// Google Calendar Service Account Path
+const SERVICE_ACCOUNT_PATH = '../spanish-sarai-calendar-4e3b82d56933.json';
+
+// Create Google Calendar client using the working method
+const createCalendarClient = async () => {
+  try {
+    const { google } = await import('googleapis');
+    
+    const auth = new google.auth.GoogleAuth({
+      keyFilename: SERVICE_ACCOUNT_PATH,
+      scopes: ['https://www.googleapis.com/auth/calendar']
+    });
+    
+    const authClient = await auth.getClient();
+    return google.calendar({ version: 'v3', auth: authClient });
+  } catch (error) {
+    console.error('Error creating Google Calendar client:', error);
+    return null;
+  }
+};
+
 // Calendar availability endpoint
 app.post('/api/calendar/availability', async (req, res) => {
   try {
     // Import the availability handler and adapt it
-    const { google } = await import('googleapis');
     const { format, addDays, startOfDay, endOfDay } = await import('date-fns');
     
-    const SERVICE_ACCOUNT_EMAIL = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-    const PRIVATE_KEY = process.env.GOOGLE_PRIVATE_KEY;
     const CALENDAR_ID = process.env.GOOGLE_CALENDAR_ID || 'sarai.syav@gmail.com';
     
     const TIME_SLOTS = [
@@ -30,32 +48,9 @@ app.post('/api/calendar/availability', async (req, res) => {
       '20:00', '21:00', '22:00'
     ];
     
-    // Create Google Calendar client
-    const createCalendarClient = () => {
-      try {
-        if (!SERVICE_ACCOUNT_EMAIL || !PRIVATE_KEY) {
-          console.error('Google Calendar credentials not configured');
-          return null;
-        }
-
-        const auth = new google.auth.JWT(
-          SERVICE_ACCOUNT_EMAIL,
-          null,
-          PRIVATE_KEY.replace(/\\n/g, '\n'),
-          ['https://www.googleapis.com/auth/calendar'],
-          null
-        );
-
-        return google.calendar({ version: 'v3', auth });
-      } catch (error) {
-        console.error('Error creating Google Calendar client:', error);
-        return null;
-      }
-    };
-    
     // Get busy times from Google Calendar
     const getBusyTimes = async (startDate, endDate, timezone = 'Atlantic/Canary') => {
-      const calendar = createCalendarClient();
+      const calendar = await createCalendarClient();
       if (!calendar) return [];
 
       try {
@@ -74,7 +69,8 @@ app.post('/api/calendar/availability', async (req, res) => {
           end: slot.end || ''
         }));
       } catch (error) {
-        console.error('Error fetching busy times:', error);
+        console.error('Error fetching busy times:', error.message);
+        // Don't fail completely - return empty array so calendar still shows available slots
         return [];
       }
     };
@@ -157,10 +153,6 @@ app.post('/api/calendar/availability', async (req, res) => {
 // Calendar create event endpoint
 app.post('/api/calendar/create-event', async (req, res) => {
   try {
-    const { google } = await import('googleapis');
-    
-    const SERVICE_ACCOUNT_EMAIL = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-    const PRIVATE_KEY = process.env.GOOGLE_PRIVATE_KEY;
     const CALENDAR_ID = process.env.GOOGLE_CALENDAR_ID || 'sarai.syav@gmail.com';
     
     const { 
@@ -173,30 +165,7 @@ app.post('/api/calendar/create-event', async (req, res) => {
       timezone = 'Atlantic/Canary'
     } = req.body;
 
-    // Create Google Calendar client
-    const createCalendarClient = () => {
-      try {
-        if (!SERVICE_ACCOUNT_EMAIL || !PRIVATE_KEY) {
-          console.error('Google Calendar credentials not configured');
-          return null;
-        }
-
-        const auth = new google.auth.JWT(
-          SERVICE_ACCOUNT_EMAIL,
-          null,
-          PRIVATE_KEY.replace(/\\n/g, '\n'),
-          ['https://www.googleapis.com/auth/calendar'],
-          null
-        );
-
-        return google.calendar({ version: 'v3', auth });
-      } catch (error) {
-        console.error('Error creating Google Calendar client:', error);
-        return null;
-      }
-    };
-
-    const calendar = createCalendarClient();
+    const calendar = await createCalendarClient();
     if (!calendar) {
       return res.status(500).json({ 
         success: false, 
@@ -259,11 +228,36 @@ app.post('/api/calendar/create-event', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`🚀 API server running on http://localhost:${PORT}`);
-  console.log('Environment variables loaded:', {
-    GOOGLE_SERVICE_ACCOUNT_EMAIL: !!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-    GOOGLE_PRIVATE_KEY: !!process.env.GOOGLE_PRIVATE_KEY,
-    GOOGLE_CALENDAR_ID: process.env.GOOGLE_CALENDAR_ID
-  });
+  
+  // Test the calendar connection on startup
+  console.log('\n🔍 Testing Calendar Connection...');
+  try {
+    const calendar = await createCalendarClient();
+    if (calendar) {
+      const calendarList = await calendar.calendarList.list();
+      console.log('✅ Google Calendar API connected successfully');
+      console.log(`├── Accessible calendars: ${calendarList.data.items?.length || 0}`);
+      
+      const targetCalendar = process.env.GOOGLE_CALENDAR_ID;
+      const foundCalendar = calendarList.data.items?.find(cal => cal.id === targetCalendar);
+      
+      if (foundCalendar) {
+        console.log(`✅ Target calendar "${targetCalendar}" accessible`);
+        console.log(`└── Access role: ${foundCalendar.accessRole}`);
+      } else {
+        console.log(`❌ Target calendar "${targetCalendar}" NOT accessible`);
+        console.log('💡 SOLUTION: Share the calendar with the service account:');
+        console.log(`   └── ${process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL}`);
+      }
+    }
+  } catch (testError) {
+    console.log('❌ Calendar connection test failed:', testError.message);
+  }
+  
+  console.log('\n📋 Environment Status:');
+  console.log('├── Service Account Email:', !!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL);
+  console.log('├── Calendar ID:', process.env.GOOGLE_CALENDAR_ID);
+  console.log('└── Service Account File:', SERVICE_ACCOUNT_PATH);
 }); 
