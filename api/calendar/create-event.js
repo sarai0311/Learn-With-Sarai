@@ -5,23 +5,28 @@ const SERVICE_ACCOUNT_EMAIL = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
 const PRIVATE_KEY = process.env.GOOGLE_PRIVATE_KEY;
 const CALENDAR_ID = process.env.GOOGLE_CALENDAR_ID || 'sarai.syav@gmail.com';
 
-// Create Google Calendar client
-const createCalendarClient = () => {
+// Create Google Calendar client using the working method
+const createCalendarClient = async () => {
   try {
     if (!SERVICE_ACCOUNT_EMAIL || !PRIVATE_KEY) {
       console.error('Google Calendar credentials not configured');
       return null;
     }
 
-    const auth = new google.auth.JWT(
-      SERVICE_ACCOUNT_EMAIL,
-      null,
-      PRIVATE_KEY.replace(/\\n/g, '\n'),
-      ['https://www.googleapis.com/auth/calendar'],
-      null
-    );
+    // Create credentials object from environment variables
+    const credentials = {
+      type: 'service_account',
+      client_email: SERVICE_ACCOUNT_EMAIL,
+      private_key: PRIVATE_KEY.replace(/\\n/g, '\n'),
+    };
 
-    return google.calendar({ version: 'v3', auth });
+    const auth = new google.auth.GoogleAuth({
+      credentials,
+      scopes: ['https://www.googleapis.com/auth/calendar']
+    });
+    
+    const authClient = await auth.getClient();
+    return google.calendar({ version: 'v3', auth: authClient });
   } catch (error) {
     console.error('Error creating Google Calendar client:', error);
     return null;
@@ -54,7 +59,7 @@ export default async function handler(req, res) {
       timezone = 'Atlantic/Canary'
     } = req.body;
 
-    const calendar = createCalendarClient();
+    const calendar = await createCalendarClient();
     if (!calendar) {
       return res.status(500).json({ 
         success: false, 

@@ -43,23 +43,28 @@ const convertTimeSlot = (timeSlot, date, serverTimezone, userTimezone) => {
   }
 };
 
-// Create Google Calendar client
-const createCalendarClient = () => {
+// Create Google Calendar client using the working method
+const createCalendarClient = async () => {
   try {
     if (!SERVICE_ACCOUNT_EMAIL || !PRIVATE_KEY) {
       console.error('Google Calendar credentials not configured');
       return null;
     }
 
-    const auth = new google.auth.JWT(
-      SERVICE_ACCOUNT_EMAIL,
-      null,
-      PRIVATE_KEY.replace(/\\n/g, '\n'),
-      ['https://www.googleapis.com/auth/calendar'],
-      null
-    );
+    // Create credentials object from environment variables
+    const credentials = {
+      type: 'service_account',
+      client_email: SERVICE_ACCOUNT_EMAIL,
+      private_key: PRIVATE_KEY.replace(/\\n/g, '\n'),
+    };
 
-    return google.calendar({ version: 'v3', auth });
+    const auth = new google.auth.GoogleAuth({
+      credentials,
+      scopes: ['https://www.googleapis.com/auth/calendar']
+    });
+    
+    const authClient = await auth.getClient();
+    return google.calendar({ version: 'v3', auth: authClient });
   } catch (error) {
     console.error('Error creating Google Calendar client:', error);
     return null;
@@ -68,7 +73,7 @@ const createCalendarClient = () => {
 
 // Get busy times from Google Calendar
 const getBusyTimes = async (startDate, endDate, timezone = 'Atlantic/Canary') => {
-  const calendar = createCalendarClient();
+  const calendar = await createCalendarClient();
   if (!calendar) return [];
 
   try {
@@ -87,7 +92,8 @@ const getBusyTimes = async (startDate, endDate, timezone = 'Atlantic/Canary') =>
       end: slot.end || ''
     }));
   } catch (error) {
-    console.error('Error fetching busy times:', error);
+    console.error('Error fetching busy times:', error.message);
+    // Don't fail completely - return empty array so calendar still shows available slots
     return [];
   }
 };
