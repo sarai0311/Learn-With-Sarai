@@ -1,11 +1,16 @@
 import { google } from 'googleapis';
 import { format, addDays, startOfDay, endOfDay } from 'date-fns';
-import { toZonedTime, fromZonedTime, formatInTimeZone } from 'date-fns-tz';
+import { toZonedTime, fromZonedTime, formatInTimeZone, zonedTimeToUtc } from 'date-fns-tz';
 
 // Google Calendar configuration
 const SERVICE_ACCOUNT_EMAIL = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
 const PRIVATE_KEY = process.env.GOOGLE_PRIVATE_KEY;
-const CALENDAR_ID = process.env.GOOGLE_CALENDAR_ID || 'sarai.syav@gmail.com';
+// Primary calendar ID remains for event creation but availability can read many.
+const PRIMARY_CALENDAR_ID = process.env.GOOGLE_CALENDAR_ID || 'sarai.syav@gmail.com';
+// Optional comma-separated list of additional calendars to consider busy.
+const CALENDAR_IDS = process.env.GOOGLE_CALENDAR_IDS
+  ? process.env.GOOGLE_CALENDAR_IDS.split(',').map((id) => id.trim()).filter(Boolean)
+  : [PRIMARY_CALENDAR_ID];
 
 // Time slots configuration (in server timezone - Atlantic/Canary)
 const TIME_SLOTS = [
@@ -82,15 +87,17 @@ const getBusyTimes = async (startDate, endDate, timezone = 'Atlantic/Canary') =>
         timeMin: startDate.toISOString(),
         timeMax: endDate.toISOString(),
         timeZone: timezone,
-        items: [{ id: CALENDAR_ID }]
+        items: CALENDAR_IDS.map((id) => ({ id }))
       }
     });
 
-    const busy = response.data.calendars?.[CALENDAR_ID]?.busy || [];
-    return busy.map(slot => ({
-      start: slot.start || '',
-      end: slot.end || ''
-    }));
+    // Flatten busy arrays from all calendars
+    const allBusy = [];
+    for (const id of CALENDAR_IDS) {
+      const calBusy = response.data.calendars?.[id]?.busy || [];
+      allBusy.push(...calBusy);
+    }
+    return allBusy.map(slot => ({ start: slot.start || '', end: slot.end || '' }));
   } catch (error) {
     console.error('Error fetching busy times:', error.message);
     // Don't fail completely - return empty array so calendar still shows available slots
@@ -99,9 +106,11 @@ const getBusyTimes = async (startDate, endDate, timezone = 'Atlantic/Canary') =>
 };
 
 // Check if a time slot conflicts with busy times
-const isSlotBusy = (date, time, busyTimes) => {
-  const slotStart = new Date(`${date}T${time}:00`);
-  const slotEnd = new Date(slotStart.getTime() + 60 * 60 * 1000); // 1 hour later
+const isSlotBusy = (date, time, busyTimes, timezone = 'Atlantic/Canary') => {
+  // Convert slot time in server timezone to UTC so it can be compared with the
+  // UTC timestamps that Google Calendar returns.
+  const slotStart = zonedTimeToUtc(`${date}T${time}:00`, timezone);
+  const slotEnd   = new Date(slotStart.getTime() + 60 * 60 * 1000); // 1 hour later
 
   return busyTimes.some(busy => {
     const busyStart = new Date(busy.start);
@@ -176,7 +185,7 @@ export default async function handler(req, res) {
         }
         
         // Check if slot is busy (using server time)
-        if (isSlotBusy(dateKey, time, busyTimes)) {
+        if (isSlotBusy(dateKey, time, busyTimes, timezone)) {
           return { 
             time: converted.time, 
             originalTime: converted.originalTime,

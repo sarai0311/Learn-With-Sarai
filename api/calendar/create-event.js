@@ -3,7 +3,7 @@ import { google } from 'googleapis';
 // Google Calendar configuration
 const SERVICE_ACCOUNT_EMAIL = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
 const PRIVATE_KEY = process.env.GOOGLE_PRIVATE_KEY;
-const CALENDAR_ID = process.env.GOOGLE_CALENDAR_ID || 'sarai.syav@gmail.com';
+const PRIMARY_CALENDAR_ID = process.env.GOOGLE_CALENDAR_ID || 'sarai.syav@gmail.com';
 
 // Create Google Calendar client using the working method
 const createCalendarClient = async () => {
@@ -102,7 +102,7 @@ export default async function handler(req, res) {
     };
 
     const response = await calendar.events.insert({
-      calendarId: CALENDAR_ID,
+      calendarId: PRIMARY_CALENDAR_ID,
       conferenceDataVersion: 1,
       sendNotifications: true,
       requestBody: event,
