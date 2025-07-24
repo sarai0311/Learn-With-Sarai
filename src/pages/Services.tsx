@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const Services = () => {
   const { t } = useLanguage();
@@ -257,36 +258,23 @@ const Services = () => {
               </h2>
             </ScrollAnimation>
             
-            <div className="max-w-3xl mx-auto divide-y divide-gray-200">
-              <ScrollAnimation direction="left" delay={0.1}>
-                <motion.div 
-                  whileHover={{ x: 10 }}
-                  transition={{ duration: 0.3 }}
-                  className="py-6"
-                >
-                  <h3 className="text-lg font-semibold text-sarai-text mb-2">
-                    {t('services.faq.q1')}
-                  </h3>
-                  <p className="text-gray-600">
-                    {t('services.faq.a1')}
-                  </p>
-                </motion.div>
-              </ScrollAnimation>
-              
-              <ScrollAnimation direction="right" delay={0.2}>
-                <motion.div 
-                  whileHover={{ x: -10 }}
-                  transition={{ duration: 0.3 }}
-                  className="py-6"
-                >
-                  <h3 className="text-lg font-semibold text-sarai-text mb-2">
-                    {t('services.faq.q2')}
-                  </h3>
-                  <p className="text-gray-600">
-                    {t('services.faq.a2')}
-                  </p>
-                </motion.div>
-              </ScrollAnimation>
+            <div className="max-w-4xl mx-auto">
+              <Accordion type="single" collapsible className="space-y-4">
+                {[...Array(10)].map((_, i) => (
+                  <AccordionItem key={i} value={`item-${i + 1}`} className="bg-white rounded-lg border border-gray-200">
+                    <AccordionTrigger className="px-6 py-4 hover:bg-gray-50 transition-colors">
+                      <span className="text-left font-semibold text-sarai-text">
+                        {t(`services.faq.q${i + 1}`)}
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="px-6 pb-4">
+                      <p className="text-gray-600">
+                        {t(`services.faq.a${i + 1}`)}
+                      </p>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
             </div>
           </div>
         </section>
