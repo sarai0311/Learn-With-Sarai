@@ -179,6 +179,12 @@ const AvailabilityCalendar = ({ onSlotSelect, selectedSlot: externalSelectedSlot
             <CalendarIcon className="w-4 h-4" />
             {language === 'es' ? 'Programa tu Clase' : 'Schedule Your Class'}
           </CardTitle>
+          <p className="text-xs text-gray-600 mt-1">
+            {language === 'es' 
+              ? `Horarios mostrados en tu zona horaria (${getTimezoneDisplayName(userTimezone)})` 
+              : `Times shown in your timezone (${getTimezoneDisplayName(userTimezone)})`
+            }
+          </p>
         </CardHeader>
         <CardContent className="px-3 pb-4">
           {/* Calendar Grid - Properly Centered */}
@@ -305,8 +311,8 @@ const AvailabilityCalendar = ({ onSlotSelect, selectedSlot: externalSelectedSlot
             </p>
             <p className="text-xs text-green-600 mt-1">
               {language === 'es' 
-                ? `${getTimezoneDisplayName(userTimezone)} • La clase será en ${getTimezoneDisplayName('Atlantic/Canary')}`
-                : `${getTimezoneDisplayName(userTimezone)} • Class will be in ${getTimezoneDisplayName('Atlantic/Canary')}`
+                ? `Tu zona horaria: ${getTimezoneDisplayName(userTimezone)} • La clase será en ${getTimezoneDisplayName('Atlantic/Canary')}`
+                : `Your timezone: ${getTimezoneDisplayName(userTimezone)} • Class will be in ${getTimezoneDisplayName('Atlantic/Canary')}`
               }
             </p>
           </CardContent>

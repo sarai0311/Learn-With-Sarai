@@ -14,6 +14,8 @@ import { motion } from "framer-motion";
 import { CheckCircle, CreditCard, Calendar, User, ArrowLeft } from "lucide-react";
 import { userProfileService, bookingService } from "@/lib/supabase";
 import { googleCalendarService } from "@/lib/googleCalendar";
+import { getUserTimezone } from "@/lib/utils";
+import { getUserTimezone } from "@/lib/utils";
 
 interface ServiceOption {
   id: string;
@@ -31,7 +33,7 @@ const BookClass = () => {
   const [customerInfo, setCustomerInfo] = useState({
     name: "",
     email: "",
-    timezone: "Atlantic/Canary",
+    timezone: getUserTimezone(), // Initialize with detected timezone
     level: "",
     goals: "",
   });
@@ -308,39 +310,7 @@ const BookClass = () => {
                         />
                       </div>
                       
-                      <div className="space-y-2">
-                        <Label htmlFor="timezone">{t('book.timezone')}</Label>
-                        <Select value={customerInfo.timezone} onValueChange={(value) => setCustomerInfo({...customerInfo, timezone: value})}>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select your timezone" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="Pacific/Honolulu">(UTC-10:00) Hawaii</SelectItem>
-                            <SelectItem value="America/Anchorage">(UTC-09:00) Alaska</SelectItem>
-                            <SelectItem value="America/Los_Angeles">(UTC-08:00) Pacific Time (US & Canada)</SelectItem>
-                            <SelectItem value="America/Denver">(UTC-07:00) Mountain Time (US & Canada)</SelectItem>
-                            <SelectItem value="America/Chicago">(UTC-06:00) Central Time (US & Canada)</SelectItem>
-                            <SelectItem value="America/New_York">(UTC-05:00) Eastern Time (US & Canada)</SelectItem>
-                            <SelectItem value="America/Halifax">(UTC-04:00) Atlantic Time (Canada)</SelectItem>
-                            <SelectItem value="America/Sao_Paulo">(UTC-03:00) Argentina, Brazil</SelectItem>
-                            <SelectItem value="Atlantic/Azores">(UTC-01:00) Azores</SelectItem>
-                            <SelectItem value="Europe/London">(UTC+00:00) London, Dublin, Edinburgh</SelectItem>
-                            <SelectItem value="Atlantic/Canary">(UTC+01:00) Las Palmas, Canary Islands</SelectItem>
-                            <SelectItem value="Europe/Madrid">(UTC+01:00) Madrid, Paris, Berlin</SelectItem>
-                            <SelectItem value="Europe/Cairo">(UTC+02:00) Cairo, Helsinki, Athens</SelectItem>
-                            <SelectItem value="Europe/Moscow">(UTC+03:00) Moscow, Baghdad, Kuwait</SelectItem>
-                            <SelectItem value="Asia/Dubai">(UTC+04:00) Abu Dhabi, Muscat</SelectItem>
-                            <SelectItem value="Asia/Karachi">(UTC+05:00) Islamabad, Karachi</SelectItem>
-                            <SelectItem value="Asia/Kolkata">(UTC+05:30) Mumbai, New Delhi</SelectItem>
-                            <SelectItem value="Asia/Dhaka">(UTC+06:00) Almaty, Dhaka</SelectItem>
-                            <SelectItem value="Asia/Bangkok">(UTC+07:00) Bangkok, Hanoi, Jakarta</SelectItem>
-                            <SelectItem value="Asia/Shanghai">(UTC+08:00) Beijing, Singapore, Perth</SelectItem>
-                            <SelectItem value="Asia/Tokyo">(UTC+09:00) Tokyo, Seoul, Osaka</SelectItem>
-                            <SelectItem value="Australia/Sydney">(UTC+10:00) Canberra, Melbourne, Sydney</SelectItem>
-                            <SelectItem value="Pacific/Auckland">(UTC+12:00) Auckland, Fiji</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
+                      {/* Remove timezone selection dropdown */}
                       
                       <div className="space-y-2">
                         <Label htmlFor="level">{t('book.level')}</Label>
