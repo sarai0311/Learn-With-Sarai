@@ -16,7 +16,7 @@ import { CheckCircle, CreditCard, Calendar, User, ArrowLeft } from "lucide-react
 import { userProfileService, bookingService } from "@/lib/supabase";
 import { googleCalendarService } from "@/lib/googleCalendar";
 import { getUserTimezone } from "@/lib/utils";
-import { getUserTimezone } from "@/lib/utils";
+import TermsAndConditions from "@/components/TermsAndConditions";
 
 interface ServiceOption {
   id: string;
@@ -507,7 +507,7 @@ const BookClass = () => {
                     Thank you for booking your {selectedService.name}! You'll receive a confirmation email shortly with all the details and next steps.
                   </p>
 
-                  <Card className="text-left">
+                  <Card className="text-left mb-8">
                     <CardHeader>
                       <CardTitle>What happens next?</CardTitle>
                     </CardHeader>
@@ -535,6 +535,11 @@ const BookClass = () => {
                       </div>
                     </CardContent>
                   </Card>
+
+                  {/* Terms and Conditions */}
+                  <div className="mb-8">
+                    <TermsAndConditions />
+                  </div>
 
                   <div className="mt-8">
                     <Button 

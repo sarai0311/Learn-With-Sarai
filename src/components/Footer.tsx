@@ -47,6 +47,11 @@ const Footer = () => {
                   {t('footer.book')}
                 </Link>
               </li>
+              <li>
+                <Link to="/terms" className="text-gray-600 hover:text-sarai-primary transition-colors duration-200 text-sm">
+                  {t('footer.terms')}
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

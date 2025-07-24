@@ -10,6 +10,7 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import BookClass from "./pages/BookClass";
 import Chat from "./pages/Chat";
+import Terms from "./pages/Terms";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,6 +28,7 @@ const App = () => (
             <Route path="/services" element={<Services />} />
             <Route path="/book" element={<BookClass />} />
             <Route path="/chat" element={<Chat />} />
+            <Route path="/terms" element={<Terms />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

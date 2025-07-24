@@ -184,6 +184,7 @@ const translations: Record<'en' | 'es', Record<string, string>> = {
     'footer.about': 'About Me',
     'footer.services': 'Services',
     'footer.book': 'Book a Class',
+    'footer.terms': 'Terms & Conditions',
     'footer.rights': 'All rights reserved.',
     'footer.designed': 'Designed with ❤️ for Spanish learners worldwide.',
   },
@@ -323,12 +324,13 @@ const translations: Record<'en' | 'es', Record<string, string>> = {
     'chat.send': 'Enviar',
 
     // Footer
-    'footer.description': 'Lecciones de español online personalizadas con una profesora profesional. Aprende español a tu propio ritmo con clases personalizadas.',
+    'footer.description': 'Clases personalizadas de español online con una profesora profesional. Aprende español a tu propio ritmo con clases personalizadas.',
     'footer.quickLinks': 'Enlaces Rápidos',
     'footer.home': 'Inicio',
     'footer.about': 'Sobre Mí',
     'footer.services': 'Servicios',
     'footer.book': 'Reservar Clase',
+    'footer.terms': 'Términos y Condiciones',
     'footer.rights': 'Todos los derechos reservados.',
     'footer.designed': 'Diseñado con ❤️ para estudiantes de español en todo el mundo.',
   }
