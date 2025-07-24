@@ -49,7 +49,7 @@ const About = () => {
                       </div>
                     </div>
                     <div className="text-center">
-                      <h3 className="text-2xl font-bold text-sarai-text mb-2">Sarai Samuels</h3>
+                      <h3 className="text-2xl font-bold text-sarai-text mb-2">Sarai Acevedo</h3>
                       <p className="text-sarai-steel mb-4">Certified Spanish Teacher</p>
                       <div className="flex justify-center space-x-1 mb-4">
                         {[...Array(5)].map((_, i) => (
