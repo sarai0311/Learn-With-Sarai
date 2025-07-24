@@ -2,7 +2,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AvailabilityCalendar from "@/components/AvailabilityCalendar";
 import StripePaymentForm from "@/components/StripePaymentForm";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -27,6 +28,9 @@ interface ServiceOption {
 }
 
 const BookClass = () => {
+  const [searchParams] = useSearchParams();
+  const serviceParam = searchParams.get('service');
+  
   const [step, setStep] = useState(1);
   const [selectedService, setSelectedService] = useState<ServiceOption | null>(null);
   const [selectedSlot, setSelectedSlot] = useState<{date: string, time: string} | null>(null);
@@ -42,6 +46,17 @@ const BookClass = () => {
   const [isCreatingProfile, setIsCreatingProfile] = useState(false);
 
   const { t, language } = useLanguage();
+
+  // Initialize selected service from URL parameter
+  useEffect(() => {
+    if (serviceParam) {
+      const service = serviceOptions.find(s => s.id === serviceParam);
+      if (service) {
+        setSelectedService(service);
+        setStep(2); // Skip to step 2 (calendar and details)
+      }
+    }
+  }, [serviceParam]);
 
   // Handle slot selection
   const handleSlotSelect = (slot: { date: string; time: string } | null) => {
@@ -185,38 +200,41 @@ const BookClass = () => {
         <section className="bg-gray-50 py-8">
           <div className="sarai-container max-w-4xl mx-auto">
             <div className="flex items-center justify-center space-x-8">
-              {[1, 2, 3, 4].map((stepNumber) => (
+              {/* Adjust steps when service is pre-selected */}
+              {[1, 2, 3].map((stepNumber) => (
                 <div key={stepNumber} className="flex items-center">
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
-                    step >= stepNumber 
+                    (serviceParam ? stepNumber + 1 : stepNumber) >= step 
                       ? 'bg-sarai-primary text-white' 
                       : 'bg-gray-300 text-gray-600'
                   }`}>
-                    {step > stepNumber ? (
+                    {(serviceParam ? stepNumber + 1 : stepNumber) > step ? (
                       <CheckCircle className="h-6 w-6" />
                     ) : (
-                      stepNumber
+                      serviceParam ? stepNumber + 1 : stepNumber
                     )}
                   </div>
-                  {stepNumber < 4 && (
+                  {stepNumber < 3 && (
                     <div className={`w-16 h-1 mx-2 ${
-                      step > stepNumber ? 'bg-sarai-primary' : 'bg-gray-300'
+                      (serviceParam ? stepNumber + 1 : stepNumber) > step ? 'bg-sarai-primary' : 'bg-gray-300'
                     }`} />
                   )}
                 </div>
               ))}
             </div>
             <div className="flex justify-center mt-4 space-x-16 text-sm">
-              <span className={step >= 1 ? 'text-sarai-primary font-medium' : 'text-gray-500'}>
-                Choose Class
-              </span>
-              <span className={step >= 2 ? 'text-sarai-primary font-medium' : 'text-gray-500'}>
+              {!serviceParam && (
+                <span className={step >= 1 ? 'text-sarai-primary font-medium' : 'text-gray-500'}>
+                  Choose Class
+                </span>
+              )}
+              <span className={step >= (serviceParam ? 2 : 1) ? 'text-sarai-primary font-medium' : 'text-gray-500'}>
                 Your Details
               </span>
-              <span className={step >= 3 ? 'text-sarai-primary font-medium' : 'text-gray-500'}>
+              <span className={step >= (serviceParam ? 3 : 2) ? 'text-sarai-primary font-medium' : 'text-gray-500'}>
                 Payment
               </span>
-              <span className={step >= 4 ? 'text-sarai-primary font-medium' : 'text-gray-500'}>
+              <span className={step >= (serviceParam ? 4 : 3) ? 'text-sarai-primary font-medium' : 'text-gray-500'}>
                 Confirmed
               </span>
             </div>
@@ -227,8 +245,8 @@ const BookClass = () => {
         <section className="sarai-section bg-white">
           <div className="sarai-container max-w-4xl mx-auto">
             
-            {/* Step 1: Choose Service */}
-            {step === 1 && (
+            {/* Only show Step 1 if no service is pre-selected */}
+            {!serviceParam && step === 1 && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
