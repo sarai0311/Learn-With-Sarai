@@ -63,7 +63,7 @@ const Services = () => {
                           description="Try a 25-minute class to assess your level and discuss your learning goals."
                           icon="🎁"
                           price="€10.50"
-                          serviceId="trial"
+                          stripeLink="https://buy.stripe.com/9B66oJ0Ju9tudyZeaR"
                           features={[
                             "25 minutes",
                             "Level assessment",
@@ -81,7 +81,7 @@ const Services = () => {
                           description="Regular one-on-one Spanish lessons focused on your specific learning goals."
                           icon="📚"
                           price="€21.00"
-                          serviceId="standard"
+                          stripeLink="https://buy.stripe.com/9B6eVf63O49agLb8Qx"
                           features={[
                             "50 minutes",
                             "Customized curriculum",
@@ -99,7 +99,7 @@ const Services = () => {
                           description="Extended sessions for faster progress with additional materials and support."
                           icon="⭐"
                           price="€42.00"
-                          serviceId="premium"
+                          stripeLink="https://buy.stripe.com/28E28t1Ny0WYbqR2s9"
                           features={[
                             "100 minutes",
                             "Personalized learning materials",
@@ -132,6 +132,8 @@ const Services = () => {
                           description="Perfect for beginners or those testing the waters with consistent learning."
                           icon="🚀"
                           price="€105.00"
+                          stripeLink="https://buy.stripe.com/aFa9AV4ZKfRSeD3giZ"
+                          isPackage={true}
                           features={[
                             "5 classes",
                             "50 minutes each",
@@ -149,6 +151,8 @@ const Services = () => {
                           description="Our most popular package for steady and consistent progress."
                           icon="🔥"
                           price="€201.00"
+                          stripeLink="https://buy.stripe.com/fZu9AVgIsaxy8eFgiZ"
+                          isPackage={true}
                           features={[
                             "10 classes",
                             "50 minutes each",
@@ -166,6 +170,8 @@ const Services = () => {
                           description="Intensive learning experience for rapid progress and deep immersion."
                           icon="🌟"
                           price="€379.00"
+                          stripeLink="https://buy.stripe.com/cNi3cx4ZK7lm3Yp4Ah"
+                          isPackage={true}
                           features={[
                             "20 classes",
                             "50 minutes each",
