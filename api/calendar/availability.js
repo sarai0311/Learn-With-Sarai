@@ -152,8 +152,8 @@ export default async function handler(req, res) {
       const dateKey = format(date, 'yyyy-MM-dd');
       const dayOfWeek = date.getDay();
       
-      // Skip weekends
-      if (dayOfWeek === 0 || dayOfWeek === 6) {
+      // Skip weekends (only Saturday)
+      if (dayOfWeek === 6) {
         availability[dateKey] = {
           date: dateKey,
           slots: TIME_SLOTS.map(time => {
