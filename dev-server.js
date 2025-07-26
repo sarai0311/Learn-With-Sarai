@@ -13,8 +13,9 @@ const PORT = 3001;
 app.use(cors());
 app.use(express.json());
 
-// Google Calendar Service Account Path
-const SERVICE_ACCOUNT_PATH = '../spanish-sarai-calendar-4e3b82d56933.json';
+// Google Calendar Service-Account JSON (resolve relative to this file)
+import path from 'path';
+const SERVICE_ACCOUNT_PATH = path.join(__dirname, '..', 'spanish-sarai-calendar-4e3b82d56933.json');
 
 // Create Google Calendar client using the working method
 const createCalendarClient = async () => {
