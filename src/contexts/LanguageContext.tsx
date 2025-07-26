@@ -154,7 +154,7 @@ const translations: Record<'en' | 'es', Record<string, string>> = {
     'services.faq.a5': "All classes are private, one-on-one sessions to ensure you get personalized attention and can progress at your own pace.",
     'services.faq.q6': 'How do payments work?',
     'services.faq.a6': "We use secure payment processing through Stripe. You can pay per class or choose a package. All prices are in euros, and you'll receive an invoice for each payment.",
-    'services.faq.q7': 'What's the difference between standard and premium classes?',
+    'services.faq.q7': 'What is the difference between standard and premium classes?',
     'services.faq.a7': "Standard classes (50 minutes) are perfect for regular learning, while premium classes (100 minutes) offer extended practice time and additional materials. Premium classes also include email support between sessions.",
     'services.faq.q8': 'Can I switch between class types?',
     'services.faq.a8': "Yes! You can try different class types to find what works best for you. Just book your preferred class type when scheduling your next session.",

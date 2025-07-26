@@ -12,6 +12,8 @@ const CALENDAR_IDS = process.env.GOOGLE_CALENDAR_IDS
   ? process.env.GOOGLE_CALENDAR_IDS.split(',').map((id) => id.trim()).filter(Boolean)
   : [PRIMARY_CALENDAR_ID];
 
+console.log('📅 Configured calendars:', CALENDAR_IDS);
+
 // Time slots configuration (in server timezone - Atlantic/Canary)
 const TIME_SLOTS = [
   '13:00', '14:00', '15:00', '16:00', 
@@ -76,12 +78,13 @@ const createCalendarClient = async () => {
   }
 };
 
-// Get busy times from Google Calendar
-const getBusyTimes = async (startDate, endDate, timezone = 'Atlantic/Canary') => {
+// Fetch busy times from Google Calendar(s)
+const fetchBusyTimes = async (startDate, endDate, timezone = 'Atlantic/Canary') => {
   const calendar = await createCalendarClient();
   if (!calendar) return [];
 
   try {
+    console.log('🔍 Fetching busy times for calendars:', CALENDAR_IDS);
     const response = await calendar.freebusy.query({
       requestBody: {
         timeMin: startDate.toISOString(),
@@ -95,8 +98,10 @@ const getBusyTimes = async (startDate, endDate, timezone = 'Atlantic/Canary') =>
     const allBusy = [];
     for (const id of CALENDAR_IDS) {
       const calBusy = response.data.calendars?.[id]?.busy || [];
+      console.log(`📋 Calendar ${id}: ${calBusy.length} busy slots`, calBusy);
       allBusy.push(...calBusy);
     }
+    console.log('🔥 Total busy times:', allBusy.length);
     return allBusy.map(slot => ({ start: slot.start || '', end: slot.end || '' }));
   } catch (error) {
     console.error('Error fetching busy times:', error.message);
@@ -144,7 +149,7 @@ export default async function handler(req, res) {
     const endDate = endOfDay(addDays(startDate, days));
 
     // Get busy times from Google Calendar (always in server timezone)
-    const busyTimes = await getBusyTimes(startDate, endDate, timezone);
+    const busyTimes = await fetchBusyTimes(startDate, endDate, timezone);
     
     // Generate availability for each day
     for (let i = 0; i < days; i++) {
@@ -152,8 +157,8 @@ export default async function handler(req, res) {
       const dateKey = format(date, 'yyyy-MM-dd');
       const dayOfWeek = date.getDay();
       
-      // Skip weekends (only Saturday)
-      if (dayOfWeek === 6) {
+      // Skip weekends
+      if (dayOfWeek === 0 || dayOfWeek === 6) {
         availability[dateKey] = {
           date: dateKey,
           slots: TIME_SLOTS.map(time => {

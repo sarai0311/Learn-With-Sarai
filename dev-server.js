@@ -13,6 +13,17 @@ const PORT = 3001;
 app.use(cors());
 app.use(express.json());
 
+// Environment variables
+const SERVICE_ACCOUNT_EMAIL = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
+const PRIVATE_KEY = process.env.GOOGLE_PRIVATE_KEY;
+const CALENDAR_ID = process.env.GOOGLE_CALENDAR_ID || 'sarai.syav@gmail.com';
+// Support multiple calendars
+const CALENDAR_IDS = process.env.GOOGLE_CALENDAR_IDS
+  ? process.env.GOOGLE_CALENDAR_IDS.split(',').map((id) => id.trim()).filter(Boolean)
+  : [CALENDAR_ID];
+
+console.log('📅 Configured calendars:', CALENDAR_IDS);
+
 // Google Calendar Service-Account JSON (resolve relative to this file)
 import path from 'path';
 const SERVICE_ACCOUNT_PATH = path.join(__dirname, '..', 'spanish-sarai-calendar-4e3b82d56933.json');
@@ -41,31 +52,37 @@ app.post('/api/calendar/availability', async (req, res) => {
     // Import the availability handler and adapt it
     const { format, addDays, startOfDay, endOfDay } = await import('date-fns');
     
-    const CALENDAR_ID = process.env.GOOGLE_CALENDAR_ID || 'sarai.syav@gmail.com';
-    
     const TIME_SLOTS = [
       '13:00', '14:00', '15:00', '16:00', 
       '17:00', '18:00', '19:00',
       '20:00', '21:00', '22:00'
     ];
     
-    // Get busy times from Google Calendar
+    // Fetch busy times from Google Calendar
     const getBusyTimes = async (startDate, endDate, timezone = 'Atlantic/Canary') => {
       const calendar = await createCalendarClient();
       if (!calendar) return [];
 
       try {
+        console.log('🔍 Fetching busy times for calendars:', CALENDAR_IDS);
         const response = await calendar.freebusy.query({
           requestBody: {
             timeMin: startDate.toISOString(),
             timeMax: endDate.toISOString(),
             timeZone: timezone,
-            items: [{ id: CALENDAR_ID }]
+            items: CALENDAR_IDS.map((id) => ({ id }))
           }
         });
 
-        const busy = response.data.calendars?.[CALENDAR_ID]?.busy || [];
-        return busy.map(slot => ({
+        // Flatten busy arrays from all calendars
+        const allBusy = [];
+        for (const id of CALENDAR_IDS) {
+          const calBusy = response.data.calendars?.[id]?.busy || [];
+          console.log(`📋 Calendar ${id}: ${calBusy.length} busy slots`, calBusy);
+          allBusy.push(...calBusy);
+        }
+        console.log('🔥 Total busy times:', allBusy.length);
+        return allBusy.map(slot => ({
           start: slot.start || '',
           end: slot.end || ''
         }));
