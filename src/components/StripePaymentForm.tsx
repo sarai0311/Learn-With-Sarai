@@ -61,7 +61,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          amount: amount * 100, // Convert to cents
+          amount: amount, // Send in euros, backend will convert to cents
           currency: 'eur',
           serviceType,
           customerInfo,

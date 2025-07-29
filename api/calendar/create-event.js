@@ -5,9 +5,10 @@ const SERVICE_ACCOUNT_EMAIL = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
 const PRIVATE_KEY = process.env.GOOGLE_PRIVATE_KEY;
 const PRIMARY_CALENDAR_ID = process.env.GOOGLE_CALENDAR_ID || 'sarai.syav@gmail.com';
 
-// Create Google Calendar client using the working method
+// Create Google Calendar client using environment variables
 const createCalendarClient = async () => {
   try {
+    // Use environment variables for authentication
     if (!SERVICE_ACCOUNT_EMAIL || !PRIVATE_KEY) {
       console.error('Google Calendar credentials not configured');
       return null;
@@ -57,7 +58,24 @@ export default async function handler(req, res) {
       attendeeEmail, 
       attendeeName,
       timezone = 'Atlantic/Canary'
-    } = req.body;
+    } = req.body || {};
+
+    // Input validation
+    if (!title || typeof title !== 'string' || title.trim().length === 0) {
+      return res.status(400).json({ success: false, error: 'Valid title is required' });
+    }
+    
+    if (!startDateTime || !endDateTime) {
+      return res.status(400).json({ success: false, error: 'Start and end times are required' });
+    }
+    
+    if (!attendeeEmail || typeof attendeeEmail !== 'string' || !attendeeEmail.includes('@')) {
+      return res.status(400).json({ success: false, error: 'Valid email address is required' });
+    }
+    
+    if (!attendeeName || typeof attendeeName !== 'string' || attendeeName.trim().length === 0) {
+      return res.status(400).json({ success: false, error: 'Attendee name is required' });
+    }
 
     const calendar = await createCalendarClient();
     if (!calendar) {
@@ -115,9 +133,26 @@ export default async function handler(req, res) {
     });
   } catch (error) {
     console.error('Error creating calendar event:', error);
-    res.status(500).json({ 
+    
+    // Provide user-friendly error messages
+    let userMessage = 'Failed to create calendar event. Please try again later.';
+    let statusCode = 500;
+    
+    if (error.code === 403) {
+      userMessage = 'Calendar service permissions issue. Please contact support.';
+    } else if (error.code === 404) {
+      userMessage = 'Calendar not found. Please contact support.';
+    } else if (error.code === 409) {
+      userMessage = 'Time slot conflict. Please choose a different time.';
+      statusCode = 409;
+    } else if (error.code === 'ENOTFOUND' || error.code === 'ECONNREFUSED') {
+      userMessage = 'Calendar service is temporarily unavailable. Please try again in a few minutes.';
+      statusCode = 503;
+    }
+    
+    res.status(statusCode).json({ 
       success: false, 
-      error: error.message 
+      error: userMessage
     });
   }
 } 

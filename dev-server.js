@@ -5,6 +5,17 @@ import dotenv from 'dotenv';
 // Load environment variables
 dotenv.config({ path: '.env.local' });
 
+// Global error handlers for unhandled errors
+process.on('uncaughtException', (error) => {
+  console.error('Uncaught Exception:', error);
+  // Don't exit in development, just log
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+  // Don't exit in development, just log
+});
+
 // Import API handlers (we'll need to adapt them)
 const app = express();
 const PORT = 3001;
@@ -24,17 +35,26 @@ const CALENDAR_IDS = process.env.GOOGLE_CALENDAR_IDS
 
 console.log('📅 Configured calendars:', CALENDAR_IDS);
 
-// Google Calendar Service-Account JSON (resolve relative to this file)
-import path from 'path';
-const SERVICE_ACCOUNT_PATH = path.join(__dirname, '..', 'spanish-sarai-calendar-4e3b82d56933.json');
-
-// Create Google Calendar client using the working method
+// Create Google Calendar client using environment variables
 const createCalendarClient = async () => {
   try {
     const { google } = await import('googleapis');
     
+    // Use environment variables for authentication
+    if (!SERVICE_ACCOUNT_EMAIL || !PRIVATE_KEY) {
+      console.error('Google Calendar credentials not configured');
+      return null;
+    }
+
+    // Create credentials object from environment variables
+    const credentials = {
+      type: 'service_account',
+      client_email: SERVICE_ACCOUNT_EMAIL,
+      private_key: PRIVATE_KEY.replace(/\\n/g, '\n'),
+    };
+
     const auth = new google.auth.GoogleAuth({
-      keyFilename: SERVICE_ACCOUNT_PATH,
+      credentials,
       scopes: ['https://www.googleapis.com/auth/calendar']
     });
     
@@ -161,9 +181,30 @@ app.post('/api/calendar/availability', async (req, res) => {
     res.json({ availability });
   } catch (error) {
     console.error('Error fetching availability:', error);
-    res.status(500).json({ 
-      error: 'Failed to fetch availability',
-      message: error.message 
+    
+    // Return graceful fallback instead of exposing internal errors
+    const fallbackAvailability = {};
+    const startDate = new Date();
+    
+    for (let i = 0; i < 14; i++) {
+      const date = new Date(startDate);
+      date.setDate(date.getDate() + i);
+      const dateKey = date.toISOString().split('T')[0];
+      const dayOfWeek = date.getDay();
+      
+      fallbackAvailability[dateKey] = {
+        date: dateKey,
+        slots: TIME_SLOTS.map(time => ({
+          time,
+          available: dayOfWeek !== 0 && dayOfWeek !== 6,
+          reason: dayOfWeek === 0 || dayOfWeek === 6 ? 'weekend' : undefined
+        }))
+      };
+    }
+    
+    res.status(200).json({ 
+      availability: fallbackAvailability,
+      warning: 'Calendar service temporarily unavailable - showing basic availability'
     });
   }
 });

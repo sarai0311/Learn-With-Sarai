@@ -50,9 +50,10 @@ const convertTimeSlot = (timeSlot, date, serverTimezone, userTimezone) => {
   }
 };
 
-// Create Google Calendar client using the working method
+// Create Google Calendar client using environment variables
 const createCalendarClient = async () => {
   try {
+    // Use environment variables for authentication
     if (!SERVICE_ACCOUNT_EMAIL || !PRIVATE_KEY) {
       console.error('Google Calendar credentials not configured');
       return null;
@@ -142,7 +143,11 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { days = 14, timezone = 'Atlantic/Canary', userTimezone = 'Atlantic/Canary' } = req.body;
+    // Input validation with safe defaults
+    const requestBody = req.body || {};
+    const days = Math.min(Math.max(parseInt(requestBody.days) || 14, 1), 60); // 1-60 days max
+    const timezone = requestBody.timezone || 'Atlantic/Canary';
+    const userTimezone = requestBody.userTimezone || 'Atlantic/Canary';
     
     const availability = {};
     const startDate = startOfDay(new Date());
@@ -251,9 +256,31 @@ export default async function handler(req, res) {
     }
   } catch (error) {
     console.error('Error fetching availability:', error);
-    res.status(500).json({ 
-      error: 'Failed to fetch availability',
-      message: error.message 
+    
+    // Return a graceful fallback response instead of exposing internal errors
+    const fallbackAvailability = {};
+    const startDate = new Date();
+    
+    // Generate basic availability without calendar data as fallback
+    for (let i = 0; i < Math.min(14, 60); i++) {
+      const date = new Date(startDate);
+      date.setDate(date.getDate() + i);
+      const dateKey = date.toISOString().split('T')[0];
+      const dayOfWeek = date.getDay();
+      
+      fallbackAvailability[dateKey] = {
+        date: dateKey,
+        slots: TIME_SLOTS.map(time => ({
+          time,
+          available: dayOfWeek !== 0 && dayOfWeek !== 6, // No weekends
+          reason: dayOfWeek === 0 || dayOfWeek === 6 ? 'weekend' : undefined
+        }))
+      };
+    }
+    
+    res.status(200).json({ 
+      availability: fallbackAvailability,
+      warning: 'Calendar service temporarily unavailable - showing basic availability'
     });
   }
 } 

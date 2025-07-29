@@ -18,11 +18,24 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { amount, currency, serviceType, customerInfo } = req.body;
+    // Input validation with detailed checks
+    const { amount, currency, serviceType, customerInfo } = req.body || {};
 
-    // Validate the request
-    if (!amount || !currency || !serviceType || !customerInfo) {
-      return res.status(400).json({ error: 'Missing required fields' });
+    // Comprehensive validation
+    if (!amount || typeof amount !== 'number' || amount <= 0 || amount > 10000) {
+      return res.status(400).json({ error: 'Invalid amount' });
+    }
+    
+    if (!currency || typeof currency !== 'string' || currency.toLowerCase() !== 'eur') {
+      return res.status(400).json({ error: 'Invalid currency' });
+    }
+    
+    if (!serviceType || typeof serviceType !== 'string') {
+      return res.status(400).json({ error: 'Invalid service type' });
+    }
+    
+    if (!customerInfo || !customerInfo.name || !customerInfo.email || !customerInfo.level || !customerInfo.goals) {
+      return res.status(400).json({ error: 'Missing customer information' });
     }
 
     // Create a payment intent
@@ -48,9 +61,25 @@ export default async function handler(req, res) {
     });
   } catch (error) {
     console.error('Error creating payment intent:', error);
-    res.status(500).json({ 
-      error: 'Internal server error',
-      message: error.message 
+    
+    // Don't expose internal Stripe errors to users
+    let userMessage = 'Payment processing is temporarily unavailable. Please try again later.';
+    let statusCode = 500;
+    
+    // Handle specific known error types
+    if (error.type === 'StripeCardError') {
+      userMessage = 'There was an issue with your card. Please check your payment details.';
+      statusCode = 400;
+    } else if (error.type === 'StripeInvalidRequestError') {
+      userMessage = 'Invalid payment request. Please refresh and try again.';
+      statusCode = 400;
+    } else if (error.code === 'ENOTFOUND' || error.code === 'ECONNREFUSED') {
+      userMessage = 'Payment service is temporarily unavailable. Please try again in a few minutes.';
+      statusCode = 503;
+    }
+    
+    res.status(statusCode).json({ 
+      error: userMessage
     });
   }
 } 
