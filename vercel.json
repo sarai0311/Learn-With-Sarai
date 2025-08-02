@@ -19,6 +19,9 @@
     },
     "api/debug-calendar.js": {
       "maxDuration": 15
+    },
+    "api/calendar/availability-simple.js": {
+      "maxDuration": 20
     }
   },
   "redirects": [
