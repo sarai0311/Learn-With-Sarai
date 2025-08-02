@@ -1,1 +1,96 @@
-const { google } = require('googleapis');\n\n// Environment variables\nconst SERVICE_ACCOUNT_EMAIL = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;\nconst PRIVATE_KEY = process.env.GOOGLE_PRIVATE_KEY;\nconst PRIMARY_CALENDAR_ID = process.env.GOOGLE_CALENDAR_ID || 'sarai.syav@gmail.com';\n\n// Time slots (Atlantic/Canary time)\nconst TIME_SLOTS = ['13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];\n\n// Create Google Calendar client\nconst createCalendarClient = async () => {\n  try {\n    if (!SERVICE_ACCOUNT_EMAIL || !PRIVATE_KEY) {\n      console.error('Google Calendar credentials not configured');\n      return null;\n    }\n\n    const credentials = {\n      type: 'service_account',\n      client_email: SERVICE_ACCOUNT_EMAIL,\n      private_key: PRIVATE_KEY.replace(/\\\\n/g, '\\n'),\n    };\n\n    const auth = new google.auth.GoogleAuth({\n      credentials,\n      scopes: ['https://www.googleapis.com/auth/calendar']\n    });\n    \n    const authClient = await auth.getClient();\n    return google.calendar({ version: 'v3', auth: authClient });\n  } catch (error) {\n    console.error('Error creating Google Calendar client:', error);\n    return null;\n  }\n};\n\n// Simple date functions (replacing date-fns)\nconst addDays = (date, days) => {\n  const result = new Date(date);\n  result.setDate(result.getDate() + days);\n  return result;\n};\n\nconst formatDate = (date) => {\n  return date.toISOString().split('T')[0];\n};\n\nconst isWeekend = (date) => {\n  const day = date.getDay();\n  return day === 0 || day === 6; // Sunday or Saturday\n};\n\nmodule.exports = async function handler(req, res) {\n  // Set CORS headers\n  res.setHeader('Access-Control-Allow-Origin', '*');\n  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');\n  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');\n\n  if (req.method === 'OPTIONS') {\n    res.status(200).end();\n    return;\n  }\n\n  if (req.method !== 'POST') {\n    return res.status(405).json({ error: 'Method not allowed' });\n  }\n\n  try {\n    // Input validation\n    const requestBody = req.body || {};\n    const days = Math.min(Math.max(parseInt(requestBody.days) || 14, 1), 60);\n    const timezone = requestBody.timezone || 'Atlantic/Canary';\n    \n    console.log('🚀 Generating availability for', days, 'days');\n    \n    // Get calendar client\n    const calendar = await createCalendarClient();\n    if (!calendar) {\n      return res.status(500).json({ error: 'Failed to create calendar client' });\n    }\n\n    // Fetch busy times using freebusy query\n    const startDate = new Date();\n    const endDate = addDays(startDate, days);\n    \n    console.log('🔍 Checking busy times from', startDate.toISOString(), 'to', endDate.toISOString());\n    \n    const response = await calendar.freebusy.query({\n      requestBody: {\n        timeMin: startDate.toISOString(),\n        timeMax: endDate.toISOString(),\n        timeZone: timezone,\n        items: [{ id: PRIMARY_CALENDAR_ID }]\n      }\n    });\n\n    const busyTimes = response.data.calendars?.[PRIMARY_CALENDAR_ID]?.busy || [];\n    console.log('📋 Found', busyTimes.length, 'busy periods');\n    \n    // Generate availability\n    const availability = {};\n    \n    for (let i = 0; i < days; i++) {\n      const date = addDays(startDate, i);\n      const dateKey = formatDate(date);\n      \n      // Skip weekends\n      if (isWeekend(date)) {\n        availability[dateKey] = {\n          date: dateKey,\n          slots: TIME_SLOTS.map(time => ({\n            time,\n            available: false,\n            reason: 'weekend'\n          }))\n        };\n        continue;\n      }\n      \n      // Check each time slot\n      const slots = TIME_SLOTS.map(time => {\n        const slotDateTime = new Date(`${dateKey}T${time}:00`);\n        \n        // Skip past times\n        if (slotDateTime < new Date()) {\n          return { \n            time, \n            available: false, \n            reason: 'past' \n          };\n        }\n        \n        // Check if slot conflicts with busy times\n        const slotEnd = new Date(slotDateTime.getTime() + 60 * 60 * 1000); // 1 hour later\n        \n        const isBusy = busyTimes.some(busy => {\n          const busyStart = new Date(busy.start);\n          const busyEnd = new Date(busy.end);\n          return slotDateTime < busyEnd && slotEnd > busyStart;\n        });\n        \n        return { \n          time, \n          available: !isBusy,\n          reason: isBusy ? 'busy' : undefined\n        };\n      });\n\n      availability[dateKey] = {\n        date: dateKey,\n        slots\n      };\n    }\n\n    console.log('✅ Generated availability for', Object.keys(availability).length, 'days');\n    \n    res.json({ \n      availability,\n      timezone,\n      generatedAt: new Date().toISOString()\n    });\n    \n  } catch (error) {\n    console.error('❌ Error in availability function:', error);\n    res.status(500).json({ \n      error: 'Internal server error',\n      message: error.message\n    });\n  }\n};
+const { google } = require('googleapis');
+
+// Environment variables
+const SERVICE_ACCOUNT_EMAIL = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
+const PRIVATE_KEY = process.env.GOOGLE_PRIVATE_KEY;
+const PRIMARY_CALENDAR_ID = process.env.GOOGLE_CALENDAR_ID || 'sarai.syav@gmail.com';
+
+// Time slots (Atlantic/Canary time)
+const TIME_SLOTS = ['13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
+
+// Create Google Calendar client
+const createCalendarClient = async () => {
+  if (!SERVICE_ACCOUNT_EMAIL || !PRIVATE_KEY) {
+    console.error('Google Calendar credentials not configured');
+    return null;
+  }
+
+  const credentials = {
+    type: 'service_account',
+    client_email: SERVICE_ACCOUNT_EMAIL,
+    private_key: PRIVATE_KEY.replace(/\\n/g, '\n'),
+  };
+
+  const auth = new google.auth.GoogleAuth({
+    credentials,
+    scopes: ['https://www.googleapis.com/auth/calendar']
+  });
+
+  const authClient = await auth.getClient();
+  return google.calendar({ version: 'v3', auth: authClient });
+};
+
+// Helper date utilities (no external deps)
+const addDays = (date, days) => {
+  const result = new Date(date);
+  result.setDate(result.getDate() + days);
+  return result;
+};
+const formatDate = (date) => date.toISOString().split('T')[0];
+const isWeekend = (date) => [0, 6].includes(date.getDay());
+
+module.exports = async function handler(req, res) {
+  // CORS
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  if (req.method === 'OPTIONS') return res.status(200).end();
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+
+  try {
+    const { days = 14, timezone = 'Atlantic/Canary' } = req.body || {};
+    const numDays = Math.min(Math.max(parseInt(days, 10), 1), 60);
+
+    const calendar = await createCalendarClient();
+    if (!calendar) return res.status(500).json({ error: 'Calendar auth failed' });
+
+    const startDate = new Date();
+    const endDate = addDays(startDate, numDays);
+
+    const fbRes = await calendar.freebusy.query({
+      requestBody: {
+        timeMin: startDate.toISOString(),
+        timeMax: endDate.toISOString(),
+        timeZone: timezone,
+        items: [{ id: PRIMARY_CALENDAR_ID }]
+      }
+    });
+    const busy = fbRes.data.calendars?.[PRIMARY_CALENDAR_ID]?.busy || [];
+
+    const availability = {};
+    for (let i = 0; i < numDays; i++) {
+      const date = addDays(startDate, i);
+      const dateKey = formatDate(date);
+      if (isWeekend(date)) {
+        availability[dateKey] = {
+          date: dateKey,
+          slots: TIME_SLOTS.map(t => ({ time: t, available: false, reason: 'weekend' }))
+        };
+        continue;
+      }
+      const slots = TIME_SLOTS.map(t => {
+        const slotStart = new Date(`${dateKey}T${t}:00`);
+        const slotEnd = new Date(slotStart.getTime() + 60 * 60 * 1000);
+        if (slotStart < new Date()) return { time: t, available: false, reason: 'past' };
+        const conflicted = busy.some(b => slotStart < new Date(b.end) && slotEnd > new Date(b.start));
+        return { time: t, available: !conflicted, reason: conflicted ? 'busy' : undefined };
+      });
+      availability[dateKey] = { date: dateKey, slots };
+    }
+
+    return res.json({ availability, timezone });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: 'Internal error', message: err.message });
+  }
+};
