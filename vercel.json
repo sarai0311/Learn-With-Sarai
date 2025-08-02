@@ -25,6 +25,9 @@
     },
     "api/calendar/availability-commonjs.js": {
       "maxDuration": 20
+    },
+    "api/test-googleapis.js": {
+      "maxDuration": 10
     }
   },
   "redirects": [
