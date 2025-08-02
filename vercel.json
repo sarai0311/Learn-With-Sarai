@@ -16,6 +16,9 @@
     },
     "api/debug-env.js": {
       "maxDuration": 10
+    },
+    "api/debug-calendar.js": {
+      "maxDuration": 15
     }
   },
   "redirects": [
