@@ -28,6 +28,9 @@
     },
     "api/test-googleapis.js": {
       "maxDuration": 10
+    },
+    "api/calendar-events.js": {
+      "maxDuration": 15
     }
   },
   "redirects": [
