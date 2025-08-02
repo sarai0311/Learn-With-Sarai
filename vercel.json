@@ -22,6 +22,9 @@
     },
     "api/calendar/availability-simple.js": {
       "maxDuration": 20
+    },
+    "api/calendar/availability-commonjs.js": {
+      "maxDuration": 20
     }
   },
   "redirects": [
