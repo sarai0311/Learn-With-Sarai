@@ -30,7 +30,7 @@
     "api/calendar-events.js": {
       "maxDuration": 15
     },
-    "api/calendar/availability-working.cjs": {
+    "api/calendar/availability-v2.cjs": {
       "maxDuration": 20
     }
   },
