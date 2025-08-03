@@ -13,6 +13,14 @@
     },
     "spanish-sarai-online/api/calendar/create-event.js": {
       "maxDuration": 30
+    },
+    "spanish-sarai-online/api/debug-stripe-env.js": {
+      "maxDuration": 10
+    },
+    "spanish-sarai-online/api/calendar/availability-v2.cjs": {
+      "maxDuration": 20
+    },
+      "maxDuration": 30
     }
   },
   "redirects": [
