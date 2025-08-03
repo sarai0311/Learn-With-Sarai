@@ -65,7 +65,7 @@ module.exports = async function handler(req, res) {
         items: [{ id: PRIMARY_CALENDAR_ID }]
       }
     });
-    const busy = fbRes.data.calendars?.[PRIMARY_CALENDAR_ID]?.busy || [];
+    const busy = (fbRes.data.calendars && fbRes.data.calendars[PRIMARY_CALENDAR_ID] && fbRes.data.calendars[PRIMARY_CALENDAR_ID].busy) || [];
 
     const availability = {};
     for (let i = 0; i < numDays; i++) {
