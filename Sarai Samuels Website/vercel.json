@@ -5,23 +5,10 @@
   "installCommand": "cd spanish-sarai-online && npm install",
   "framework": null,
   "functions": {
-    "spanish-sarai-online/api/create-payment-intent.js": {
-      "maxDuration": 30
-    },
-    "spanish-sarai-online/api/calendar/availability.js": {
-      "maxDuration": 30
-    },
-    "spanish-sarai-online/api/calendar/create-event.js": {
-      "maxDuration": 30
-    },
-    "spanish-sarai-online/api/debug-stripe-env.js": {
-      "maxDuration": 10
-    },
-    "spanish-sarai-online/api/calendar/availability-v2.cjs": {
-      "maxDuration": 20
-    },
-      "maxDuration": 30
-    }
+    "spanish-sarai-online/api/create-payment-intent.js": { "maxDuration": 30 },
+    "spanish-sarai-online/api/calendar/create-event.js": { "maxDuration": 30 },
+    "spanish-sarai-online/api/debug-stripe-env.js": { "maxDuration": 10 },
+    "spanish-sarai-online/api/calendar/availability-v2.cjs": { "maxDuration": 20 }
   },
   "redirects": [
     {
@@ -50,31 +37,16 @@
     {
       "source": "/api/(.*)",
       "headers": [
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        },
-        {
-          "key": "Access-Control-Allow-Methods",
-          "value": "GET, POST, PUT, DELETE, OPTIONS"
-        },
-        {
-          "key": "Access-Control-Allow-Headers",
-          "value": "Content-Type, Authorization"
-        }
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, POST, PUT, DELETE, OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type, Authorization" }
       ]
     },
     {
       "source": "/(.*)",
       "headers": [
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
-        },
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        }
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" }
       ]
     }
   ]
