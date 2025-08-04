@@ -63,7 +63,7 @@ const Hero = () => {
                   <div className="flex justify-center">
                     <div className="w-32 h-32 rounded-full overflow-hidden">
                       <img 
-                        src="/sarai-profile.jpg" 
+                        src="/sarai-profile-new.jpeg" 
                         alt="Sarai - Spanish Teacher" 
                         className="w-full h-full object-cover"
                       />

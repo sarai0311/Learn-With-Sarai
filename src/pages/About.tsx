@@ -44,7 +44,7 @@ const About = () => {
                     <div className="flex justify-center mb-6">
                       <div className="w-48 h-48 rounded-full overflow-hidden">
                         <img 
-                          src="/sarai-about-profile.jpg" 
+                          src="/sarai-about-profile.jpeg" 
                           alt="Sarai Acevedo - Spanish Teacher" 
                           className="w-full h-full object-cover"
                         />
