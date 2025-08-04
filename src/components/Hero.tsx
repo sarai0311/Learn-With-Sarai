@@ -71,8 +71,8 @@ const Hero = () => {
                   </div>
                   
                   <div className="text-center space-y-4">
-                    <h3 className="text-2xl font-bold text-sarai-text">¡Hola! Soy Sarai</h3>
-                    <p className="text-gray-600">Profesora certificada de español de Colombia</p>
+                    <h3 className="text-2xl font-bold text-sarai-text">{t('hero.cardTitle')}</h3>
+                    <p className="text-gray-600">{t('hero.cardSubtitle')}</p>
                     
                     <div className="flex justify-center space-x-1">
                       {[...Array(5)].map((_, i) => (
