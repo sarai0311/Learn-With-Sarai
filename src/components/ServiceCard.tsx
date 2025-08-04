@@ -45,31 +45,16 @@ const ServiceCard = ({
           ))}
         </ul>
         <div className="flex flex-col gap-2">
-          {stripeLink ? (
-            <a 
-              href={stripeLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full"
+          <Link 
+            to={`/book${serviceId ? `?service=${serviceId}` : ''}`}
+            className="w-full"
+          >
+            <Button 
+              className="w-full bg-sarai-primary hover:bg-sarai-primary/90"
             >
-              <Button 
-                className="w-full bg-sarai-primary hover:bg-sarai-primary/90"
-              >
-                Pay Now
-              </Button>
-            </a>
-          ) : (
-            <Link 
-              to={`/book${serviceId ? `?service=${serviceId}` : ''}`}
-              className="w-full"
-            >
-              <Button 
-                className="w-full bg-sarai-primary hover:bg-sarai-primary/90"
-              >
-                Book Now
-              </Button>
-            </Link>
-          )}
+              Book Now
+            </Button>
+          </Link>
         </div>
       </CardContent>
     </Card>

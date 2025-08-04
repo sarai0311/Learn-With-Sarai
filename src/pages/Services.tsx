@@ -62,7 +62,7 @@ const Services = () => {
                           description="Try a 25-minute class to assess your level and discuss your learning goals."
                           icon="🎁"
                           price="€10.50"
-                          stripeLink="https://buy.stripe.com/9B66oJ0Ju9tudyZeaR"
+                          serviceId="trial"
                           features={[
                             "25 minutes",
                             "Level assessment",
@@ -80,7 +80,7 @@ const Services = () => {
                           description="Regular one-on-one Spanish lessons focused on your specific learning goals."
                           icon="📚"
                           price="€21.00"
-                          stripeLink="https://buy.stripe.com/9B6eVf63O49agLb8Qx"
+                          serviceId="standard"
                           features={[
                             "50 minutes",
                             "Customized curriculum",
@@ -98,7 +98,7 @@ const Services = () => {
                           description="Extended sessions for faster progress with additional materials and support."
                           icon="⭐"
                           price="€42.00"
-                          stripeLink="https://buy.stripe.com/28E28t1Ny0WYbqR2s9"
+                          serviceId="premium"
                           features={[
                             "100 minutes",
                             "Personalized learning materials",
