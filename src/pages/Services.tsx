@@ -40,7 +40,6 @@ const Services = () => {
                   <TabsList className="bg-gray-100">
                     <TabsTrigger value="individual" className="px-6 py-3">{t('services.tab.individual')}</TabsTrigger>
                     <TabsTrigger value="packages" className="px-6 py-3">{t('services.tab.packages')}</TabsTrigger>
-                    <TabsTrigger value="specialized" className="px-6 py-3">{t('services.tab.specialized')}</TabsTrigger>
                   </TabsList>
                 </div>
                 
@@ -185,8 +184,7 @@ const Services = () => {
                   </div>
                 </TabsContent>
                 
-                {/* Specialized Classes */}
-                <TabsContent value="specialized">
+                {/* Specialized Classes removed */}
                   <ScrollAnimation direction="up" delay={0.1} className="text-center mb-8">
                     <h2 className="text-2xl md:text-3xl font-bold text-sarai-text mb-4">
                       Specialized Classes
